@@ -27,7 +27,7 @@ export function About() {
             </p>
           </div>
           
-          <div className="w-full lg:w-[520px] xl:w-[580px] 2xl:w-[640px] h-[420px] md:h-[520px] lg:h-[560px] xl:h-[620px] rounded-[10px] overflow-hidden flex-shrink-0">
+          <div className="w-full max-w-[520px] md:max-w-[600px] lg:max-w-[520px] xl:max-w-[580px] 2xl:max-w-[620px] h-[420px] md:h-[520px] lg:h-[560px] xl:h-[620px] rounded-[10px] overflow-hidden flex-shrink-0 mx-auto lg:mx-0">
             <img alt="Интерьер мастерской" className="w-full h-full object-cover" src={img202511240825011} />
           </div>
         </div>
