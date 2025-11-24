@@ -26,6 +26,8 @@
         'figma:asset/image2.png': path.resolve(__dirname, './src/assets/image2.png'),
         'figma:asset/image3.png': path.resolve(__dirname, './src/assets/image3.png'),
         'figma:asset/image4.png': path.resolve(__dirname, './src/assets/image4.png'),
+        'figma:asset/event-card-1.png': path.resolve(__dirname, './src/assets/Снимок экрана 2025-11-24 в 07.30.46 1.png'),
+        'figma:asset/event-card-2.png': path.resolve(__dirname, './src/assets/Снимок экрана 2025-11-24 в 07.25.41 1.png'),
         'embla-carousel-react@8.6.0': 'embla-carousel-react',
         'cmdk@1.1.1': 'cmdk',
         'class-variance-authority@0.7.1': 'class-variance-authority',
