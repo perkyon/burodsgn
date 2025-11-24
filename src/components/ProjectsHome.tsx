@@ -1,7 +1,7 @@
 import React from "react";
-import img1 from "figma:asset/9d277a0c76e94e6c0d1c36b260e7d33fa0e08d05.png";
-import img2 from "figma:asset/77e65ee8bee14c18399a8e359e571f19624b33cc.png";
-import img3 from "figma:asset/c16e70d99e5d6998d8af8c71cbaf5a1f8b5f445c.png";
+import img1 from "figma:asset/image2.png";
+import img2 from "figma:asset/image3.png";
+import img3 from "figma:asset/image4.png";
 
 export function ProjectsHome() {
   return (
