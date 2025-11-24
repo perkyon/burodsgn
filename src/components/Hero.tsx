@@ -23,27 +23,47 @@ export function Hero() {
       {isMenuOpen && (
         <div 
           className="fixed top-0 left-0 w-full h-full z-40 flex items-center justify-center backdrop-blur-sm"
+          onClick={() => setIsMenuOpen(false)}
           style={{
-            background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(240,240,255,0.85) 50%, rgba(255,240,240,0.9) 100%)',
-            backgroundSize: '200% 200%',
-            animation: 'gradient 8s ease infinite'
+            background: `
+              radial-gradient(circle at 20% 30%, rgba(255,255,255,0.95) 0%, transparent 50%),
+              radial-gradient(circle at 80% 70%, rgba(240,240,255,0.9) 0%, transparent 50%),
+              radial-gradient(circle at 50% 50%, rgba(255,240,240,0.85) 0%, transparent 50%),
+              radial-gradient(circle at 10% 80%, rgba(255,255,240,0.9) 0%, transparent 50%),
+              radial-gradient(circle at 90% 20%, rgba(240,255,255,0.88) 0%, transparent 50%),
+              linear-gradient(135deg, rgba(255,255,255,0.92) 0%, rgba(240,240,255,0.88) 50%, rgba(255,240,240,0.92) 100%)
+            `,
+            backgroundSize: '400% 400%, 300% 300%, 350% 350%, 250% 250%, 320% 320%, 200% 200%',
+            animation: 'cloudGradient 15s ease-in-out infinite'
           }}
         >
           <style>{`
-            @keyframes gradient {
-              0% { background-position: 0% 50%; }
-              50% { background-position: 100% 50%; }
-              100% { background-position: 0% 50%; }
+            @keyframes cloudGradient {
+              0% { 
+                background-position: 0% 0%, 100% 100%, 50% 50%, 0% 100%, 100% 0%, 0% 50%;
+              }
+              25% { 
+                background-position: 100% 30%, 0% 70%, 80% 20%, 50% 0%, 20% 80%, 50% 100%;
+              }
+              50% { 
+                background-position: 50% 100%, 30% 0%, 100% 80%, 100% 50%, 0% 30%, 100% 0%;
+              }
+              75% { 
+                background-position: 80% 50%, 60% 40%, 20% 100%, 30% 80%, 70% 20%, 0% 70%;
+              }
+              100% { 
+                background-position: 0% 0%, 100% 100%, 50% 50%, 0% 100%, 100% 0%, 0% 50%;
+              }
             }
           `}</style>
-          <nav className="flex flex-col gap-8 text-center">
-            <a href="#hero" className="font-['Unbounded'] text-[40px] md:text-[50px] text-[#141414] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Главная</a>
-            <a href="#about" className="font-['Unbounded'] text-[40px] md:text-[50px] text-[#141414] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>О мастерской</a>
-            <a href="#horeca" className="font-['Unbounded'] text-[40px] md:text-[50px] text-[#141414] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>HoReCa</a>
-            <a href="#home" className="font-['Unbounded'] text-[40px] md:text-[50px] text-[#141414] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Дом и офис</a>
-            <a href="#events" className="font-['Unbounded'] text-[40px] md:text-[50px] text-[#141414] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Мероприятия</a>
-            <a href="#video" className="font-['Unbounded'] text-[40px] md:text-[50px] text-[#141414] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Видео</a>
-            <a href="#contacts" className="font-['Unbounded'] text-[40px] md:text-[50px] text-[#141414] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Контакты</a>
+          <nav className="flex flex-col gap-8 text-center relative z-10" onClick={(e) => e.stopPropagation()}>
+            <a href="#hero" className="font-['Unbounded'] text-[50px] md:text-[65px] text-[#141414] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Главная</a>
+            <a href="#about" className="font-['Unbounded'] text-[50px] md:text-[65px] text-[#141414] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>О мастерской</a>
+            <a href="#horeca" className="font-['Unbounded'] text-[50px] md:text-[65px] text-[#141414] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>HoReCa</a>
+            <a href="#home" className="font-['Unbounded'] text-[50px] md:text-[65px] text-[#141414] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Дом и офис</a>
+            <a href="#events" className="font-['Unbounded'] text-[50px] md:text-[65px] text-[#141414] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Мероприятия</a>
+            <a href="#video" className="font-['Unbounded'] text-[50px] md:text-[65px] text-[#141414] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Видео</a>
+            <a href="#contacts" className="font-['Unbounded'] text-[50px] md:text-[65px] text-[#141414] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Контакты</a>
           </nav>
         </div>
       )}
@@ -74,7 +94,7 @@ export function Hero() {
             </svg>
             
             {/* dsgn позиционирован справа от буквы О, на уровне её нижней части, но не внутри неё */}
-            <p className="font-['Unbounded'] text-[#141414] text-[20px] md:text-[24px] absolute" style={{ bottom: '8%', right: '0%', transform: 'translateX(100%)', marginLeft: '10px' }}>
+            <p className="font-['Unbounded'] text-[#141414] text-[25px] md:text-[29px] absolute" style={{ bottom: '2%', right: '0%', transform: 'translateX(100%)', marginLeft: '10px' }}>
               dsgn
             </p>
           </div>
