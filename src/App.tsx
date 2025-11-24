@@ -5,6 +5,7 @@ import { ProjectsHome } from './components/ProjectsHome';
 import { Events } from './components/Events';
 import { Video } from './components/Video';
 import { Contacts } from './components/Contacts';
+import { ScrollLogo } from './components/ScrollLogo';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
       <Events />
       <Video />
       <Contacts />
+      <ScrollLogo />
     </div>
   );
 }

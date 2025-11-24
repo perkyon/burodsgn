@@ -20,7 +20,20 @@ export function Contacts() {
         </div>
       </div>
 
-      <div className="bg-[#141414] w-full py-8 md:py-12 px-6 md:px-16">
+      <div className="bg-[#141414] w-full py-8 md:py-12 px-6 md:px-16 relative mt-5" style={{ filter: 'url(#footerTexture)' }}>
+        <svg width="0" height="0" style={{ position: 'absolute' }}>
+          <defs>
+            <filter id="footerTexture" x="-20" y="0" width="1320" height="275" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+              <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+              <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+              <feTurbulence type="fractalNoise" baseFrequency="10 10" numOctaves="3" seed="6109"/>
+              <feDisplacementMap in="shape" scale="40" xChannelSelector="R" yChannelSelector="G" result="displacedImage" width="100%" height="100%"/>
+              <feMerge result="effect1_texture_78_629">
+                <feMergeNode in="displacedImage"/>
+              </feMerge>
+            </filter>
+          </defs>
+        </svg>
           <div className="max-w-[1400px] xl:max-w-[1600px] 2xl:max-w-[1800px] mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8">
               <div className="text-center md:text-left">

@@ -10,13 +10,15 @@ export function ProjectsHome() {
   return (
     <section id="home" className="bg-white w-full py-12 md:py-20">
       <div className="w-full max-w-[1400px] xl:max-w-[1600px] 2xl:max-w-[1800px] mx-auto px-4 md:px-8">
-        <h2 className="font-['Unbounded'] text-[40px] md:text-[60px] lg:text-[70px] text-[#141414] text-center mb-6 md:mb-8">
-          <span className="text-[50px] md:text-[60px] lg:text-[70px]">П</span>
-          <span className="text-[40px] md:text-[55px] lg:text-[65px]">роекты </span>
-          <span className="text-[50px] md:text-[60px] lg:text-[70px]">д</span>
-          <span className="text-[40px] md:text-[55px] lg:text-[65px]">ом и </span>
-          <span className="text-[50px] md:text-[60px] lg:text-[70px]">о</span>
-          <span className="text-[40px] md:text-[55px] lg:text-[65px]">фис</span>
+        <h2 className="font-['Unbounded'] text-[#141414] text-center mb-6 md:mb-8">
+          <div className="flex flex-wrap justify-center items-baseline gap-1 md:gap-2">
+            <span className="text-[60px] md:text-[80px] lg:text-[100px] xl:text-[120px]">П</span>
+            <span className="text-[45px] md:text-[60px] lg:text-[75px] xl:text-[90px]">роекты </span>
+            <span className="text-[60px] md:text-[80px] lg:text-[100px] xl:text-[120px]">д</span>
+            <span className="text-[45px] md:text-[60px] lg:text-[75px] xl:text-[90px]">ом и </span>
+            <span className="text-[60px] md:text-[80px] lg:text-[100px] xl:text-[120px]">о</span>
+            <span className="text-[45px] md:text-[60px] lg:text-[75px] xl:text-[90px]">фис</span>
+          </div>
         </h2>
         
         <div className="font-['Unbounded'] text-[35px] md:text-[40px] lg:text-[45px] text-black text-center mb-12 md:mb-16">

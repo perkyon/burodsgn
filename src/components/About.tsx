@@ -5,7 +5,7 @@ export function About() {
   return (
     <section id="about" className="bg-white w-full py-12 md:py-20">
       <div className="w-full max-w-[1400px] xl:max-w-[1600px] 2xl:max-w-[1800px] mx-auto px-4 md:px-8 lg:px-16">
-        <div className="font-['Unbounded'] text-[40px] md:text-[60px] lg:text-[70px] text-black mb-8 md:mb-12">
+        <div className="font-['Unbounded'] text-[50px] md:text-[70px] lg:text-[85px] xl:text-[100px] text-black mb-8 md:mb-12">
           <p className="mb-2">Мебельная мастерская где</p>
           <p>можно воплотить нестандартные решения</p>
         </div>
