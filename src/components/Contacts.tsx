@@ -20,8 +20,8 @@ export function Contacts() {
         </div>
       </div>
 
-      <div className="bg-[#141414] w-full py-8 md:py-12 px-6 md:px-16 relative mt-5" style={{ filter: 'url(#footerTexture)' }}>
-        <svg width="0" height="0" style={{ position: 'absolute' }}>
+      <div className="bg-[#141414] w-full py-8 md:py-12 px-6 md:px-16 relative mt-5">
+        <svg width="0" height="0" style={{ position: 'absolute', pointerEvents: 'none' }}>
           <defs>
             <filter id="footerTexture" x="-20" y="0" width="1320" height="275" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
               <feFlood floodOpacity="0" result="BackgroundImageFix"/>
@@ -34,6 +34,7 @@ export function Contacts() {
             </filter>
           </defs>
         </svg>
+        <div style={{ filter: 'url(#footerTexture)' }} className="relative z-10">
           <div className="max-w-[1400px] xl:max-w-[1600px] 2xl:max-w-[1800px] mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8">
               <div className="text-center md:text-left">
@@ -142,6 +143,7 @@ export function Contacts() {
               <p className="font-['Unbounded'] text-[22px] md:text-[26px] text-[rgba(255,255,255,0.7)]">Политика конфиденциальности</p>
             </div>
           </div>
+        </div>
       </div>
     </section>
   );
