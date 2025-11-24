@@ -116,17 +116,17 @@ export function Contacts() {
           </div>
 
           <div className="text-center mb-4 md:mb-6">
-            <p className="font-['Unbounded'] text-xs text-[rgba(255,255,255,0.7)]">2025</p>
-            <p className="font-['Unbounded'] text-xs text-[rgba(255,255,255,0.7)]">ООО "БЮРО 23"</p>
-            <p className="font-['Unbounded'] text-xs text-[rgba(255,255,255,0.7)]">Все права защищены</p>
+            <p className="font-['Unbounded'] text-[16px] text-[rgba(255,255,255,0.7)]">2025</p>
+            <p className="font-['Unbounded'] text-[16px] text-[rgba(255,255,255,0.7)]">ООО "БЮРО 23"</p>
+            <p className="font-['Unbounded'] text-[16px] text-[rgba(255,255,255,0.7)]">Все права защищены</p>
           </div>
 
           <div className="w-full h-px bg-white mb-4" />
 
           <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-8 text-center">
-            <p className="font-['Unbounded'] text-xs text-[rgba(255,255,255,0.7)]">Юридическая информация</p>
-            <p className="font-['Unbounded'] text-xs text-[rgba(255,255,255,0.7)]">Юридическая информация</p>
-            <p className="font-['Unbounded'] text-xs text-[rgba(255,255,255,0.7)]">Политика конфиденциальности</p>
+            <p className="font-['Unbounded'] text-[16px] text-[rgba(255,255,255,0.7)]">Юридическая информация</p>
+            <p className="font-['Unbounded'] text-[16px] text-[rgba(255,255,255,0.7)]">Юридическая информация</p>
+            <p className="font-['Unbounded'] text-[16px] text-[rgba(255,255,255,0.7)]">Политика конфиденциальности</p>
           </div>
         </div>
       </div>
