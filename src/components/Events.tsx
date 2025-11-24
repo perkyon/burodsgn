@@ -1,3 +1,4 @@
+import React from "react";
 import img202511240725411 from "figma:asset/8aa084b825b8cad5f81b02dabe80ba0e50769c75.png";
 import img202511240730461 from "figma:asset/d2ee5035d9c68be8b818bdc5d742c74bf3c0ffe2.png";
 

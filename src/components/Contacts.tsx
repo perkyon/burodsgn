@@ -1,3 +1,4 @@
+import React from "react";
 import svgPaths from "../imports/svg-0tbve8iu82";
 
 function SocialIcon({ pathData, clipPathId }: { pathData: string; clipPathId?: string }) {

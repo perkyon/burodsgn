@@ -1,3 +1,4 @@
+import React from "react";
 import img202511240825011 from "figma:asset/3320c2117426094d90a792c9011c4751d88c257b.png";
 
 export function About() {
