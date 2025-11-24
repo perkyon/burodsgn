@@ -60,7 +60,7 @@ export function Contacts() {
               </p>
             </div>
 
-            <div className="text-center md:text-right">
+            <div className="text-center md:text-right md:flex md:flex-col md:items-end">
               <p className="font-['Unbounded'] text-white mb-1">
                 <span className="text-base md:text-lg">BURO</span>
                 <span className="text-sm"> digital</span>
