@@ -73,8 +73,8 @@ export function Hero() {
               </g>
             </svg>
             
-            {/* dsgn позиционирован справа от буквы О, на уровне её нижней части */}
-            <p className="font-['Unbounded'] text-[#141414] text-sm md:text-base absolute" style={{ bottom: '8%', right: '0%' }}>
+            {/* dsgn позиционирован справа от буквы О, на уровне её нижней части, но не внутри неё */}
+            <p className="font-['Unbounded'] text-[#141414] text-[20px] md:text-[24px] absolute" style={{ bottom: '8%', right: '0%', transform: 'translateX(100%)', marginLeft: '10px' }}>
               dsgn
             </p>
           </div>

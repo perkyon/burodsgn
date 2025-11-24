@@ -5,7 +5,7 @@ export function About() {
   return (
     <section id="about" className="bg-white w-full py-12 md:py-20">
       <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8 lg:px-16">
-        <div className="font-['Unbounded'] text-[32px] md:text-[50px] lg:text-[60px] text-black mb-8 md:mb-12">
+        <div className="font-['Unbounded'] text-[40px] md:text-[60px] lg:text-[70px] text-black mb-8 md:mb-12">
           <p className="mb-2">Мебельная мастерская где</p>
           <p>можно воплотить нестандартные решения</p>
         </div>
@@ -13,14 +13,14 @@ export function About() {
         <div className="w-full h-px bg-black mb-8 md:mb-12" />
         
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
-          <div className="font-['Unbounded'] text-[28px] md:text-[40px] lg:text-[45px] text-black flex-1">
+          <div className="font-['Unbounded'] text-[32px] md:text-[45px] lg:text-[50px] text-black flex-1">
             <p className="mb-6">
-              <span className="text-[32px] md:text-[50px] lg:text-[60px]">М</span>
+              <span className="text-[40px] md:text-[60px] lg:text-[70px]">М</span>
               <span>ы не боимся брать сложные идеи и реализовывать их, для нас каждый проект особенный</span>
             </p>
             
             <p className="mb-0">
-              <span className="text-[32px] md:text-[50px] lg:text-[60px]">Н</span>
+              <span className="text-[40px] md:text-[60px] lg:text-[70px]">Н</span>
               <span>ам важно помочь вам реализовать любые идеи которые вы себе только можете представить</span>
             </p>
           </div>

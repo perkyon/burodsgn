@@ -6,7 +6,7 @@ export function Events() {
   return (
     <section id="events" className="bg-white w-full py-12 md:py-20">
       <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8">
-        <div className="font-['Unbounded'] text-[32px] md:text-[50px] lg:text-[60px] text-black mb-12 md:mb-16">
+        <div className="font-['Unbounded'] text-[40px] md:text-[60px] lg:text-[70px] text-black mb-12 md:mb-16">
           <p>Нас можно встретить на мероприятиях и выставках</p>
         </div>
         
