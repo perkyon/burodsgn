@@ -26,12 +26,12 @@ export function Hero() {
           onClick={() => setIsMenuOpen(false)}
           style={{
             background: `
-              radial-gradient(circle at 20% 30%, rgba(255,255,255,0.95) 0%, transparent 50%),
-              radial-gradient(circle at 80% 70%, rgba(240,240,255,0.9) 0%, transparent 50%),
-              radial-gradient(circle at 50% 50%, rgba(255,240,240,0.85) 0%, transparent 50%),
-              radial-gradient(circle at 10% 80%, rgba(255,255,240,0.9) 0%, transparent 50%),
-              radial-gradient(circle at 90% 20%, rgba(240,255,255,0.88) 0%, transparent 50%),
-              linear-gradient(135deg, rgba(255,255,255,0.92) 0%, rgba(240,240,255,0.88) 50%, rgba(255,240,240,0.92) 100%)
+              radial-gradient(circle at 20% 30%, rgba(255,255,255,0.98) 0%, transparent 50%),
+              radial-gradient(circle at 80% 70%, rgba(240,240,255,0.95) 0%, transparent 50%),
+              radial-gradient(circle at 50% 50%, rgba(255,240,240,0.92) 0%, transparent 50%),
+              radial-gradient(circle at 10% 80%, rgba(255,255,240,0.95) 0%, transparent 50%),
+              radial-gradient(circle at 90% 20%, rgba(240,255,255,0.93) 0%, transparent 50%),
+              linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(240,240,255,0.92) 50%, rgba(255,240,240,0.95) 100%)
             `,
             backgroundSize: '400% 400%, 300% 300%, 350% 350%, 250% 250%, 320% 320%, 200% 200%',
             animation: 'cloudGradient 15s ease-in-out infinite'
@@ -57,13 +57,13 @@ export function Hero() {
             }
           `}</style>
           <nav className="flex flex-col gap-8 text-center relative z-10" onClick={(e) => e.stopPropagation()}>
-            <a href="#hero" className="font-['Unbounded'] text-[50px] md:text-[65px] text-[#141414] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Главная</a>
-            <a href="#about" className="font-['Unbounded'] text-[50px] md:text-[65px] text-[#141414] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>О мастерской</a>
-            <a href="#horeca" className="font-['Unbounded'] text-[50px] md:text-[65px] text-[#141414] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>HoReCa</a>
-            <a href="#home" className="font-['Unbounded'] text-[50px] md:text-[65px] text-[#141414] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Дом и офис</a>
-            <a href="#events" className="font-['Unbounded'] text-[50px] md:text-[65px] text-[#141414] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Мероприятия</a>
-            <a href="#video" className="font-['Unbounded'] text-[50px] md:text-[65px] text-[#141414] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Видео</a>
-            <a href="#contacts" className="font-['Unbounded'] text-[50px] md:text-[65px] text-[#141414] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Контакты</a>
+            <a href="#hero" className="font-['Unbounded'] text-[60px] md:text-[75px] text-[#0a0a0a] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Главная</a>
+            <a href="#about" className="font-['Unbounded'] text-[60px] md:text-[75px] text-[#0a0a0a] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>О мастерской</a>
+            <a href="#horeca" className="font-['Unbounded'] text-[60px] md:text-[75px] text-[#0a0a0a] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>HoReCa</a>
+            <a href="#home" className="font-['Unbounded'] text-[60px] md:text-[75px] text-[#0a0a0a] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Дом и офис</a>
+            <a href="#events" className="font-['Unbounded'] text-[60px] md:text-[75px] text-[#0a0a0a] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Мероприятия</a>
+            <a href="#video" className="font-['Unbounded'] text-[60px] md:text-[75px] text-[#0a0a0a] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Видео</a>
+            <a href="#contacts" className="font-['Unbounded'] text-[60px] md:text-[75px] text-[#0a0a0a] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Контакты</a>
           </nav>
         </div>
       )}

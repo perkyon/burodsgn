@@ -18,9 +18,9 @@ export function Contacts() {
             </span>
           </button>
         </div>
-      </div>
+        </div>
 
-      <div className="bg-[#141414] w-full py-8 md:py-12 px-6 md:px-16 relative mt-5">
+      <div className="bg-[#141414] w-full py-8 md:py-12 px-6 md:px-16 relative mt-5 pb-8 md:pb-12">
         <svg width="0" height="0" style={{ position: 'absolute', pointerEvents: 'none' }}>
           <defs>
             <filter id="footerTexture" x="-20" y="0" width="1320" height="275" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
@@ -36,22 +36,22 @@ export function Contacts() {
         </svg>
         <div style={{ filter: 'url(#footerTexture)' }} className="relative z-10">
           <div className="max-w-[1400px] xl:max-w-[1600px] 2xl:max-w-[1800px] mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8">
-              <div className="text-center md:text-left">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8">
+            <div className="text-center md:text-left">
                 <p className="font-['Unbounded'] text-[28px] md:text-[35px] text-white mb-2">+7 (918) 123-45-67</p>
                 <p className="font-['Unbounded'] text-[28px] md:text-[35px] text-white">sales@burodsgn.ru</p>
-              </div>
-              
-              <div className="text-center">
+            </div>
+            
+            <div className="text-center">
                 <p className="font-['Unbounded'] text-[24px] md:text-[30px] text-white mb-2">
                   <span className="text-[30px] md:text-[36px]">К</span>
-                  <span>раснодар, ул. Примерная, д. 10, офис 5</span>
-                </p>
+                <span>раснодар, ул. Примерная, д. 10, офис 5</span>
+              </p>
                 <p className="font-['Unbounded'] text-[20px] md:text-[26px] text-white">
-                  Режим работы:<br />
-                  Пн-Пт с 9:00 до 18:00
-                </p>
-              </div>
+                Режим работы:<br />
+                Пн-Пт с 9:00 до 18:00
+              </p>
+            </div>
 
               <div className="text-center md:text-right md:flex md:flex-col md:items-end md:justify-end">
                 <p className="font-['Unbounded'] text-white mb-1 text-[24px] md:text-[28px]">
@@ -62,11 +62,11 @@ export function Contacts() {
                 </p>
                 <p className="font-['Unbounded'] text-white text-[24px] md:text-[28px]">
                   BURO crm
-                </p>
-              </div>
+              </p>
             </div>
+          </div>
 
-            <div className="flex justify-center gap-4 mb-6 md:mb-8">
+          <div className="flex justify-center gap-4 mb-6 md:mb-8">
               {/* Telegram */}
               <div className="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center">
                 <svg className="w-8 h-[33px]" fill="none" viewBox="0 0 32 33">
@@ -100,14 +100,14 @@ export function Contacts() {
                 <svg className="w-8 h-[33px]" fill="none" viewBox="0 0 32 33">
                   <g clipPath="url(#clip0_18_182)">
                     <path d="M15.8863 0C7.11162 0 0 7.17834 0 16.0354C0 22.8316 4.18878 28.6319 10.0965 30.9683C9.95999 29.6968 9.82967 27.755 10.1524 26.3707C10.444 25.1179 12.014 18.4031 12.014 18.4031C12.014 18.4031 11.5362 17.4447 11.5362 16.0228C11.5362 13.7929 12.8146 12.1268 14.4094 12.1268C15.7622 12.1268 16.42 13.154 16.42 14.388C16.42 15.766 15.5512 17.8206 15.1044 19.7248C14.7321 21.322 15.8987 22.6249 17.4564 22.6249C20.2799 22.6249 22.4519 19.6183 22.4519 15.2837C22.4519 11.444 19.7214 8.75682 15.8181 8.75682C11.3004 8.75682 8.6444 12.1769 8.6444 15.7159C8.6444 17.094 9.17188 18.5722 9.82967 19.374C9.95999 19.5306 9.97861 19.6747 9.94137 19.8313C9.82347 20.3386 9.55042 21.4285 9.50078 21.6478C9.43251 21.9422 9.27117 22.0048 8.96709 21.8607C6.9813 20.9274 5.74018 18.0022 5.74018 15.647C5.74018 10.5859 9.38287 5.94436 16.2339 5.94436C21.7444 5.94436 26.0263 9.90936 26.0263 15.2086C26.0263 20.7332 22.576 25.1806 17.7853 25.1806C16.178 25.1806 14.6638 24.3349 14.1426 23.339C14.1426 23.339 13.3482 26.402 13.1559 27.1537C12.7959 28.5442 11.8279 30.2918 11.1825 31.3567C12.6718 31.8202 14.2481 32.0708 15.8863 32.0708C24.6611 32.0708 31.7727 24.8924 31.7727 16.0354C31.7727 7.17834 24.6611 0 15.8863 0Z" fill="white"/>
-                  </g>
-                  <defs>
+                </g>
+                <defs>
                     <clipPath id="clip0_18_182">
                       <rect width="31.7727" height="32.0708" fill="white"/>
-                    </clipPath>
-                  </defs>
-                </svg>
-              </div>
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
               {/* WhatsApp */}
               <div className="w-10 h-10 flex items-center justify-center">
                 <svg className="w-8 h-[33px]" fill="none" viewBox="0 0 32 33">
@@ -125,19 +125,19 @@ export function Contacts() {
                       <rect width="31.7727" height="32.0708" fill="white"/>
                     </clipPath>
                   </defs>
-                </svg>
+              </svg>
               </div>
-            </div>
+          </div>
 
-            <div className="text-center mb-4 md:mb-6">
+          <div className="text-center mb-4 md:mb-6">
               <p className="font-['Unbounded'] text-[22px] md:text-[26px] text-[rgba(255,255,255,0.7)]">2028</p>
               <p className="font-['Unbounded'] text-[22px] md:text-[26px] text-[rgba(255,255,255,0.7)]">ООО "БЮРО 23"</p>
               <p className="font-['Unbounded'] text-[22px] md:text-[26px] text-[rgba(255,255,255,0.7)]">Все права защищены</p>
-            </div>
+          </div>
 
-            <div className="w-full h-px bg-white mb-4" />
+          <div className="w-full h-px bg-white mb-4" />
 
-            <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-8 text-center">
+          <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-8 text-center">
               <p className="font-['Unbounded'] text-[22px] md:text-[26px] text-[rgba(255,255,255,0.7)]">Юридическая информация</p>
               <p className="font-['Unbounded'] text-[22px] md:text-[26px] text-[rgba(255,255,255,0.7)]">Юридическая информация</p>
               <p className="font-['Unbounded'] text-[22px] md:text-[26px] text-[rgba(255,255,255,0.7)]">Политика конфиденциальности</p>
