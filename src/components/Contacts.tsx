@@ -27,7 +27,7 @@ export function Contacts() {
   return (
     <section id="contacts" className="bg-white w-full py-12 md:py-20">
       <div className="w-full px-4 md:px-8">
-        <div className="font-['Unbounded'] text-2xl md:text-4xl text-black mb-6 md:mb-8">
+        <div className="font-['Unbounded'] text-[27px] md:text-[45px] text-black mb-6 md:mb-8">
           <p className="mb-2">Напишите</p>
           <p className="md:pl-20">если есть вопрос</p>
         </div>
@@ -36,7 +36,7 @@ export function Contacts() {
         
         <div className="flex justify-center mb-12 md:mb-20">
           <button className="bg-[#141414] px-12 md:px-16 py-3 md:py-4 rounded-md hover:bg-[#2a2a2a] transition-colors">
-            <span className="font-['Unbounded'] text-base md:text-xl text-[rgba(255,255,255,0.8)]">
+            <span className="font-['Unbounded'] text-[21px] md:text-[25px] text-[rgba(255,255,255,0.8)]">
               Оставьте заявку
             </span>
           </button>
@@ -45,16 +45,16 @@ export function Contacts() {
         <div className="bg-[#141414] py-8 md:py-12 px-6 md:px-16 rounded-lg">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8">
             <div className="text-center md:text-left">
-              <p className="font-['Unbounded'] text-lg md:text-xl text-white mb-2">+7 (918) 123-45-67</p>
-              <p className="font-['Unbounded'] text-lg md:text-xl text-white">sales@burodsgn.ru</p>
+              <p className="font-['Unbounded'] text-[23px] md:text-[25px] text-white mb-2">+7 (918) 123-45-67</p>
+              <p className="font-['Unbounded'] text-[23px] md:text-[25px] text-white">sales@burodsgn.ru</p>
             </div>
             
             <div className="text-center">
-              <p className="font-['Unbounded'] text-sm md:text-base text-white mb-2">
-                <span className="text-base md:text-lg">К</span>
+              <p className="font-['Unbounded'] text-[18px] md:text-[21px] text-white mb-2">
+                <span className="text-[21px] md:text-[23px]">К</span>
                 <span>раснодар, ул. Примерная, д. 10, офис 5</span>
               </p>
-              <p className="font-['Unbounded'] text-xs md:text-sm text-white">
+              <p className="font-['Unbounded'] text-[16px] md:text-[18px] text-white">
                 Режим работы:<br />
                 Пн-Пт с 9:00 до 18:00
               </p>
@@ -62,16 +62,16 @@ export function Contacts() {
 
             <div className="text-center md:text-right md:flex md:flex-col md:items-end">
               <p className="font-['Unbounded'] text-white mb-1">
-                <span className="text-base md:text-lg">BURO</span>
-                <span className="text-sm"> digital</span>
+                <span className="text-[21px] md:text-[23px]">BURO</span>
+                <span className="text-[18px]"> digital</span>
               </p>
               <p className="font-['Unbounded'] text-white mb-1">
-                <span className="text-base md:text-lg">BURO </span>
-                <span className="text-sm">dsgn</span>
+                <span className="text-[21px] md:text-[23px]">BURO </span>
+                <span className="text-[18px]">dsgn</span>
               </p>
               <p className="font-['Unbounded'] text-white">
-                <span className="text-base md:text-lg">BURO</span>
-                <span className="text-sm"> crm</span>
+                <span className="text-[21px] md:text-[23px]">BURO</span>
+                <span className="text-[18px]"> crm</span>
               </p>
             </div>
           </div>

@@ -23,13 +23,13 @@ export function Hero() {
       {isMenuOpen && (
         <div className="fixed top-0 left-0 w-full h-full bg-white z-40 flex items-center justify-center">
           <nav className="flex flex-col gap-6 text-center">
-            <a href="#hero" className="font-['Unbounded'] text-2xl text-[#141414] hover:opacity-70" onClick={() => setIsMenuOpen(false)}>Главная</a>
-            <a href="#about" className="font-['Unbounded'] text-2xl text-[#141414] hover:opacity-70" onClick={() => setIsMenuOpen(false)}>О мастерской</a>
-            <a href="#horeca" className="font-['Unbounded'] text-2xl text-[#141414] hover:opacity-70" onClick={() => setIsMenuOpen(false)}>HoReCa</a>
-            <a href="#home" className="font-['Unbounded'] text-2xl text-[#141414] hover:opacity-70" onClick={() => setIsMenuOpen(false)}>Дом и офис</a>
-            <a href="#events" className="font-['Unbounded'] text-2xl text-[#141414] hover:opacity-70" onClick={() => setIsMenuOpen(false)}>Мероприятия</a>
-            <a href="#video" className="font-['Unbounded'] text-2xl text-[#141414] hover:opacity-70" onClick={() => setIsMenuOpen(false)}>Видео</a>
-            <a href="#contacts" className="font-['Unbounded'] text-2xl text-[#141414] hover:opacity-70" onClick={() => setIsMenuOpen(false)}>Контакты</a>
+            <a href="#hero" className="font-['Unbounded'] text-[27px] text-[#141414] hover:opacity-70" onClick={() => setIsMenuOpen(false)}>Главная</a>
+            <a href="#about" className="font-['Unbounded'] text-[27px] text-[#141414] hover:opacity-70" onClick={() => setIsMenuOpen(false)}>О мастерской</a>
+            <a href="#horeca" className="font-['Unbounded'] text-[27px] text-[#141414] hover:opacity-70" onClick={() => setIsMenuOpen(false)}>HoReCa</a>
+            <a href="#home" className="font-['Unbounded'] text-[27px] text-[#141414] hover:opacity-70" onClick={() => setIsMenuOpen(false)}>Дом и офис</a>
+            <a href="#events" className="font-['Unbounded'] text-[27px] text-[#141414] hover:opacity-70" onClick={() => setIsMenuOpen(false)}>Мероприятия</a>
+            <a href="#video" className="font-['Unbounded'] text-[27px] text-[#141414] hover:opacity-70" onClick={() => setIsMenuOpen(false)}>Видео</a>
+            <a href="#contacts" className="font-['Unbounded'] text-[27px] text-[#141414] hover:opacity-70" onClick={() => setIsMenuOpen(false)}>Контакты</a>
           </nav>
         </div>
       )}
@@ -59,8 +59,8 @@ export function Hero() {
               </g>
             </svg>
             
-            {/* dsgn позиционирован абсолютно справа внизу */}
-            <p className="font-['Unbounded'] text-[#141414] text-sm md:text-base absolute bottom-4 right-8 md:right-12">
+            {/* dsgn позиционирован справа внизу от буквы О */}
+            <p className="font-['Unbounded'] text-[#141414] text-sm md:text-base absolute bottom-0 right-0">
               dsgn
             </p>
           </div>
