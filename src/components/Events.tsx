@@ -11,9 +11,9 @@ export function Events() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {/* Карточка 1 */}
-          <div className="rounded-[10px] w-full h-[500px] md:h-[620px] relative">
+          <div className="rounded-[10px] w-full h-[500px] md:h-[620px] relative overflow-hidden">
+            <img alt="Выставка 1" className="w-full h-full object-cover absolute inset-0 z-0" src={img202511240725411} />
             <div className="absolute inset-0 bg-gradient-to-b from-[#8B1A1A] to-[#D97706] opacity-90 z-10" />
-            <img alt="Выставка 1" className="w-full h-full object-contain mix-blend-overlay absolute inset-0 z-0" src={img202511240725411} />
             <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-8 z-20">
               <div className="font-['Unbounded'] text-white text-[25px] md:text-[27px]">XAOC</div>
               <div className="flex flex-col items-center">
@@ -31,9 +31,9 @@ export function Events() {
           </div>
           
           {/* Карточка 2 */}
-          <div className="rounded-[10px] w-full h-[500px] md:h-[620px] relative">
+          <div className="rounded-[10px] w-full h-[500px] md:h-[620px] relative overflow-hidden">
+            <img alt="Выставка 2" className="w-full h-full object-cover absolute inset-0 z-0" src={img202511240730461} />
             <div className="absolute inset-0 bg-gradient-to-b from-[#1A1A1A] to-[#0F4C0F] opacity-90 z-10" />
-            <img alt="Выставка 2" className="w-full h-full object-contain mix-blend-overlay absolute inset-0 z-0" src={img202511240730461} />
             <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-8 z-20">
               <div className="font-['Unbounded'] text-white text-[25px] md:text-[27px]">XAOC</div>
               <div className="flex flex-col items-center">
