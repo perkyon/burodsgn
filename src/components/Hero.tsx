@@ -22,21 +22,28 @@ export function Hero() {
       {/* Навигационное меню */}
       {isMenuOpen && (
         <div 
-          className="fixed top-0 left-0 w-full h-full z-40 flex items-center justify-center backdrop-blur-sm"
+          className="fixed top-0 left-0 w-full h-full z-40 flex items-center justify-center backdrop-blur-sm relative"
           onClick={() => setIsMenuOpen(false)}
           style={{
             background: `
-              radial-gradient(circle at 20% 30%, rgba(255,255,255,0.98) 0%, transparent 50%),
-              radial-gradient(circle at 80% 70%, rgba(240,240,255,0.95) 0%, transparent 50%),
-              radial-gradient(circle at 50% 50%, rgba(255,240,240,0.92) 0%, transparent 50%),
-              radial-gradient(circle at 10% 80%, rgba(255,255,240,0.95) 0%, transparent 50%),
-              radial-gradient(circle at 90% 20%, rgba(240,255,255,0.93) 0%, transparent 50%),
-              linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(240,240,255,0.92) 50%, rgba(255,240,240,0.95) 100%)
+              radial-gradient(circle at 20% 30%, rgba(255,255,255,1) 0%, transparent 55%),
+              radial-gradient(circle at 80% 70%, rgba(240,240,255,0.98) 0%, transparent 55%),
+              radial-gradient(circle at 50% 50%, rgba(255,225,245,0.95) 0%, transparent 55%),
+              radial-gradient(circle at 10% 80%, rgba(255,255,225,0.97) 0%, transparent 55%),
+              radial-gradient(circle at 90% 20%, rgba(230,245,255,0.95) 0%, transparent 55%),
+              linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(240,240,255,0.95) 50%, rgba(255,225,240,0.98) 100%)
             `,
             backgroundSize: '400% 400%, 300% 300%, 350% 350%, 250% 250%, 320% 320%, 200% 200%',
             animation: 'cloudGradient 15s ease-in-out infinite'
           }}
         >
+          <div
+            className="absolute inset-0 pointer-events-none opacity-25 mix-blend-multiply"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+              backgroundSize: '200px 200px'
+            }}
+          />
           <style>{`
             @keyframes cloudGradient {
               0% { 
@@ -57,13 +64,12 @@ export function Hero() {
             }
           `}</style>
           <nav className="flex flex-col gap-8 text-center relative z-10" onClick={(e) => e.stopPropagation()}>
-            <a href="#hero" className="font-['Unbounded'] text-[60px] md:text-[75px] text-[#0a0a0a] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Главная</a>
-            <a href="#about" className="font-['Unbounded'] text-[60px] md:text-[75px] text-[#0a0a0a] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>О мастерской</a>
-            <a href="#horeca" className="font-['Unbounded'] text-[60px] md:text-[75px] text-[#0a0a0a] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>HoReCa</a>
-            <a href="#home" className="font-['Unbounded'] text-[60px] md:text-[75px] text-[#0a0a0a] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Дом и офис</a>
-            <a href="#events" className="font-['Unbounded'] text-[60px] md:text-[75px] text-[#0a0a0a] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Мероприятия</a>
-            <a href="#video" className="font-['Unbounded'] text-[60px] md:text-[75px] text-[#0a0a0a] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Видео</a>
-            <a href="#contacts" className="font-['Unbounded'] text-[60px] md:text-[75px] text-[#0a0a0a] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Контакты</a>
+            <a href="#hero" className="font-['Unbounded'] text-[70px] md:text-[85px] text-[#050505] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Главная</a>
+            <a href="#about" className="font-['Unbounded'] text-[70px] md:text-[85px] text-[#050505] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>О нас</a>
+            <a href="#horeca" className="font-['Unbounded'] text-[70px] md:text-[85px] text-[#050505] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>HoReCa</a>
+            <a href="#home" className="font-['Unbounded'] text-[70px] md:text-[85px] text-[#050505] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Дом и офис</a>
+            <a href="#events" className="font-['Unbounded'] text-[70px] md:text-[85px] text-[#050505] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Мероприятия</a>
+            <a href="#contacts" className="font-['Unbounded'] text-[70px] md:text-[85px] text-[#050505] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Контакты</a>
           </nav>
         </div>
       )}
@@ -94,7 +100,7 @@ export function Hero() {
             </svg>
             
             {/* dsgn позиционирован справа от буквы О, на уровне её нижней части, но не внутри неё */}
-            <p className="font-['Unbounded'] text-[#141414] text-[35px] md:text-[39px] absolute" style={{ bottom: '2%', right: '0%', transform: 'translateX(100%)', marginLeft: '10px' }}>
+            <p className="font-['Unbounded'] text-[#141414] text-[45px] md:text-[49px] absolute" style={{ bottom: '2%', right: '0%', transform: 'translateX(100%)', marginLeft: '10px' }}>
               dsgn
             </p>
           </div>
