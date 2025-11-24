@@ -1,3 +1,4 @@
+import React from "react";
 import svgPaths from "../imports/svg-l6kis4xgb8";
 
 export function Video() {
