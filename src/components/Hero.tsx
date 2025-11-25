@@ -57,12 +57,12 @@ export function Hero() {
             }
           `}</style>
           <nav className="flex flex-col gap-8 text-center relative z-10" onClick={(e) => e.stopPropagation()}>
-            <a href="#hero" className="font-['Unbounded'] text-[70px] md:text-[85px] text-[#0a0a0a] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Главная</a>
-            <a href="#about" className="font-['Unbounded'] text-[70px] md:text-[85px] text-[#0a0a0a] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>О нас</a>
-            <a href="#horeca" className="font-['Unbounded'] text-[70px] md:text-[85px] text-[#0a0a0a] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>HoReCa</a>
-            <a href="#home" className="font-['Unbounded'] text-[70px] md:text-[85px] text-[#0a0a0a] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Дом и офис</a>
-            <a href="#events" className="font-['Unbounded'] text-[70px] md:text-[85px] text-[#0a0a0a] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Мероприятия</a>
-            <a href="#contacts" className="font-['Unbounded'] text-[70px] md:text-[85px] text-[#0a0a0a] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Контакты</a>
+            <a href="#hero" className="font-['Unbounded'] text-[80px] md:text-[95px] text-[#0a0a0a] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Главная</a>
+            <a href="#about" className="font-['Unbounded'] text-[80px] md:text-[95px] text-[#0a0a0a] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>О нас</a>
+            <a href="#horeca" className="font-['Unbounded'] text-[80px] md:text-[95px] text-[#0a0a0a] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>HoReCa</a>
+            <a href="#home" className="font-['Unbounded'] text-[80px] md:text-[95px] text-[#0a0a0a] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Дом и офис</a>
+            <a href="#events" className="font-['Unbounded'] text-[80px] md:text-[95px] text-[#0a0a0a] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Мероприятия</a>
+            <a href="#contacts" className="font-['Unbounded'] text-[80px] md:text-[95px] text-[#0a0a0a] hover:opacity-70 transition-opacity" onClick={() => setIsMenuOpen(false)}>Контакты</a>
           </nav>
         </div>
       )}
