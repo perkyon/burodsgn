@@ -15,10 +15,10 @@ export default function Hero() {
         </svg>
       </button>
 
-      <div className="flex w-full max-w-6xl flex-col items-center gap-6">
+      <div className="flex w-full max-w-6xl flex-col items-center gap-8">
         <BuroLogo />
         <p className="text-center font-['Unbounded'] text-sm uppercase tracking-[0.4em] text-neutral-500">
-          In Home · Studio · Workshop
+          IN HOME · STUDIO · WORKSHOP
         </p>
       </div>
     </section>
