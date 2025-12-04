@@ -1,11 +1,43 @@
+import BuroLogo from './BuroLogo';
+
 export default function CTA() {
   return (
-    <section className="w-[1280px] h-[832px] relative bg-white overflow-hidden mx-auto">
-      <div className="w-96 h-12 left-[457px] top-[470px] absolute bg-neutral-900 rounded-[10px]" />
-      <div className="left-[538px] top-[486px] absolute text-white/80 text-xl font-normal font-['Unbounded'] leading-5">Оставьте заявку</div>
-      <div className="w-[1280px] h-60 left-0 top-[597px] absolute bg-neutral-900" />
-      <div className="left-[690px] top-[26px] absolute text-black text-4xl font-normal font-['Unbounded'] leading-10">Напишите<br/>            если есть вопрос</div>
-      <div className="w-[603px] h-0 left-[690px] top-[118px] absolute outline outline-1 outline-offset-[-0.50px] outline-black"></div>
+    <section className="bg-neutral-900 px-6 py-24 text-white">
+      <div className="mx-auto flex max-w-6xl flex-col gap-12 lg:flex-row lg:items-center">
+        <div className="flex-1">
+          <BuroLogo theme="light" className="items-start lg:items-center" />
+        </div>
+
+        <div className="flex flex-1 flex-col gap-8">
+          <div>
+            <p className="font-['Unbounded'] text-3xl font-medium leading-tight">Напишите, если есть вопрос</p>
+            <p className="mt-4 font-['Unbounded'] text-base text-white/70">
+              Обсудим идею, подберём материалы и предложим рабочий сценарий производства.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap gap-8 font-['Unbounded'] text-lg">
+            <div>
+              <p className="text-sm uppercase tracking-[0.4em] text-white/60">Телефон</p>
+              <a href="tel:+79181234567" className="text-white hover:opacity-70">
+                +7 (918) 123-45-67
+              </a>
+            </div>
+            <div>
+              <p className="text-sm uppercase tracking-[0.4em] text-white/60">Почта</p>
+              <a href="mailto:sales@burodsgn.ru" className="text-white hover:opacity-70">
+                sales@burodsgn.ru
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <button className="rounded-full border border-white px-10 py-3 font-['Unbounded'] text-base uppercase tracking-[0.4em] transition hover:bg-white hover:text-neutral-900">
+              Оставьте заявку
+            </button>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

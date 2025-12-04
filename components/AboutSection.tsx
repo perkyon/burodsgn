@@ -1,18 +1,38 @@
+const paragraphs = [
+  'Мы не боимся сложных задач и любим идеи, которые требуют индивидуального подхода. Каждая мебельная система проектируется командой инженеров и ремесленников внутри студии.',
+  'Нам важно вовлекать клиента: мы показываем материалы, тестируем эргономику и не боимся пересобирать проект, пока он не станет идеальным.',
+  'Работаем с массивом, металлом, бетоном и композитами, совмещая промышленное производство и ручные техники отделки.',
+];
+
 export default function AboutSection() {
   return (
-    <section className="w-[1280px] h-[832px] relative bg-white overflow-hidden mx-auto">
-      <div className="w-[612px] h-[528px] left-[640px] top-[152px] absolute rounded-[10px] border border-black" />
-      <div className="left-[68px] top-[97px] absolute text-black text-4xl font-normal font-['Unbounded'] leading-10">
-        Мебельная мастерская где<br/>         можно воплотить нестандартные решения
+    <section className="bg-white px-6 py-24">
+      <div className="mx-auto flex max-w-6xl flex-col gap-12 lg:flex-row lg:items-center">
+        <div className="flex-1 space-y-8">
+          <div>
+            <p className="font-['Unbounded'] text-3xl font-medium leading-snug text-neutral-900 md:text-4xl">
+              Мебельная мастерская где можно воплотить нестандартные решения
+            </p>
+            <div className="mt-6 h-px w-32 bg-neutral-900" />
+          </div>
+
+          <div className="space-y-6 font-['Unbounded'] text-base leading-relaxed text-neutral-700">
+            {paragraphs.map((text) => (
+              <p key={text}>{text}</p>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex flex-1 items-center justify-center">
+          <div className="overflow-hidden rounded-3xl border border-neutral-200 shadow-2xl shadow-neutral-900/5">
+            <img
+              src="https://images.unsplash.com/photo-1501045661006-fcebe0257c3f?auto=format&fit=crop&w=800&q=80"
+              alt="Команда в мастерской"
+              className="h-full w-full max-w-md object-cover"
+            />
+          </div>
+        </div>
       </div>
-      <div className="w-[488px] h-[546px] left-[68px] top-[270px] absolute">
-        <span className="text-black text-4xl font-normal font-['Unbounded'] leading-9">М</span>
-        <span className="text-black text-3xl font-normal font-['Unbounded'] leading-8">ы не боимся брать сложные идеи и реализовывать их, для нас каждый проект особенный<br/><br/></span>
-        <span className="text-black text-4xl font-normal font-['Unbounded'] leading-9">Н</span>
-        <span className="text-black text-3xl font-normal font-['Unbounded'] leading-8">ам важно помочь вам реализовать любые идеи которые вы себе только можете предстваить идеи и реализовывать их, для нас каждый проект особенный</span>
-      </div>
-      <div className="w-[1171.50px] h-0 left-[128px] top-[204px] absolute outline outline-1 outline-offset-[-0.50px] outline-black" />
-      <img className="w-[562px] h-[614px] left-[640px] top-[218px] absolute rounded-[10px]" src="https://placehold.co/562x614" alt="Мебельная мастерская" />
     </section>
   );
 }
