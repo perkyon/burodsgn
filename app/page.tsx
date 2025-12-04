@@ -12,7 +12,7 @@ const horecaProjects = [
     alt: 'Лаунж-зона ресторана',
   },
   {
-    src: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=700&q=80',
+    src: 'https://images.unsplash.com/photo-1481883814866-f6e972dd8916?auto=format&fit=crop&w=700&q=80',
     alt: 'Барная зона',
   },
   {
@@ -25,22 +25,22 @@ const horecaProjects = [
   },
 ];
 
-const homeOfficeProjects = [
+const surfProjects = [
   {
-    src: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=700&q=80',
-    alt: 'Кухня-столовая',
+    src: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=700&q=80',
+    alt: 'Зона посадки Surf Coffee',
   },
   {
-    src: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=700&q=80',
-    alt: 'Спальная комната',
+    src: 'https://images.unsplash.com/photo-1452960962994-acf9430b3bf9?auto=format&fit=crop&w=700&q=80',
+    alt: 'Барная стойка кофейни',
   },
   {
-    src: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=700&q=80',
-    alt: 'Домашний офис',
+    src: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=700&q=80',
+    alt: 'Декор пространства',
   },
   {
-    src: 'https://images.unsplash.com/photo-1616594039964-2757eb469f15?auto=format&fit=crop&w=700&q=80',
-    alt: 'Минималистичная кухня',
+    src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=700&q=80',
+    alt: 'Интерьер с зеркалами',
   },
 ];
 
@@ -55,9 +55,9 @@ export default function Home() {
         projects={horecaProjects}
       />
       <ProjectsSection
-        title="Проекты дом и офис"
+        title="Surf Coffee X Fest"
         subtitle="Проектирование и изготовление мебели для HoReCa, офиса и дома"
-        projects={homeOfficeProjects}
+        projects={surfProjects}
       />
       <EventsSection />
       <LargeHero />
