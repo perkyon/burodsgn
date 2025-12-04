@@ -2,7 +2,6 @@ import Hero from '@/components/Hero';
 import AboutSection from '@/components/AboutSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import EventsSection from '@/components/EventsSection';
-import LargeHero from '@/components/LargeHero';
 import CTA from '@/components/CTA';
 import Footer from '@/components/Footer';
 
@@ -57,10 +56,10 @@ export default function Home() {
       <ProjectsSection
         title="Surf Coffee X Fest"
         subtitle="Проектирование и изготовление мебели для HoReCa, офиса и дома"
+        description="Создаем пространства, которые работают на атмосферу бренда и сервис"
         projects={surfProjects}
       />
       <EventsSection />
-      <LargeHero />
       <CTA />
       <Footer />
     </main>
