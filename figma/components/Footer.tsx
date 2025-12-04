@@ -58,7 +58,7 @@ export function Footer() {
           </motion.div>
 
           {/* dsgn подпись */}
-          <p className="absolute font-['Unbounded:Regular',sans-serif] font-normal leading-[normal] left-1/2 -translate-x-1/2 lg:translate-x-[-50%] text-white text-[16px] sm:text-[18px] lg:text-[20px] text-center text-nowrap top-[575px] whitespace-pre" style={{ left: `${1167.5 + offsetX}px` }}>
+          <p className="absolute font-['Unbounded:Regular',sans-serif] font-normal leading-[normal] left-1/2 -translate-x-1/2 lg:translate-x-[-50%] text-white text-[16px] sm:text-[18px] lg:text-[20px] text-center text-nowrap top-[380px] sm:top-[520px] lg:top-[565px] whitespace-pre" style={{ left: `${1217.5 + offsetX}px` }}>
             dsgn
           </p>
 
