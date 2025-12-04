@@ -8,7 +8,7 @@ interface ContactModalProps {
 
 export function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const handleTelegram = () => {
-    window.open('https://t.me/burodsgn', '_blank');
+    window.open('https://t.me/Aleg_AXAX_Olegi', '_blank');
   };
 
   const handleWhatsApp = () => {

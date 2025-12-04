@@ -152,7 +152,7 @@ export function Footer() {
           {/* Соц иконки */}
           <div>
             {/* Telegram */}
-            <a href="https://t.me/burodsgn" target="_blank" rel="noopener noreferrer" className="absolute h-[32.071px] w-[31.773px] transition-all duration-300 hover:scale-110 hover:opacity-80" style={{ left: `${603 + offsetX}px`, top: '746px' }}>
+            <a href="https://t.me/+ms6fdSYzjhxkYTky" target="_blank" rel="noopener noreferrer" className="absolute h-[32.071px] w-[31.773px] transition-all duration-300 hover:scale-110 hover:opacity-80" style={{ left: `${603 + offsetX}px`, top: '746px' }}>
               <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 32 33">
                 <g clipPath="url(#clip0_90_594)">
                   <path clipRule="evenodd" d={svgPaths.p1a720400} fill="white" fillRule="evenodd" />
@@ -322,7 +322,7 @@ export function Footer() {
 
           {/* Соц иконки */}
           <div className="flex justify-center gap-4 py-4">
-            <a href="https://t.me/burodsgn" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">
+            <a href="https://t.me/+ms6fdSYzjhxkYTky" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">
               <svg width="32" height="33" fill="none" viewBox="0 0 32 33">
                 <g clipPath="url(#clip0_90_594_mobile)">
                   <path clipRule="evenodd" fillRule="evenodd" d={svgPaths.p1a720400} fill="white" />
