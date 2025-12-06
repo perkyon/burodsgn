@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { useEffect } from 'react';
 import { X } from 'lucide-react';
-import { smoothScrollToElement } from '../utils/smoothScroll';
+import { smoothScrollToElement, SCROLL_DURATION } from '../utils/smoothScroll';
 
 interface NavigationProps {
   isOpen: boolean;
