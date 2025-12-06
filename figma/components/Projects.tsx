@@ -9,14 +9,16 @@ export function Projects() {
   const [isVisible, setIsVisible] = useState(false);
   const [isProjectOpen, setIsProjectOpen] = useState(false);
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null);
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   // 4 кофейни: 1-Союзники, 2-Том Сойер, 3-Серф кофе, 4-Лейбл
   const projects = [
     { id: 1, img: img1, title: "Союзники" },
-    { id: 2, img: imgImage4, title: "Том Сойер" },
-    { id: 3, img: imgImage5, title: "Серф кофе" },
+    { id: 2, img: "/figma/том7.jpg", title: "Том Сойер" },
+    { id: 3, img: "/figma/из16.webp", title: "Серф кофе" },
     { id: 4, img: img1, title: "Лейбл" },
   ];
 
@@ -36,6 +38,33 @@ export function Projects() {
 
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (scrollContainerRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+        setShowLeftArrow(scrollLeft > 10);
+        // Скрываем правую стрелку, когда виден проект "Союзники" (в начале) или в конце
+        const isAtStart = scrollLeft < 10;
+        const isAtEnd = scrollLeft + clientWidth >= scrollWidth - 10;
+        setShowRightArrow(!isAtStart && !isAtEnd);
+      }
+    };
+
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.addEventListener('scroll', handleScroll);
+      // Проверяем сразу и после небольшой задержки для корректного расчета размеров
+      setTimeout(() => handleScroll(), 100);
+      handleScroll();
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener('scroll', handleScroll);
+      }
+    };
+  }, [isVisible]);
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
@@ -117,22 +146,26 @@ export function Projects() {
           </div>
           
           {/* Navigation buttons */}
-          <button
-            onClick={() => scroll('left')}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-[50px] h-[50px] flex items-center justify-center bg-black rounded-full transition-all hover:scale-110 opacity-80 hover:opacity-100"
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-          <button
-            onClick={() => scroll('right')}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-[50px] h-[50px] flex items-center justify-center bg-black rounded-full transition-all hover:scale-110 opacity-80 hover:opacity-100"
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M9 18L15 12L9 6" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
+          {showLeftArrow && (
+            <button
+              onClick={() => scroll('left')}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-[50px] h-[50px] flex items-center justify-center bg-black rounded-full transition-all hover:scale-110 opacity-80 hover:opacity-100"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          )}
+          {showRightArrow && (
+            <button
+              onClick={() => scroll('right')}
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-[50px] h-[50px] flex items-center justify-center bg-black rounded-full transition-all hover:scale-110 opacity-80 hover:opacity-100"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M9 18L15 12L9 6" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          )}
         </div>
       </div>
     </div>

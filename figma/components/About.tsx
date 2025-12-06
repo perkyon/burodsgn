@@ -3,8 +3,26 @@ import { motion } from 'motion/react';
 const img202511240825011 = "/figma/3320c2117426094d90a792c9011c4751d88c257b.png";
 
 export function About() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const sectionRef = useRef<HTMLDivElement>(null);
+
+  // Настройки линии - меняй здесь для движения влево/вправо/вверх/вниз
+  const lineLeft = '-120px'; // Движение влево/вправо (больше = правее, меньше = левее)
+  const lineTop = '120px'; // Движение вверх/вниз (больше = ниже, меньше = выше)
+  const lineWidth = '1200px'; // Длина линии (больше = длиннее)
+  
+  // Пробелы в заголовке - меняй здесь
+  const titleSpaces = '     '; // Пробелы между словами в заголовке
+  const secondLineIndent = '                      '; // Пробелы перед второй строкой (перед "можно")
+  
+  // Позиция второй строки - меняй здесь для движения влево/вправо
+  const secondLineLeft = '100px'; // Движение влево/вправо (больше = правее, меньше = левее, можно отрицательные значения)
+  
+  // Размеры шрифта - меняй здесь
+  const fontSizeLarge = '22px'; // Размер больших первых букв (мобильный)
+  const fontSizeLargeDesktop = '34px'; // Размер больших первых букв (десктоп)
+  const fontSizeText = '19px'; // Размер основного текста (мобильный)
+  const fontSizeTextDesktop = '20px'; // Размер основного текста (десктоп)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -34,23 +52,31 @@ export function About() {
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
             className="mb-0"
           >
-            Мебельная мастерская где
+            {`Мебельная${titleSpaces}мастерская${titleSpaces}где`}
           </motion.p>
           <motion.p
             initial={{ x: -50, opacity: 0 }}
             animate={isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+            style={{ marginLeft: secondLineLeft }}
           >
-            {`можно воплотить нестандартные решения`}
+            {`${secondLineIndent}можно${titleSpaces}воплотить${titleSpaces}нестандартные${titleSpaces}решения`}
           </motion.p>
         </div>
         
         {/* Decorative line under title - responsive */}
-        <div className="mb-8 lg:mb-0 h-px w-full lg:w-[1172px] lg:absolute lg:left-[112px] lg:top-[134px]">
+        <div 
+          className="mb-8 lg:mb-0 h-px lg:absolute"
+          style={{
+            left: lineLeft,
+            top: lineTop,
+            width: lineWidth
+          }}
+        >
           <div className="h-full w-full">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1172 1">
+            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 2000 1">
               <motion.path 
-                d="M0 0.5H1171.5" 
+                d="M0 0.5H2000"
                 id="Line 2" 
                 stroke="var(--stroke-0, black)"
                 initial={{ pathLength: 0 }}
@@ -62,34 +88,37 @@ export function About() {
         </div>
         
         {/* Text content - responsive */}
-        <div className="lg:absolute font-['Unbounded:Regular',sans-serif] font-normal lg:h-[546px] leading-[0] lg:left-[60px] text-[0px] text-black lg:top-[206px] w-full lg:w-[488px] mb-8 lg:mb-0">
-          <motion.p 
-            initial={{ x: -50, opacity: 0 }}
-            animate={isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
-            className="leading-none mb-0"
-          >
-            <span className="text-[24px] lg:text-[35px]">М</span>
-            <span className="text-[20px] lg:text-[30px]">ы не боимся брать сложные идеи и реализовывать их, для нас каждый проект особенный</span>
-          </motion.p>
-          <p className="leading-none mb-0 text-[20px] lg:text-[30px]">&nbsp;</p>
-          <motion.p 
-            initial={{ x: -50, opacity: 0 }}
-            animate={isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
-            className="leading-none"
-          >
-            <span className="text-[24px] lg:text-[35px]">Н</span>
-            <span className="text-[20px] lg:text-[30px]">{`ам важно помочь вам реализовать любые идеи которые вы себе только можете предстваить `}</span>
-            <span className="text-[20px] lg:text-[30px]">идеи и реализовывать их, для нас каждый проект особенный</span>
-            <span className="text-[20px] lg:text-[30px]">
-              <br aria-hidden="true" />
-              <br aria-hidden="true" />
-            </span>
-            <span className="text-[24px] lg:text-[35px]">К</span>
-            <span className="text-[20px] lg:text-[30px]">{`оторые вы себе только можете предстваить `}</span>
-            <span className="text-[20px] lg:text-[30px]">идеи и реализовывать их, для нас каждый проект особенный</span>
-          </motion.p>
+        <div className="lg:absolute font-['Unbounded:Regular',sans-serif] font-normal lg:left-[60px] text-black lg:top-[206px] w-full lg:w-[488px] mb-8 lg:mb-0 z-20" style={{ overflow: 'visible', display: 'block', visibility: 'visible' }}>
+          <p className="mb-0" style={{ lineHeight: '1.2', color: 'black' }}>
+            <span style={{ fontSize: fontSizeLarge }} className="lg:hidden">М</span>
+            <span style={{ fontSize: fontSizeLargeDesktop }} className="hidden lg:inline">М</span>
+            <span style={{ fontSize: fontSizeText }} className="lg:hidden">ы не боимся брать сложные идеи<br />и превращать их в реальные предметы,<br />которые будут жить в вашем доме, в кофейне,<br />в рабочем пространстве или в любом другом месте,<br />где вам важен уют, стиль и надёжность.</span>
+            <span style={{ fontSize: fontSizeTextDesktop }} className="hidden lg:inline">ы не боимся брать сложные идеи<br />и превращать их в реальные предметы,<br />которые будут жить в вашем доме, в кофейне,<br />в рабочем пространстве или в любом другом месте,<br />где вам важен уют, стиль и надёжность.</span>
+          </p>
+          <p className="mb-0" style={{ fontSize: fontSizeText, lineHeight: '1.2' }}>&nbsp;</p>
+          <p className="mb-0 hidden lg:block" style={{ fontSize: fontSizeTextDesktop, lineHeight: '1.2' }}>&nbsp;</p>
+          <p className="mb-0" style={{ lineHeight: '1.2', color: 'black' }}>
+            <span style={{ fontSize: fontSizeLarge }} className="lg:hidden">Н</span>
+            <span style={{ fontSize: fontSizeLargeDesktop }} className="hidden lg:inline">Н</span>
+            <span style={{ fontSize: fontSizeText }} className="lg:hidden">аша мастерская работает так, чтобы каждый проект был особенным. Мы внимательно слушаем ваши пожелания, разбираемся в деталях и создаём мебель, которая подходит вашему пространству.</span>
+            <span style={{ fontSize: fontSizeTextDesktop }} className="hidden lg:inline">аша мастерская работает так, чтобы каждый проект был особенным. Мы внимательно слушаем ваши пожелания, разбираемся в деталях и создаём мебель, которая подходит вашему пространству.</span>
+          </p>
+          <p className="mb-0" style={{ fontSize: fontSizeText, lineHeight: '1.2' }}>&nbsp;</p>
+          <p className="mb-0 hidden lg:block" style={{ fontSize: fontSizeTextDesktop, lineHeight: '1.2' }}>&nbsp;</p>
+          <p className="mb-0" style={{ lineHeight: '1.2', color: 'black' }}>
+            <span style={{ fontSize: fontSizeLarge }} className="lg:hidden">Д</span>
+            <span style={{ fontSize: fontSizeLargeDesktop }} className="hidden lg:inline">Д</span>
+            <span style={{ fontSize: fontSizeText }} className="lg:hidden">ля нас важна не скорость,<br />а понимание того, что именно вы хотите получить.<br />Мы ценим нестандартные замыслы<br />и ищем для них лучшие решения.</span>
+            <span style={{ fontSize: fontSizeTextDesktop }} className="hidden lg:inline">ля нас важна не скорость,<br />а понимание того, что именно вы хотите получить.<br />Мы ценим нестандартные замыслы<br />и ищем для них лучшие решения.</span>
+          </p>
+          <p className="mb-0" style={{ fontSize: fontSizeText, lineHeight: '1.2' }}>&nbsp;</p>
+          <p className="mb-0 hidden lg:block" style={{ fontSize: fontSizeTextDesktop, lineHeight: '1.2' }}>&nbsp;</p>
+          <p style={{ lineHeight: '1.2', color: 'black' }}>
+            <span style={{ fontSize: fontSizeLarge }} className="lg:hidden">К</span>
+            <span style={{ fontSize: fontSizeLargeDesktop }} className="hidden lg:inline">К</span>
+            <span style={{ fontSize: fontSizeText }} className="lg:hidden">аждый проект — это сотрудничество,<br />где вы делитесь желаниями,<br />а мы — опытом и мастерством.<br />В итоге рождается мебель, которая выглядит красиво<br />и делает пространство удобным.</span>
+            <span style={{ fontSize: fontSizeTextDesktop }} className="hidden lg:inline">аждый проект — это сотрудничество,<br />где вы делитесь желаниями,<br />а мы — опытом и мастерством.<br />В итоге рождается мебель, которая выглядит красиво<br />и делает пространство удобным.</span>
+          </p>
         </div>
         
         {/* Image - responsive */}
@@ -97,7 +126,7 @@ export function About() {
           initial={{ x: 50, opacity: 0 }}
           animate={isVisible ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          className="relative lg:absolute h-[300px] lg:h-[670px] lg:left-[685px] rounded-[10px] lg:top-[175px] w-full lg:w-[645px]" 
+          className="relative lg:absolute h-[300px] lg:h-[670px] lg:left-[685px] rounded-[10px] lg:top-[175px] w-full lg:w-[645px] z-0" 
           data-name="Снимок экрана 2025-11-24 в 08.25.01 1"
         >
           <img alt="" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none rounded-[10px] size-full" src={img202511240825011} />
