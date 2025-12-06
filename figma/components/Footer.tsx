@@ -34,7 +34,7 @@ export function Footer() {
 
   return (
     <div className="bg-[#141414] relative w-full flex items-center justify-center overflow-hidden" id="contacts">
-      <div ref={sectionRef} className="relative w-full max-w-[1440px] min-h-[900px] py-12 lg:py-0 px-4 lg:px-0 mx-auto">
+      <div ref={sectionRef} className="relative w-full max-w-[1440px] min-h-[900px] py-12 lg:py-0 px-4 lg:px-0 mx-auto pb-32 lg:pb-0">
         
         {/* Desktop version */}
         <div className="hidden lg:block">

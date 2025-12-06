@@ -19,9 +19,9 @@ export function About() {
   const secondLineLeft = '100px'; // Движение влево/вправо (больше = правее, меньше = левее, можно отрицательные значения)
   
   // Размеры шрифта - меняй здесь
-  const fontSizeLarge = '22px'; // Размер больших первых букв (мобильный)
+  const fontSizeLarge = '18px'; // Размер больших первых букв (мобильный)
   const fontSizeLargeDesktop = '34px'; // Размер больших первых букв (десктоп)
-  const fontSizeText = '19px'; // Размер основного текста (мобильный)
+  const fontSizeText = '16px'; // Размер основного текста (мобильный)
   const fontSizeTextDesktop = '22px'; // Размер основного текста (десктоп)
 
   useEffect(() => {
@@ -45,7 +45,7 @@ export function About() {
     <div className="bg-white relative min-h-screen w-full flex items-center justify-center px-4 sm:px-6 lg:px-8">
       <div ref={sectionRef} className="relative w-full max-w-[1440px] h-auto lg:h-[1024px] py-12 lg:py-0" data-name="Desktop - 2">
         {/* Title - responsive */}
-        <div className="lg:absolute font-['Unbounded:Regular',sans-serif] font-normal leading-none lg:left-[228px] text-[28px] lg:text-[40px] text-black lg:text-nowrap lg:top-[25px] mb-6 lg:mb-0">
+        <div className="lg:absolute font-['Unbounded:Regular',sans-serif] font-normal leading-none lg:left-[228px] text-[22px] lg:text-[40px] text-black lg:text-nowrap lg:top-[25px] mb-6 lg:mb-0">
           <motion.p 
             initial={{ x: -50, opacity: 0 }}
             animate={isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}

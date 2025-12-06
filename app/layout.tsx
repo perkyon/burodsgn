@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Buro Design",
-  description: "Мая начальника меня заствлять за пачку доширак делать сайт",
+  title: "Buro dsgn",
+  description: "Мебельная мастерская где можно воплотить нестандартные решения. Проектирование и изготовление мебели для HoReCa, офиса и дома.",
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({
