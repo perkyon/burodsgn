@@ -50,7 +50,7 @@ export default function ProjectsSection({ title, subtitle, description, projects
             </article>
           ))}
         </div>
-      </div>
+          </div>
     </section>
   );
 }

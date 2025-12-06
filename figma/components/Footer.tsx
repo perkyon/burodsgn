@@ -44,7 +44,7 @@ export function Footer() {
             animate={isVisible ? { scale: 1, opacity: 1 } : { scale: 0.95, opacity: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="absolute h-[466.023px] w-[844px]" 
-            style={{ left: `${318 + offsetX + 5}px`, top: '112px' }}
+            style={{ left: `${290 + offsetX + 5}px`, top: '152px' }}
             data-name="Букавки"
           >
             <svg className="block size-full" fill="none" preserveAspectRatio="xMidYMid meet" viewBox="0 0 844 467">
@@ -58,7 +58,7 @@ export function Footer() {
           </motion.div>
 
           {/* dsgn подпись */}
-          <p className="absolute font-['Unbounded:Regular',sans-serif] font-normal leading-[normal] left-1/2 -translate-x-1/2 lg:translate-x-[-50%] text-white text-[16px] sm:text-[18px] lg:text-[20px] text-center text-nowrap top-[380px] sm:top-[520px] lg:top-[565px] whitespace-pre" style={{ left: `${1217.5 + offsetX}px` }}>
+          <p className="absolute font-['Unbounded:Regular',sans-serif] font-normal leading-[normal] text-white text-[16px] sm:text-[18px] lg:text-[20px] text-center text-nowrap whitespace-pre" style={{ left: `${1120 + offsetX}px`, bottom: '280px' }}>
             dsgn
           </p>
 
@@ -104,7 +104,7 @@ export function Footer() {
             animate={isVisible ? { scale: 1, opacity: 1 } : { scale: 0.9, opacity: 0 }}
             transition={{ duration: 0.5, delay: 0.7, ease: "easeOut" }}
             className="absolute h-[52px] w-[365px]"
-            style={{ left: `${537 + offsetX}px`, top: '588px' }}
+            style={{ left: `${537 + offsetX}px`, bottom: '200px' }}
           >
             <svg className="block size-full cursor-pointer" fill="none" preserveAspectRatio="none" viewBox="0 0 365 52" onClick={() => setContactModalOpen(true)}>
               <path d={svgPaths.p3d2dee80} fill="#141414" stroke="white" strokeWidth="2" className="transition-all duration-300 hover:fill-white" />
@@ -123,10 +123,10 @@ export function Footer() {
             animate={isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
-            <a href="tel:+79181234567" className="absolute font-['Unbounded:Regular',sans-serif] font-normal leading-[normal] text-[20px] text-center text-nowrap text-white whitespace-pre hover:opacity-70 transition-opacity" style={{ left: `${200 + offsetX}px`, top: '669px' }}>
-              +7 (918) 123-45-67
+            <a href="tel:+79898055659" className="absolute font-['Unbounded:Regular',sans-serif] font-normal leading-[normal] text-[20px] text-center text-nowrap text-white whitespace-pre hover:opacity-70 transition-opacity" style={{ left: `${200 + offsetX}px`, bottom: '159px' }}>
+              +7 (989) 805 56-59
             </a>
-            <a href="mailto:sales@burodsgn.ru" className="absolute font-['Unbounded:Regular',sans-serif] font-normal leading-[normal] text-[20px] text-center text-nowrap text-white whitespace-pre hover:opacity-70 transition-opacity" style={{ left: `${206.5 + offsetX}px`, top: '705px' }}>
+            <a href="mailto:sales@burodsgn.ru" className="absolute font-['Unbounded:Regular',sans-serif] font-normal leading-[normal] text-[20px] text-center text-nowrap text-white whitespace-pre hover:opacity-70 transition-opacity" style={{ left: `${206.5 + offsetX}px`, bottom: '123px' }}>
               sales@burodsgn.ru
             </a>
           </motion.div>
@@ -137,14 +137,14 @@ export function Footer() {
             animate={isVisible ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
             className="absolute font-['Unbounded:Regular',sans-serif] font-normal leading-[normal] text-[12px] text-center text-nowrap text-white -translate-x-1/2 whitespace-pre"
-            style={{ left: `${720 + offsetX}px`, top: '669px' }}
+            style={{ left: `${720 + offsetX}px`, bottom: '159px' }}
           >
             <p className="mb-0">{`Режим работы: `}</p>
             <p>Пн-Пт с 9:00 до 18:00</p>
           </motion.div>
 
           {/* Адрес */}
-          <p className="absolute font-['Unbounded:Regular',sans-serif] font-normal leading-[normal] text-[0px] text-center text-nowrap text-white -translate-x-1/2 whitespace-pre" style={{ left: `${720 + offsetX}px`, top: '710px' }}>
+          <p className="absolute font-['Unbounded:Regular',sans-serif] font-normal leading-[normal] text-[0px] text-center text-nowrap text-white -translate-x-1/2 whitespace-pre" style={{ left: `${720 + offsetX}px`, bottom: '135px' }}>
             <span className="text-[14px]">К</span>
             <span className="text-[12px]">раснодар, ул. Примерная, д. 10, офис 5</span>
           </p>
@@ -152,7 +152,7 @@ export function Footer() {
           {/* Соц иконки */}
           <div>
             {/* Telegram */}
-            <a href="https://t.me/+ms6fdSYzjhxkYTky" target="_blank" rel="noopener noreferrer" className="absolute h-[32.071px] w-[31.773px] transition-all duration-300 hover:scale-110 hover:opacity-80" style={{ left: `${603 + offsetX}px`, top: '746px' }}>
+            <a href="https://t.me/+ms6fdSYzjhxkYTky" target="_blank" rel="noopener noreferrer" className="absolute h-[32.071px] w-[31.773px] transition-all duration-300 hover:scale-110 hover:opacity-80" style={{ left: `${603 + offsetX}px`, bottom: '82px' }}>
               <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 32 33">
                 <g clipPath="url(#clip0_90_594)">
                   <path clipRule="evenodd" d={svgPaths.p1a720400} fill="white" fillRule="evenodd" />
@@ -166,7 +166,7 @@ export function Footer() {
             </a>
 
             {/* Instagram */}
-            <a href="https://www.instagram.com/buro.house?igsh=MTVseTV1cW5neG14cQ==" target="_blank" rel="noopener noreferrer" className="absolute h-[32.071px] w-[31.773px] hover:opacity-70 transition-opacity" style={{ left: `${653 + offsetX}px`, top: '746px' }}>
+            <a href="https://www.instagram.com/buro.house?igsh=MTVseTV1cW5neG14cQ==" target="_blank" rel="noopener noreferrer" className="absolute h-[32.071px] w-[31.773px] hover:opacity-70 transition-opacity" style={{ left: `${653 + offsetX}px`, bottom: '82px' }}>
               <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 32 33">
                 <g clipPath="url(#clip0_90_586)">
                   <path d={svgPaths.p2ceaaa00} fill="white" />
@@ -182,7 +182,7 @@ export function Footer() {
             </a>
 
             {/* Pinterest */}
-            <a href="https://pinterest.com/burodsgn" target="_blank" rel="noopener noreferrer" className="absolute h-[32.071px] w-[31.773px] transition-all duration-300 hover:scale-110 hover:opacity-80" style={{ left: `${703 + offsetX}px`, top: '746px' }}>
+            <a href="https://pinterest.com/burodsgn" target="_blank" rel="noopener noreferrer" className="absolute h-[32.071px] w-[31.773px] transition-all duration-300 hover:scale-110 hover:opacity-80" style={{ left: `${703 + offsetX}px`, bottom: '82px' }}>
               <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 32 33">
                 <g clipPath="url(#clip0_90_583)">
                   <path d={svgPaths.p36467600} fill="white" />
@@ -196,14 +196,14 @@ export function Footer() {
             </a>
 
             {/* WhatsApp */}
-            <a href="https://wa.me/79282412720" target="_blank" rel="noopener noreferrer" className="absolute h-[32.071px] w-[31.773px] hover:opacity-70 transition-opacity" style={{ left: `${753 + offsetX}px`, top: '746px' }}>
+            <a href="https://wa.me/79282412720" target="_blank" rel="noopener noreferrer" className="absolute h-[32.071px] w-[31.773px] hover:opacity-70 transition-opacity" style={{ left: `${753 + offsetX}px`, bottom: '82px' }}>
               <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 32 33">
                 <path d={svgPaths.pbb24c00} fill="white" />
               </svg>
             </a>
 
             {/* VK */}
-            <a href="https://vk.com/burodsgn" target="_blank" rel="noopener noreferrer" className="absolute h-[32.071px] w-[31.773px] transition-all duration-300 hover:scale-110 hover:opacity-80" style={{ left: `${803 + offsetX}px`, top: '746px' }}>
+            <a href="https://vk.com/burodsgn" target="_blank" rel="noopener noreferrer" className="absolute h-[32.071px] w-[31.773px] transition-all duration-300 hover:scale-110 hover:opacity-80" style={{ left: `${803 + offsetX}px`, bottom: '82px' }}>
               <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 32 33">
                 <g clipPath="url(#clip0_90_591)">
                   <path clipRule="evenodd" d={svgPaths.p976a400} fill="white" fillRule="evenodd" />
@@ -223,15 +223,15 @@ export function Footer() {
             animate={isVisible ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
-            <a href="https://www.burodigital.ru" target="_blank" rel="noopener noreferrer" className="absolute font-['Unbounded:Regular',sans-serif] font-normal h-[16px] leading-none text-[0px] text-white w-[149px] hover:opacity-70 transition-opacity" style={{ left: `${1131 + offsetX}px`, top: '676px' }}>
+            <a href="https://www.burodigital.ru" target="_blank" rel="noopener noreferrer" className="absolute font-['Unbounded:Regular',sans-serif] font-normal h-[16px] leading-none text-[0px] text-white w-[149px] hover:opacity-70 transition-opacity" style={{ left: `${1131 + offsetX}px`, bottom: '152px' }}>
               <span className="text-[14px]">BURO</span>
               <span className="text-[12px]"> digital</span>
             </a>
-            <p className="absolute font-['Unbounded:Regular',sans-serif] font-normal h-[16px] leading-none text-[0px] text-white w-[135px]" style={{ left: `${1131 + offsetX}px`, top: '710px' }}>
+            <p className="absolute font-['Unbounded:Regular',sans-serif] font-normal h-[16px] leading-none text-[0px] text-white w-[135px]" style={{ left: `${1131 + offsetX}px`, bottom: '118px' }}>
               <span className="text-[14px]">BURO </span>
               <span className="text-[12px]">dsgn</span>
             </p>
-            <p className="absolute font-['Unbounded:Regular',sans-serif] font-normal h-[17px] leading-none text-[0px] text-white w-[142px]" style={{ left: `${1131 + offsetX}px`, top: '742px' }}>
+            <p className="absolute font-['Unbounded:Regular',sans-serif] font-normal h-[17px] leading-none text-[0px] text-white w-[142px]" style={{ left: `${1131 + offsetX}px`, bottom: '86px' }}>
               <span className="text-[14px]">BURO</span>
               <span className="text-[12px]"> crm</span>
             </p>
@@ -239,28 +239,28 @@ export function Footer() {
 
           {/* Юр ссылки */}
           <div className="font-['Unbounded:Regular',sans-serif] font-normal leading-none text-[12px] text-[rgba(255,255,255,0.7)]">
-            <button onClick={() => setLegalInfoOpen(true)} className="absolute h-[16px] text-nowrap transition-all duration-300 hover:text-white hover:scale-105" style={{ left: `${200 + offsetX}px`, top: '787px' }}>
+            <button onClick={() => setLegalInfoOpen(true)} className="absolute h-[16px] text-nowrap transition-all duration-300 hover:text-white hover:scale-105" style={{ left: `${200 + offsetX}px`, bottom: '41px' }}>
               Юридическая информация
             </button>
-            <button onClick={() => setUserAgreementOpen(true)} className="absolute h-[16px] text-nowrap transition-all duration-300 hover:text-white hover:scale-105 -translate-x-1/2" style={{ left: `${720 + offsetX}px`, top: '787px' }}>
+            <button onClick={() => setUserAgreementOpen(true)} className="absolute h-[16px] text-nowrap transition-all duration-300 hover:text-white hover:scale-105 -translate-x-1/2" style={{ left: `${720 + offsetX}px`, bottom: '41px' }}>
               Пользовательское соглашение
             </button>
-            <button onClick={() => setPrivacyOpen(true)} className="absolute h-[16px] text-nowrap transition-all duration-300 hover:text-white hover:scale-105" style={{ left: `${1020 + offsetX}px`, top: '787px' }}>
+            <button onClick={() => setPrivacyOpen(true)} className="absolute h-[16px] text-nowrap transition-all duration-300 hover:text-white hover:scale-105" style={{ left: `${1040 + offsetX}px`, bottom: '41px' }}>
               Политика конфиденциальности
             </button>
           </div>
 
           {/* Линия */}
-          <div className="absolute h-0 w-[1190px] left-1/2 -translate-x-1/2" style={{ top: '811px' }}>
-            <div className="absolute bottom-0 left-0 right-0 top-[-1px]">
-              <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1190 1">
-                <line stroke="white" x2="1190" y1="0.5" y2="0.5" />
+          <div className="absolute h-0 w-[1190px] left-1/2 -translate-x-1/2" style={{ bottom: '34px' }}>
+            <div className="absolute bottom-0 left-0 right-0 -top-px">
+              <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1220 1">
+                <line stroke="white" x2="1220" y1="0.5" y2="0.5" />
               </svg>
             </div>
           </div>
 
           {/* Copyright */}
-          <p className="absolute font-['Unbounded:Regular',sans-serif] font-normal leading-[normal] -translate-x-1/2 text-[8px] text-[rgba(255,255,255,0.7)] text-center text-nowrap whitespace-pre" style={{ left: `${720 + offsetX}px`, top: '815px' }}>
+          <p className="absolute font-['Unbounded:Regular',sans-serif] font-normal leading-[normal] -translate-x-1/2 text-[8px] text-[rgba(255,255,255,0.7)] text-center text-nowrap whitespace-pre" style={{ left: `${720 + offsetX}px`, bottom: '15px' }}>
             @ Buro dsgn,  2025
           </p>
         </div>
@@ -312,8 +312,8 @@ export function Footer() {
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
             className="font-['Unbounded:Regular',sans-serif] text-center space-y-3"
           >
-            <a href="tel:+79181234567" className="block text-[16px] hover:opacity-70 transition-opacity">
-              +7 (918) 123-45-67
+            <a href="tel:+79898055659" className="block text-[16px] hover:opacity-70 transition-opacity">
+              +7 (989) 805 56-59
             </a>
             <a href="mailto:sales@burodsgn.ru" className="block text-[16px] hover:opacity-70 transition-opacity">
               sales@burodsgn.ru
