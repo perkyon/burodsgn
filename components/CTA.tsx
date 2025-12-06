@@ -44,7 +44,7 @@ export default function CTA() {
               <div>
                 <p>адрес</p>
                 <span className="normal-case tracking-normal text-white">
-                  Краснодар, ул. Примерная, д. 10, офис 5
+                  Краснодар, Дальний проезд 11к1 2 этаж
                 </span>
               </div>
               <div>

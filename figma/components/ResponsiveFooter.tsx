@@ -123,7 +123,7 @@ export function ResponsiveFooter() {
             </div>
             <div className="text-white">
               <p className="text-sm">Краснодар,</p>
-              <p className="text-xs">ул. Примерная, д. 10, офис 5</p>
+              <p className="text-xs">Дальний проезд 11к1 2 этаж</p>
             </div>
           </div>
 

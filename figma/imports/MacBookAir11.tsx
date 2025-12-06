@@ -161,7 +161,7 @@ export default function MacBookAir() {
       <p className="absolute font-['Unbounded:Regular',sans-serif] font-normal leading-[normal] left-[206.5px] text-[20px] text-center text-nowrap text-white top-[696px] translate-x-[-50%] whitespace-pre">sales@burodsgn.ru</p>
       <p className="absolute font-['Unbounded:Regular',sans-serif] font-normal leading-[normal] left-[639.5px] text-[0px] text-center text-nowrap text-white top-[664px] translate-x-[-50%] whitespace-pre">
         <span className="text-[14px]">К</span>
-        <span className="text-[12px]">раснодар, ул. Примерная, д. 10, офис 5</span>
+        <span className="text-[12px]">раснодар, Дальний проезд 11к1 2 этаж</span>
       </p>
       <Group />
       <p className="absolute font-['Unbounded:Regular',sans-serif] font-normal leading-none left-[53px] text-[25px] text-black text-nowrap top-[44px] whitespace-pre">Задача клиента</p>
@@ -181,7 +181,7 @@ export default function MacBookAir() {
       <p className="absolute font-['Unbounded:Regular',sans-serif] font-normal leading-[normal] left-[200px] text-[20px] text-center text-nowrap text-white top-[660px] translate-x-[-50%] whitespace-pre">+7 (918) 123-45-67</p>
       <p className="absolute font-['Unbounded:Regular',sans-serif] font-normal leading-[normal] left-[639.5px] text-[0px] text-center text-nowrap text-white top-[664px] translate-x-[-50%] whitespace-pre">
         <span className="text-[14px]">К</span>
-        <span className="text-[12px]">раснодар, ул. Примерная, д. 10, офис 5</span>
+        <span className="text-[12px]">раснодар, Дальний проезд 11к1 2 этаж</span>
       </p>
       <p className="absolute font-['Unbounded:Regular',sans-serif] font-normal h-[16px] leading-none left-[1131px] text-[0px] text-white top-[667px] w-[149px]">
         <span className="text-[14px]">BURO</span>

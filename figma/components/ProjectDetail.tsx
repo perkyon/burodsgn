@@ -23,11 +23,11 @@ const propaganda = "/figma/пропаганда.png";
 // Изображения для проекта Серф кофе (из1.webp - из16.webp)
 const surfCoffeeImages = Array.from({ length: 16 }, (_, i) => `/figma/из${i + 1}.webp`);
 
-// Изображения для проекта Союзники (со1, со2, со3 и т.д.)
-const soyuznikiImages = Array.from({ length: 7 }, (_, i) => `/figma/со${i + 1}.jpg`);
+// Изображения для проекта Союзники (со1, со2, со3, со4, со6, со7 - без со5)
+const soyuznikiImages = Array.from({ length: 7 }, (_, i) => `/figma/со${i + 1}.jpg`).filter((_, i) => i !== 4);
 
-// Изображения для проекта Том Сойер (том1, том2, том3, том5, том6, том7, том8 - без том4)
-const tomSawyerImages = Array.from({ length: 8 }, (_, i) => `/figma/том${i + 1}.jpg`).filter((_, i) => i !== 3);
+// Изображения для проекта Том Сойер (том1, том2, том3, том5, том7, том8 - без том4 и том6)
+const tomSawyerImages = Array.from({ length: 8 }, (_, i) => `/figma/том${i + 1}.jpg`).filter((_, i) => i !== 3 && i !== 5);
 
 interface ProjectDetailProps {
   projectId: number;
@@ -76,10 +76,17 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
   const [contactModalOpen, setContactModalOpen] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(false);
   const section1Ref = useRef<HTMLDivElement>(null);
   const section2Ref = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const logosRef = useRef<HTMLDivElement>(null);
+
+  // Настройки позиции кнопки "назад" - меняй здесь
+  const backButtonLeft = '40px'; // Движение влево/вправо (больше = правее, меньше = левее, можно отрицательные значения)
+  const backButtonTop = '32px'; // Движение вверх/вниз (больше = ниже, меньше = выше, можно отрицательные значения)
 
   const projectName = projectNames[projectId] || "Проект";
   const projectImgs = projectImages[projectId] || [img1, imgImage4, imgImage5];
@@ -163,6 +170,42 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
   // Offset для центрирования контента (как в Footer)
   const offsetX = 50;
 
+  // Логика для стрелок навигации карусели
+  useEffect(() => {
+    const handleScroll = () => {
+      if (scrollContainerRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+        setShowLeftArrow(scrollLeft > 10);
+        const isAtEnd = scrollLeft + clientWidth >= scrollWidth - 10;
+        setShowRightArrow(!isAtEnd);
+      }
+    };
+
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.addEventListener('scroll', handleScroll);
+      setTimeout(() => handleScroll(), 100);
+      handleScroll();
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener('scroll', handleScroll);
+      }
+    };
+  }, [isVisible1, projectImgs]);
+
+  const scrollCarousel = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 650; // Ширина карточки + gap
+      const newScrollLeft = scrollContainerRef.current.scrollLeft + (direction === 'left' ? -scrollAmount : scrollAmount);
+      scrollContainerRef.current.scrollTo({
+        left: newScrollLeft,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <div className="fixed inset-0 z-50 bg-white overflow-y-auto">
       <LegalInfo isOpen={legalInfoOpen} onClose={() => setLegalInfoOpen(false)} />
@@ -170,18 +213,18 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
       <UserAgreement isOpen={userAgreementOpen} onClose={() => setUserAgreementOpen(false)} />
       <ContactModal isOpen={contactModalOpen} onClose={() => setContactModalOpen(false)} />
       
-      {/* Back button - минималистичная стрелка назад */}
+      {/* Back button - стрелка назад слева */}
       <button
         onClick={onClose}
-        className="fixed left-[20px] sm:left-[37px] top-[21px] w-[27px] h-[20px] cursor-pointer transition-opacity hover:opacity-70 z-[99999]"
-        style={{ position: 'fixed', zIndex: 99999 }}
-        aria-label="Назад"
+        className="fixed z-50 flex items-center justify-center transition-opacity hover:opacity-70 cursor-pointer"
+        style={{
+          left: backButtonLeft,
+          top: backButtonTop
+        }}
       >
-        <div className="relative w-full h-full">
-          <div className="absolute top-[9px] left-0 bg-[#141414] h-[2px] w-[18px] rounded-[10px]" />
-          <div className="absolute top-[9px] left-0 bg-[#141414] h-[2px] w-[9px] rounded-[10px] rotate-45 origin-left" />
-          <div className="absolute top-[9px] left-0 bg-[#141414] h-[2px] w-[9px] rounded-[10px] -rotate-45 origin-left" />
-        </div>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M15 18L9 12L15 6" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
       </button>
 
       {/* Section 1 - Surf Coffee Style */}
@@ -189,7 +232,6 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
         <div className="relative w-full max-w-[1440px]">
           {/* Логотип по центру с линией ниже */}
           <div className="flex flex-col items-center mb-12 lg:mb-16">
-            
             {/* Логотип или название */}
             <motion.div
               initial={{ y: 20, opacity: 0 }}
@@ -335,7 +377,7 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
             {/* Адрес */}
             <p className="absolute font-['Unbounded:Regular',sans-serif] font-normal leading-[normal] text-[0px] text-center text-nowrap text-white -translate-x-1/2 whitespace-pre" style={{ left: `${720 + offsetX}px`, bottom: '135px' }}>
               <span className="text-[14px]">К</span>
-              <span className="text-[12px]">раснодар, ул. Примерная, д. 10, офис 5</span>
+              <span className="text-[12px]">раснодар, Дальний проезд 11к1 2 этаж</span>
             </p>
 
             {/* Соц иконки */}
@@ -618,16 +660,24 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
                 </svg>
               </button>
 
-              {/* Image Container - увеличенный размер */}
+              {/* Image Container - увеличенный размер с полноэкранным режимом */}
               <div 
                 className="relative flex flex-col items-center" 
                 onClick={(e) => e.stopPropagation()}
-                style={{ width: '1400px', maxWidth: '95vw' }}
+                style={{ 
+                  width: isFullscreen ? '100vw' : '1400px', 
+                  maxWidth: isFullscreen ? '100vw' : '95vw',
+                  height: isFullscreen ? '100vh' : 'auto'
+                }}
               >
                 {/* Image */}
                 <div 
-                  className="relative flex items-center justify-center mb-6" 
-                  style={{ width: '100%', position: 'relative' }}
+                  className="relative flex items-center justify-center mb-6 cursor-pointer" 
+                  style={{ width: '100%', position: 'relative', height: isFullscreen ? '100vh' : 'auto' }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsFullscreen(!isFullscreen);
+                  }}
                 >
                   <AnimatePresence mode="wait">
                     <motion.img
@@ -639,7 +689,7 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
                       alt={`${projectName} ${lightboxIndex + 1}`} 
                       style={{ 
                         maxWidth: '100%', 
-                        maxHeight: '85vh', 
+                        maxHeight: isFullscreen ? '100vh' : '85vh', 
                         height: 'auto', 
                         width: 'auto', 
                         objectFit: 'contain' 
@@ -647,18 +697,80 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
                       src={projectImgs[lightboxIndex]} 
                     />
                   </AnimatePresence>
+                  
+                  {/* Navigation arrows - стрелки влево/вправо */}
+                  {projectImgs.length > 1 && !isFullscreen && (
+                    <>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setLightboxIndex((prev) => (prev - 1 + projectImgs.length) % projectImgs.length);
+                        }}
+                        className="absolute left-0 -translate-x-full -translate-y-1/2 top-1/2 z-[103] w-[70px] h-[70px] flex items-center justify-center bg-black rounded-full transition-all hover:scale-110 ml-4"
+                        style={{ pointerEvents: 'auto', boxShadow: '0 4px 20px rgba(0,0,0,0.8), 0 0 0 3px rgba(255,255,255,0.5)' }}
+                      >
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                          <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setLightboxIndex((prev) => (prev + 1) % projectImgs.length);
+                        }}
+                        className="absolute right-0 translate-x-full -translate-y-1/2 top-1/2 z-[103] w-[70px] h-[70px] flex items-center justify-center bg-black rounded-full transition-all hover:scale-110 mr-4"
+                        style={{ pointerEvents: 'auto', boxShadow: '0 4px 20px rgba(0,0,0,0.8), 0 0 0 3px rgba(255,255,255,0.5)' }}
+                      >
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                          <path d="M9 18L15 12L9 6" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </button>
+                    </>
+                  )}
+                  
+                  {/* Fullscreen arrows - стрелки в полноэкранном режиме */}
+                  {projectImgs.length > 1 && isFullscreen && (
+                    <>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setLightboxIndex((prev) => (prev - 1 + projectImgs.length) % projectImgs.length);
+                        }}
+                        className="absolute left-8 top-1/2 -translate-y-1/2 z-[103] w-[70px] h-[70px] flex items-center justify-center bg-black rounded-full transition-all hover:scale-110"
+                        style={{ pointerEvents: 'auto', boxShadow: '0 4px 20px rgba(0,0,0,0.8), 0 0 0 3px rgba(255,255,255,0.5)' }}
+                      >
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                          <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setLightboxIndex((prev) => (prev + 1) % projectImgs.length);
+                        }}
+                        className="absolute right-8 top-1/2 -translate-y-1/2 z-[103] w-[70px] h-[70px] flex items-center justify-center bg-black rounded-full transition-all hover:scale-110"
+                        style={{ pointerEvents: 'auto', boxShadow: '0 4px 20px rgba(0,0,0,0.8), 0 0 0 3px rgba(255,255,255,0.5)' }}
+                      >
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                          <path d="M9 18L15 12L9 6" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </button>
+                    </>
+                  )}
                 </div>
                 
                 {/* Image counter - по центру снизу изображения */}
-                <motion.div 
-                  key={lightboxIndex}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.1 }}
-                  className="bg-black/90 px-6 py-2.5 rounded-full text-white text-base font-medium pointer-events-none"
-                >
-                  {lightboxIndex + 1} / {projectImgs.length}
-                </motion.div>
+                {!isFullscreen && (
+                  <motion.div 
+                    key={lightboxIndex}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.1 }}
+                    className="bg-black/90 px-6 py-2.5 rounded-full text-white text-base font-medium pointer-events-none"
+                  >
+                    {lightboxIndex + 1} / {projectImgs.length}
+                  </motion.div>
+                )}
               </div>
 
             </motion.div>

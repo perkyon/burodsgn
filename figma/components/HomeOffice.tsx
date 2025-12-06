@@ -23,6 +23,26 @@ export function HomeOffice() {
   const closeButtonRight = '16px'; // Движение влево/вправо (больше = левее, меньше = правее)
   const closeButtonTop = '16px'; // Движение вверх/вниз (больше = ниже, меньше = выше)
 
+  // Настройки позиции заголовка - меняй здесь
+  const titleLeft = '0px'; // Движение заголовка влево/вправо (больше = правее, меньше = левее, можно отрицательные значения)
+  const titleTop = '0px'; // Движение заголовка вверх/вниз (больше = ниже, меньше = выше, можно отрицательные значения)
+  
+  // Настройки линии - меняй здесь
+  const lineLeft = '-120px'; // Движение линии влево/вправо (больше = правее, меньше = левее, можно отрицательные значения)
+  const lineTop = '50px'; // Движение линии вверх/вниз (больше = ниже, меньше = выше, можно отрицательные значения)
+  const lineWidth = '700px'; // Длина линии (больше = длиннее)
+  
+  // Настройки подзаголовка - меняй здесь
+  const subtitleLeft = '0px'; // Движение подзаголовка влево/вправо (больше = правее, меньше = левее, можно отрицательные значения)
+  const subtitleTop = '0px'; // Движение подзаголовка вверх/вниз (больше = ниже, меньше = выше, можно отрицательные значения)
+  
+  // Настройки расстояния между проектами - меняй здесь
+  const projectsGap = '24px'; // Расстояние между проектами горизонтально (меньше = ближе друг к другу, больше = дальше)
+  const projectsTopMargin = '32px'; // Расстояние между текстом/линией и проектами вверх/вниз (меньше = ближе, больше = дальше)
+  
+  // Настройки расстояния от секции выше (HoReCa) - меняй здесь
+  const sectionTopPadding = '0px'; // Отступ сверху секции (меньше = ближе к секции HoReCa, можно отрицательные значения)
+
   // 4 проекта дом и офис
   const projects = [
     { id: 1, img: imgImage1, title: "Проект 1" },
@@ -83,27 +103,41 @@ export function HomeOffice() {
   }, [isModalOpen]);
 
   return (
-    <div>
+    <div style={{ 
+      marginTop: parseFloat(sectionTopPadding) < 0 ? sectionTopPadding : '0px',
+      paddingTop: parseFloat(sectionTopPadding) >= 0 ? sectionTopPadding : '0px'
+    }}>
       <div className="bg-white relative min-h-screen w-full flex items-center justify-center px-4 sm:px-6 lg:px-8">
         <div ref={sectionRef} className="relative w-full max-w-[1440px] py-12 lg:py-0 lg:h-[1024px]" data-name="Desktop - 4">
         
         {/* Title and decorative line */}
-        <div className="mb-8 lg:mb-12">
+        <div className="relative" style={{ marginBottom: projectsTopMargin }}>
           <motion.h2 
             initial={{ x: -50, opacity: 0 }}
             animate={isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="font-['Unbounded:Regular',sans-serif] text-2xl sm:text-3xl lg:text-[40px] text-black mb-6"
+            style={{ 
+              marginLeft: titleLeft,
+              marginTop: titleTop
+            }}
           >
             {`Проекты дом и офис`}
           </motion.h2>
           
-          <div className="h-px w-full lg:w-[597px]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 597 1">
+          <div 
+            className="h-px w-full lg:absolute"
+            style={{
+              left: lineLeft,
+              top: lineTop,
+              width: lineWidth
+            }}
+          >
+            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox={`0 0 ${parseFloat(lineWidth) || 597} 1`}>
               <motion.line 
                 id="Line 3" 
                 stroke="var(--stroke-0, black)" 
-                x2="597" 
+                x2={parseFloat(lineWidth) || 597}
                 y1="0.5" 
                 y2="0.5"
                 initial={{ pathLength: 0 }}
@@ -118,8 +152,12 @@ export function HomeOffice() {
             animate={isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
             className="hidden lg:block font-['Unbounded:Regular',sans-serif] text-[25px] text-black mt-6"
+            style={{
+              marginLeft: subtitleLeft,
+              marginTop: subtitleTop
+            }}
           >
-            Проектирование и изготовление мебели для HoReCa, офиса и дома
+            Проектирование и изготовление мебели для дома и офиса
           </motion.p>
         </div>
         
@@ -128,8 +166,12 @@ export function HomeOffice() {
           {/* Scrollable Projects */}
           <div 
             ref={scrollContainerRef}
-            className="flex gap-6 overflow-x-auto scroll-smooth hide-scrollbar pb-4"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            className="flex overflow-x-auto scroll-smooth hide-scrollbar pb-4"
+            style={{ 
+              scrollbarWidth: 'none', 
+              msOverflowStyle: 'none',
+              gap: projectsGap
+            }}
           >
             {projects.map((project, index) => (
               <motion.div

@@ -14,6 +14,19 @@ export function Projects() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
+  // Настройки позиции заголовка - меняй здесь
+  const titleLeft = '0px'; // Движение заголовка влево/вправо (больше = правее, меньше = левее, можно отрицательные значения)
+  const titleTop = '0px'; // Движение заголовка вверх/вниз (больше = ниже, меньше = выше, можно отрицательные значения)
+  
+  // Настройки линии - меняй здесь
+  const lineLeft = '-150px'; // Движение линии влево/вправо (больше = правее, меньше = левее, можно отрицательные значения)
+  const lineTop = '50px'; // Движение линии вверх/вниз (больше = ниже, меньше = выше, можно отрицательные значения)
+  const lineWidth = '600px'; // Длина линии (больше = длиннее)
+  
+  // Настройки подзаголовка - меняй здесь
+  const subtitleLeft = '0px'; // Движение подзаголовка влево/вправо (больше = правее, меньше = левее, можно отрицательные значения)
+  const subtitleTop = '10px'; // Движение подзаголовка вверх/вниз (больше = ниже, меньше = выше, можно отрицательные значения)
+
   // 4 кофейни: 1-Союзники, 2-Том Сойер, 3-Серф кофе, 4-Лейбл
   const projects = [
     { id: 1, img: img1, title: "Союзники" },
@@ -85,22 +98,33 @@ export function Projects() {
     <div className="bg-white relative min-h-screen w-full flex items-center justify-center px-4 sm:px-6 lg:px-8">
       <div ref={sectionRef} className="relative w-full max-w-[1440px] py-12 lg:py-0 lg:h-[1024px]" data-name="Desktop - 3">
         
-        <div className="mb-8 lg:mb-12">
+        <div className="mb-8 lg:mb-12 relative">
           <motion.div 
             initial={{ x: -50, opacity: 0 }}
             animate={isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="font-['Unbounded:Regular',sans-serif] text-2xl sm:text-3xl lg:text-[40px] text-black mb-6"
+            style={{ 
+              marginLeft: titleLeft,
+              marginTop: titleTop
+            }}
           >
             {`Проекты HoReCa`}
           </motion.div>
           
-          <div className="h-px w-full lg:w-[453px]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 453 1">
+          <div 
+            className="h-px w-full lg:absolute"
+            style={{
+              left: lineLeft,
+              top: lineTop,
+              width: lineWidth
+            }}
+          >
+            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox={`0 0 ${parseFloat(lineWidth) || 453} 1`}>
               <motion.line 
                 id="Line 4" 
                 stroke="var(--stroke-0, black)" 
-                x2="453.001" 
+                x2={parseFloat(lineWidth) || 453}
                 y1="0.5" 
                 y2="0.5"
                 initial={{ pathLength: 0 }}
@@ -115,8 +139,12 @@ export function Projects() {
             animate={isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
             className="hidden lg:block font-['Unbounded:Regular',sans-serif] text-[25px] text-black mt-6"
+            style={{
+              marginLeft: subtitleLeft,
+              marginTop: subtitleTop
+            }}
           >
-            Проектирование и изготовление мебели для HoReCa, офиса и дома
+            Проектирование и изготовление мебели для HoReCa
           </motion.p>
         </div>
         

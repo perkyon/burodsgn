@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { useEffect } from 'react';
 import { X } from 'lucide-react';
+import { smoothScrollToElement } from '../utils/smoothScroll';
 
 interface NavigationProps {
   isOpen: boolean;
@@ -32,8 +33,7 @@ export function Navigation({ isOpen, setIsOpen }: NavigationProps) {
   const handleMenuClick = (href: string) => {
     setIsOpen(false);
     setTimeout(() => {
-      const element = document.querySelector(href);
-      element?.scrollIntoView({ behavior: 'smooth' });
+      smoothScrollToElement(href, SCROLL_DURATION);
     }, 300);
   };
 

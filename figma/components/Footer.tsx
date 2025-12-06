@@ -146,7 +146,7 @@ export function Footer() {
           {/* Адрес */}
           <p className="absolute font-['Unbounded:Regular',sans-serif] font-normal leading-[normal] text-[0px] text-center text-nowrap text-white -translate-x-1/2 whitespace-pre" style={{ left: `${720 + offsetX}px`, bottom: '135px' }}>
             <span className="text-[14px]">К</span>
-            <span className="text-[12px]">раснодар, ул. Примерная, д. 10, офис 5</span>
+            <span className="text-[12px]">раснодар, Дальний проезд 11к1 2 этаж</span>
           </p>
 
           {/* Соц иконки */}

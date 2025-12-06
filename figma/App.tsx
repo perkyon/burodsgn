@@ -10,13 +10,30 @@ import { VideoSection } from './components/VideoSection';
 import { Footer } from './components/Footer';
 import { Navigation } from './components/Navigation';
 import { ScrollToTop } from './components/ScrollToTop';
+import { smoothScrollToElement, SCROLL_DURATION } from './utils/smoothScroll';
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    // Remove smooth scroll from JS as it's now in CSS
+    // Переопределяем стандартную прокрутку на плавную с контролем скорости
+    const handleAnchorClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const anchor = target.closest('a[href^="#"]');
+      
+      if (anchor) {
+        const href = anchor.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          e.preventDefault();
+          smoothScrollToElement(href, SCROLL_DURATION);
+        }
+      }
+    };
+
+    document.addEventListener('click', handleAnchorClick);
+    
     return () => {
+      document.removeEventListener('click', handleAnchorClick);
       document.documentElement.style.scrollBehavior = '';
     };
   }, []);
