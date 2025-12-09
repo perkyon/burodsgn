@@ -1,5 +1,5 @@
 // Настройка скорости прокрутки - меняй здесь (в миллисекундах, больше = медленнее)
-export const SCROLL_DURATION = 10000; // 2000ms = 2 секунды (можно изменить на 3000 для еще более медленной прокрутки)
+export const SCROLL_DURATION = 2000; // 2000ms = 2 секунды (можно изменить на 3000 для еще более медленной прокрутки)
 
 // Функция плавной прокрутки с контролем скорости
 export const smoothScrollTo = (target: number, duration: number = SCROLL_DURATION) => {
@@ -35,3 +35,4 @@ export const smoothScrollToElement = (selector: string, duration: number = SCROL
     smoothScrollTo(targetPosition, duration);
   }
 };
+

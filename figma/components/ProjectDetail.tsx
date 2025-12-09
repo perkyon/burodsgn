@@ -4,67 +4,13 @@ import { motion, AnimatePresence } from 'motion/react';
 import svgPaths from "../imports/svg-oe02cphzzc";
 import { LegalInfo, PrivacyPolicy, UserAgreement } from './LegalModals';
 import { ContactModal } from './ContactModal';
-
-// Изображения для проектов
-const imgImage5 = "/figma/77e65ee8bee14c18399a8e359e571f19624b33cc.png";
-const img202511241325471 = "/figma/49b9a026e52e18f51955454f7d4658b2b54c3385.png";
-const imgImage11 = "/figma/16393cc7dc02cfbc023b4e62108786f91a7a6971.png";
-const img1 = "/figma/9d277a0c76e94e6c0d1c36b260e7d33fa0e08d05.png";
-const imgImage4 = "/figma/c816ec898d4af1b629a41b94b567b03f5616c148.png";
-const surfCoffeeLogo = "/figma/surf-coffee-logo.png";
-const soyuznikiLogo = "/figma/лого союзники.png";
-const tomSawyerLogo = "/figma/том лого.png";
-const lyagushka = "/figma/лягушка.png";
-const palma = "/figma/пальма.png";
-const surfik = "/figma/сурфик.png";
-const kiss = "/figma/кисс.png";
-const propaganda = "/figma/пропаганда.png";
-
-// Изображения для проекта Серф кофе (из1.webp - из16.webp)
-const surfCoffeeImages = Array.from({ length: 16 }, (_, i) => `/figma/из${i + 1}.webp`);
-
-// Изображения для проекта Союзники (со1, со2, со3, со4, со6, со7 - без со5)
-const soyuznikiImages = Array.from({ length: 7 }, (_, i) => `/figma/со${i + 1}.jpg`).filter((_, i) => i !== 4);
-
-// Изображения для проекта Том Сойер (том1, том2, том3, том5, том7, том8 - без том4 и том6)
-const tomSawyerImages = Array.from({ length: 8 }, (_, i) => `/figma/том${i + 1}.jpg`).filter((_, i) => i !== 3 && i !== 5);
-
-interface ProjectDetailProps {
-  projectId: number;
-  onClose: () => void;
-}
-
-// Названия проектов: 1-Союзники, 2-Том Сойер, 3-Серф кофе, 4-Лейбл
-const projectNames: Record<number, string> = {
-  1: "Союзники",
-  2: "Том Сойер",
-  3: "Surf Coffee®",
-  4: "Лейбл"
-};
-
-// Основные логотипы проектов (для отображения сверху вместо названия)
-const projectMainLogos: Record<number, string | null> = {
-  1: soyuznikiLogo, // Логотип для Союзники
-  2: tomSawyerLogo, // Логотип для Том Сойер
-  3: surfCoffeeLogo, // Логотип для Серф кофе
-  4: null
-};
-
-// Изображения для каждого проекта
-const projectImages: Record<number, string[]> = {
-  1: soyuznikiImages, // Все изображения для Союзники (со1, со2, со3 и т.д.)
-  2: tomSawyerImages, // Все изображения для Том Сойер (том1, том2, том3 и т.д.)
-  3: surfCoffeeImages, // Все 16 изображений для Серф кофе
-  4: [img1, imgImage5, imgImage4]
-};
-
-// Логотипы для каждого проекта (5 штук)
-const projectLogos: Record<number, string[]> = {
-  1: [img202511241325471, imgImage11, img202511241325471, imgImage11, img202511241325471],
-  2: [imgImage11, img202511241325471, imgImage11, img202511241325471, imgImage11],
-  3: [lyagushka, palma, surfik, kiss, propaganda], // Иконки для Серф кофе
-  4: [imgImage11, img202511241325471, imgImage11, img202511241325471, imgImage11]
-};
+import {
+  PROJECT_NAMES,
+  PROJECT_MAIN_LOGOS,
+  PROJECT_IMAGES,
+  PROJECT_LOGOS_LIST,
+} from '../constants/projects';
+import { ProjectDetailProps } from '../types';
 
 export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
   const [isVisible1, setIsVisible1] = useState(false);
@@ -79,6 +25,7 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
+  const [logoHeight, setLogoHeight] = useState('60px');
   const section1Ref = useRef<HTMLDivElement>(null);
   const section2Ref = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -87,10 +34,32 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
   // Настройки позиции кнопки "назад" - меняй здесь
   const backButtonLeft = '40px'; // Движение влево/вправо (больше = правее, меньше = левее, можно отрицательные значения)
   const backButtonTop = '32px'; // Движение вверх/вниз (больше = ниже, меньше = выше, можно отрицательные значения)
+  
+  // Настройки размера логотипа - меняй здесь
+  const logoHeightMobile = '60px'; // Высота логотипа на мобильных (меньше = меньше размер)
+  const logoHeightTablet = '80px'; // Высота логотипа на планшетах
+  const logoHeightDesktop = '100px'; // Высота логотипа на десктопе
 
-  const projectName = projectNames[projectId] || "Проект";
-  const projectImgs = projectImages[projectId] || [img1, imgImage4, imgImage5];
-  const projectLogosList = projectLogos[projectId] || [img202511241325471, imgImage11, img202511241325471, imgImage11, img202511241325471];
+  // Обновляем размер логотипа в зависимости от размера экрана
+  useEffect(() => {
+    const updateLogoHeight = () => {
+      if (window.innerWidth >= 1024) {
+        setLogoHeight(logoHeightDesktop);
+      } else if (window.innerWidth >= 640) {
+        setLogoHeight(logoHeightTablet);
+      } else {
+        setLogoHeight(logoHeightMobile);
+      }
+    };
+
+    updateLogoHeight();
+    window.addEventListener('resize', updateLogoHeight);
+    return () => window.removeEventListener('resize', updateLogoHeight);
+  }, [logoHeightMobile, logoHeightTablet, logoHeightDesktop]);
+
+  const projectName = PROJECT_NAMES[projectId] || "Проект";
+  const projectImgs = PROJECT_IMAGES[projectId] || [];
+  const projectLogosList = PROJECT_LOGOS_LIST[projectId] || [];
 
   useEffect(() => {
     setIsVisible1(true);
@@ -239,13 +208,13 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mb-8"
             >
-              {projectMainLogos[projectId] ? (
+              {PROJECT_MAIN_LOGOS[projectId] ? (
                 <img 
-                  src={projectMainLogos[projectId]!} 
+                  src={PROJECT_MAIN_LOGOS[projectId]!} 
                   alt={projectName}
-                  className="h-[80px] sm:h-[100px] lg:h-[120px] object-contain"
+                  style={{ height: logoHeight }}
+                  className="object-contain"
                   onError={(e) => {
-                    // Если изображение не загрузилось, скрываем img и показываем текст
                     const target = e.currentTarget;
                     target.style.display = 'none';
                     const textFallback = target.nextElementSibling as HTMLElement;
@@ -256,7 +225,7 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
                 />
               ) : null}
               <h1 
-                className={`font-['Unbounded:Regular',sans-serif] font-normal text-3xl sm:text-4xl lg:text-5xl text-black text-center whitespace-nowrap ${projectMainLogos[projectId] ? 'hidden' : ''}`}
+                className={`font-['Unbounded:Regular',sans-serif] font-normal text-3xl sm:text-4xl lg:text-5xl text-black text-center whitespace-nowrap ${PROJECT_MAIN_LOGOS[projectId] ? 'hidden' : ''}`}
               >
                 {projectName}
               </h1>

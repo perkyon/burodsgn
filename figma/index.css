@@ -2154,13 +2154,11 @@
 
 html {
   font-size: var(--font-size);
-  scroll-behavior: smooth;
   max-width: 100vw;
   overflow-x: hidden;
 }
 
 body {
-  scroll-behavior: smooth;
   max-width: 100vw;
   position: relative;
   overflow-x: hidden;

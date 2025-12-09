@@ -23,6 +23,15 @@ export function About() {
   const fontSizeLargeDesktop = '34px'; // Размер больших первых букв (десктоп)
   const fontSizeText = '16px'; // Размер основного текста (мобильный)
   const fontSizeTextDesktop = '22px'; // Размер основного текста (десктоп)
+  
+  // Отступы между параграфами - меняй здесь
+  const paragraphSpacing = '1em'; // Отступ между параграфами (можно изменить на '0.5em', '2em' и т.д.)
+  
+  // Текст с переносами - меняй здесь (используй <br /> для переноса строки, убери <br /> чтобы убрать перенос)
+  const text1 = 'ы не боимся брать сложные идеи<br />и превращать их в реальные предметы,<br />которые будут жить в вашем доме, в кофейне,в рабочем пространстве или <br /> в любом другом месте, где вам <br /> важен уют, стиль и надёжность.';
+  const text2 = 'аша мастерская работает так, чтобы каждый проект был особенным. Мы внимательно слушаем ваши пожелания, разбираемся в деталях и создаём мебель, которая подходит вашему пространству.';
+  const text3 = 'ля нас важна не скорость,<br />а понимание того, что именно вы хотите получить. Мы ценим нестандартные замыслы<br />и ищем для них лучшие решения.';
+  const text4 = 'аждый проект — это сотрудничество,<br />где вы делитесь желаниями,<br />а мы — опытом и мастерством.<br />В итоге рождается мебель, которая выглядит красиво и делает пространство удобным.';
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -89,25 +98,45 @@ export function About() {
         
         {/* Text content - responsive */}
         <div className="lg:absolute font-['Unbounded:Regular',sans-serif] font-normal lg:left-[60px] text-black lg:top-[206px] w-full lg:w-[488px] mb-8 lg:mb-0 z-20" style={{ overflow: 'visible', display: 'block', visibility: 'visible' }}>
-          <p className="mb-0" style={{ lineHeight: '1.2', color: 'black' }}>
+          <motion.p 
+            initial={{ y: 30, opacity: 0 }}
+            animate={isVisible ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+            className="mb-0" 
+            style={{ lineHeight: '1.2', color: 'black', marginBottom: paragraphSpacing }}
+          >
             <span style={{ fontSize: fontSizeLargeDesktop }}>М</span>
-            <span style={{ fontSize: fontSizeTextDesktop }}>ы не боимся брать сложные идеи<br />и превращать их в реальные предметы,<br />которые будут жить в вашем доме, в кофейне,<br />в рабочем пространстве или в любом другом месте,<br />где вам важен уют, стиль и надёжность.</span>
-          </p>
-          <p className="mb-0" style={{ lineHeight: '1.2' }}>&nbsp;</p>
-          <p className="mb-0" style={{ lineHeight: '1.2', color: 'black' }}>
+            <span style={{ fontSize: fontSizeTextDesktop }} dangerouslySetInnerHTML={{ __html: text1 }} />
+          </motion.p>
+          <motion.p 
+            initial={{ y: 30, opacity: 0 }}
+            animate={isVisible ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
+            transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+            className="mb-0" 
+            style={{ lineHeight: '1.2', color: 'black', marginBottom: paragraphSpacing }}
+          >
             <span style={{ fontSize: fontSizeLargeDesktop }}>Н</span>
-            <span style={{ fontSize: fontSizeTextDesktop }}>аша мастерская работает так, чтобы каждый проект был особенным. Мы внимательно слушаем ваши пожелания, разбираемся в деталях и создаём мебель, которая подходит вашему пространству.</span>
-          </p>
-          <p className="mb-0" style={{ lineHeight: '1.2' }}>&nbsp;</p>
-          <p className="mb-0" style={{ lineHeight: '1.2', color: 'black' }}>
+            <span style={{ fontSize: fontSizeTextDesktop }} dangerouslySetInnerHTML={{ __html: text2 }} />
+          </motion.p>
+          <motion.p 
+            initial={{ y: 30, opacity: 0 }}
+            animate={isVisible ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
+            transition={{ duration: 0.8, delay: 1.0, ease: "easeOut" }}
+            className="mb-0" 
+            style={{ lineHeight: '1.2', color: 'black', marginBottom: paragraphSpacing }}
+          >
             <span style={{ fontSize: fontSizeLargeDesktop }}>Д</span>
-            <span style={{ fontSize: fontSizeTextDesktop }}>ля нас важна не скорость,<br />а понимание того, что именно вы хотите получить.<br />Мы ценим нестандартные замыслы<br />и ищем для них лучшие решения.</span>
-          </p>
-          <p className="mb-0" style={{ lineHeight: '1.2' }}>&nbsp;</p>
-          <p style={{ lineHeight: '1.2', color: 'black' }}>
+            <span style={{ fontSize: fontSizeTextDesktop }} dangerouslySetInnerHTML={{ __html: text3 }} />
+          </motion.p>
+          <motion.p 
+            initial={{ y: 30, opacity: 0 }}
+            animate={isVisible ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
+            transition={{ duration: 0.8, delay: 1.2, ease: "easeOut" }}
+            style={{ lineHeight: '1.2', color: 'black' }}
+          >
             <span style={{ fontSize: fontSizeLargeDesktop }}>К</span>
-            <span style={{ fontSize: fontSizeTextDesktop }}>аждый проект — это сотрудничество,<br />где вы делитесь желаниями,<br />а мы — опытом и мастерством.<br />В итоге рождается мебель, которая выглядит красиво<br />и делает пространство удобным.</span>
-          </p>
+            <span style={{ fontSize: fontSizeTextDesktop }} dangerouslySetInnerHTML={{ __html: text4 }} />
+          </motion.p>
         </div>
         
         {/* Image - responsive */}

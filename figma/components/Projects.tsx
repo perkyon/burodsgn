@@ -1,18 +1,19 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { motion } from 'motion/react';
-const img1 = "/figma/9d277a0c76e94e6c0d1c36b260e7d33fa0e08d05.png";
-const imgImage4 = "/figma/c816ec898d4af1b629a41b94b567b03f5616c148.png";
-const imgImage5 = "/figma/77e65ee8bee14c18399a8e359e571f19624b33cc.png";
 import { ProjectDetail } from './ProjectDetail';
+import { PROJECT_PREVIEWS } from '../constants/projects';
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import { useScrollArrows } from '../hooks/useScrollArrows';
+import { fadeInLeft, fadeInUp } from '../config/animations';
 
 export function Projects() {
-  const [isVisible, setIsVisible] = useState(false);
   const [isProjectOpen, setIsProjectOpen] = useState(false);
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null);
-  const [showLeftArrow, setShowLeftArrow] = useState(false);
-  const [showRightArrow, setShowRightArrow] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
+  
+  const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.3 });
+  const { showRight } = useScrollArrows(scrollContainerRef);
 
   // Настройки позиции заголовка - меняй здесь
   const titleLeft = '0px'; // Движение заголовка влево/вправо (больше = правее, меньше = левее, можно отрицательные значения)
@@ -27,57 +28,7 @@ export function Projects() {
   const subtitleLeft = '0px'; // Движение подзаголовка влево/вправо (больше = правее, меньше = левее, можно отрицательные значения)
   const subtitleTop = '10px'; // Движение подзаголовка вверх/вниз (больше = ниже, меньше = выше, можно отрицательные значения)
 
-  // 4 кофейни: 1-Союзники, 2-Том Сойер, 3-Серф кофе, 4-Лейбл
-  const projects = [
-    { id: 1, img: img1, title: "Союзники" },
-    { id: 2, img: "/figma/том7.jpg", title: "Том Сойер" },
-    { id: 3, img: "/figma/из16.webp", title: "Серф кофе" },
-    { id: 4, img: img1, title: "Лейбл" },
-  ];
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (scrollContainerRef.current) {
-        const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
-        setShowLeftArrow(scrollLeft > 10);
-        // Скрываем правую стрелку, когда виден проект "Союзники" (в начале) или в конце
-        const isAtStart = scrollLeft < 10;
-        const isAtEnd = scrollLeft + clientWidth >= scrollWidth - 10;
-        setShowRightArrow(!isAtStart && !isAtEnd);
-      }
-    };
-
-    const container = scrollContainerRef.current;
-    if (container) {
-      container.addEventListener('scroll', handleScroll);
-      // Проверяем сразу и после небольшой задержки для корректного расчета размеров
-      setTimeout(() => handleScroll(), 100);
-      handleScroll();
-    }
-
-    return () => {
-      if (container) {
-        container.removeEventListener('scroll', handleScroll);
-      }
-    };
-  }, [isVisible]);
+  const projects = PROJECT_PREVIEWS;
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
@@ -100,9 +51,9 @@ export function Projects() {
         
         <div className="mb-8 lg:mb-12 relative">
           <motion.div 
-            initial={{ x: -50, opacity: 0 }}
-            animate={isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            {...fadeInLeft}
+            animate={isVisible ? fadeInLeft.animate : fadeInLeft.initial}
+            transition={{ ...fadeInLeft.transition, delay: 0.2 }}
             className="font-['Unbounded:Regular',sans-serif] text-2xl sm:text-3xl lg:text-[40px] text-black mb-6"
             style={{ 
               marginLeft: titleLeft,
@@ -135,9 +86,9 @@ export function Projects() {
           </div>
           
           <motion.p 
-            initial={{ x: -50, opacity: 0 }}
-            animate={isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+            {...fadeInLeft}
+            animate={isVisible ? fadeInLeft.animate : fadeInLeft.initial}
+            transition={{ ...fadeInLeft.transition, delay: 0.5 }}
             className="hidden lg:block font-['Unbounded:Regular',sans-serif] text-[25px] text-black mt-6"
             style={{
               marginLeft: subtitleLeft,
@@ -158,33 +109,45 @@ export function Projects() {
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}
-                initial={{ y: 50, opacity: 0 }}
-                animate={isVisible ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 + index * 0.1, ease: "easeOut" }}
-                className="flex-none w-[300px] sm:w-[350px] lg:w-[413px] aspect-[11/13] rounded-[10px] cursor-pointer hover:scale-105 transition-transform overflow-hidden group shadow-lg hover:shadow-2xl"
+                {...fadeInUp}
+                animate={isVisible ? fadeInUp.animate : fadeInUp.initial}
+                transition={{ ...fadeInUp.transition, delay: 0.3 + index * 0.1 }}
+                className="flex-none w-[300px] sm:w-[350px] lg:w-[413px] aspect-[11/13] rounded-3xl cursor-pointer transition-all duration-500 overflow-hidden group relative border border-black/5 bg-white"
+                style={{
+                  boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.05)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = '0 25px 50px -12px rgba(0, 0, 0, 0.15)';
+                  e.currentTarget.style.transform = 'translateY(-12px) scale(1.02)';
+                  e.currentTarget.style.borderColor = 'rgba(0, 0, 0, 0.1)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '0 1px 3px 0 rgba(0, 0, 0, 0.05)';
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                  e.currentTarget.style.borderColor = 'rgba(0, 0, 0, 0.05)';
+                }}
                 onClick={() => { setSelectedProjectId(project.id); setIsProjectOpen(true); }}
               >
                 <img 
                   alt={project.title} 
-                  className="w-full h-full object-cover group-hover:brightness-110 transition-all" 
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out" 
+                  style={{ transform: 'scale(1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.08)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
                   src={project.img} 
                 />
+                {/* Тонкая рамка при наведении */}
+                <div className="absolute inset-0 border-2 border-white/0 group-hover:border-white/30 rounded-3xl transition-all duration-500 pointer-events-none" />
               </motion.div>
             ))}
           </div>
           
           {/* Navigation buttons */}
-          {showLeftArrow && (
-            <button
-              onClick={() => scroll('left')}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-[50px] h-[50px] flex items-center justify-center bg-black rounded-full transition-all hover:scale-110 opacity-80 hover:opacity-100"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-          )}
-          {showRightArrow && (
+          {showRight && (
             <button
               onClick={() => scroll('right')}
               className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-[50px] h-[50px] flex items-center justify-center bg-black rounded-full transition-all hover:scale-110 opacity-80 hover:opacity-100"
