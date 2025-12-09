@@ -274,12 +274,12 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
                   className="flex-none w-full sm:w-[500px] lg:w-[600px] aspect-3/2 rounded-[10px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 ease-in-out snap-center group cursor-pointer"
                   onClick={() => { setLightboxIndex(index); setLightboxOpen(true); }}
                 >
-                  <div className="relative w-full h-full">
+                  <div className="relative w-full h-full bg-gray-100">
                     <img 
                       alt={`${projectName} ${index + 1}`} 
                       className="w-full h-full object-cover transition-all duration-500 ease-in-out" 
-                      src={img} 
-                      loading="lazy"
+                      src={img}
+                      loading={index < 2 ? "eager" : "lazy"}
                       decoding="async"
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-500 ease-in-out rounded-[10px]"></div>
@@ -655,8 +655,9 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
 
               {/* Image Container */}
               <div 
-                className="relative flex flex-col items-center max-w-[90vw] max-h-[90vh]" 
+                className="relative flex flex-col items-center" 
                 onClick={(e) => e.stopPropagation()}
+                style={{ maxWidth: '80vw', maxHeight: '80vh' }}
               >
                 {/* Image */}
                 <div className="relative flex items-center justify-center mb-4">
@@ -668,7 +669,8 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
                       exit={{ opacity: 0, x: -30 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                       alt={`${projectName} ${lightboxIndex + 1}`} 
-                      className="max-w-full max-h-[85vh] w-auto h-auto object-contain rounded-lg"
+                      className="w-auto h-auto object-contain rounded-lg shadow-2xl"
+                      style={{ maxWidth: '75vw', maxHeight: '70vh' }}
                       src={projectImgs[lightboxIndex]} 
                     />
                   </AnimatePresence>
