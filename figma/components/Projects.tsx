@@ -138,7 +138,9 @@ export function Projects() {
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = 'scale(1)';
                   }}
-                  src={project.img} 
+                  src={project.img}
+                  loading="lazy"
+                  decoding="async"
                 />
                 {/* Тонкая рамка при наведении */}
                 <div className="absolute inset-0 border-2 border-white/0 group-hover:border-white/30 rounded-3xl transition-all duration-500 pointer-events-none" />

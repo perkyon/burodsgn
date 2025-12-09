@@ -20,9 +20,6 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
   const [privacyOpen, setPrivacyOpen] = useState(false);
   const [userAgreementOpen, setUserAgreementOpen] = useState(false);
   const [contactModalOpen, setContactModalOpen] = useState(false);
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [lightboxIndex, setLightboxIndex] = useState(0);
-  const [isFullscreen, setIsFullscreen] = useState(false);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
   const [logoHeight, setLogoHeight] = useState('60px');
@@ -231,6 +228,8 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
                   alt={projectName}
                   style={{ height: logoHeight }}
                   className="object-contain"
+                  loading="eager"
+                  decoding="async"
                   onError={(e) => {
                     const target = e.currentTarget;
                     target.style.display = 'none';
@@ -270,11 +269,16 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
                   initial={{ y: 50, opacity: 0 }}
                   animate={isVisible1 ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
                   transition={{ duration: 0.8, delay: 0.5 + index * 0.1 }}
-                  className="flex-none w-full sm:w-[500px] lg:w-[600px] aspect-3/2 rounded-[10px] overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500 ease-in-out snap-center group"
-                  onClick={() => { setLightboxIndex(index); setLightboxOpen(true); }}
+                  className="flex-none w-full sm:w-[500px] lg:w-[600px] aspect-3/2 rounded-[10px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 ease-in-out snap-center group"
                 >
                   <div className="relative w-full h-full">
-                    <img alt={`${projectName} ${index + 1}`} className="w-full h-full object-cover transition-all duration-500 ease-in-out" src={img} />
+                    <img 
+                      alt={`${projectName} ${index + 1}`} 
+                      className="w-full h-full object-cover transition-all duration-500 ease-in-out" 
+                      src={img} 
+                      loading="lazy"
+                      decoding="async"
+                    />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-500 ease-in-out rounded-[10px]"></div>
                   </div>
                 </motion.div>
@@ -298,7 +302,7 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
                   <React.Fragment key={i}>
                     {projectLogosList.map((logo, index) => (
                       <div key={`${i}-${index}`} className="h-[40px] w-[120px] sm:h-[50px] sm:w-[150px] lg:h-[60px] lg:w-[180px] shrink-0 flex items-center justify-center">
-                        <img alt={`Logo ${index + 1}`} className="h-full w-auto object-contain" src={logo} />
+                        <img alt={`Logo ${index + 1}`} className="h-full w-auto object-contain" src={logo} loading="lazy" decoding="async" />
                       </div>
                     ))}
                   </React.Fragment>
@@ -614,155 +618,6 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
         </div>
       </section>
 
-      {/* Lightbox Modal для увеличения фото */}
-      <AnimatePresence>
-        {lightboxOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setLightboxOpen(false)}
-              className="fixed inset-0 bg-black/90 backdrop-blur-sm z-100"
-            />
-
-            {/* Modal */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 z-101 flex items-center justify-center p-4"
-              onClick={() => setLightboxOpen(false)}
-            >
-              {/* Back button - стрелка назад слева вверху */}
-              <button
-                onClick={(e) => { e.stopPropagation(); setLightboxOpen(false); }}
-                className="absolute left-4 top-4 z-102 w-[50px] h-[50px] flex items-center justify-center bg-black/90 hover:bg-black rounded-full transition-all hover:scale-110 cursor-pointer"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
-
-              {/* Image Container - увеличенный размер с полноэкранным режимом */}
-              <div 
-                className="relative flex flex-col items-center" 
-                onClick={(e) => e.stopPropagation()}
-                style={{ 
-                  width: isFullscreen ? '100vw' : '1400px', 
-                  maxWidth: isFullscreen ? '100vw' : '95vw',
-                  height: isFullscreen ? '100vh' : 'auto'
-                }}
-              >
-                {/* Image */}
-                <div 
-                  className="relative flex items-center justify-center mb-6 cursor-pointer" 
-                  style={{ width: '100%', position: 'relative', height: isFullscreen ? '100vh' : 'auto' }}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setIsFullscreen(!isFullscreen);
-                  }}
-                >
-                  <AnimatePresence mode="wait">
-                    <motion.img
-                      key={lightboxIndex}
-                      initial={{ opacity: 0, x: 30 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -30 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      alt={`${projectName} ${lightboxIndex + 1}`} 
-                      style={{ 
-                        maxWidth: '100%', 
-                        maxHeight: isFullscreen ? '100vh' : '85vh', 
-                        height: 'auto', 
-                        width: 'auto', 
-                        objectFit: 'contain' 
-                      }}
-                      src={projectImgs[lightboxIndex]} 
-                    />
-                  </AnimatePresence>
-                  
-                  {/* Navigation arrows - стрелки влево/вправо */}
-                  {projectImgs.length > 1 && !isFullscreen && (
-                    <>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setLightboxIndex((prev) => (prev - 1 + projectImgs.length) % projectImgs.length);
-                        }}
-                        className="absolute left-0 -translate-x-full -translate-y-1/2 top-1/2 z-103 w-[70px] h-[70px] flex items-center justify-center bg-black rounded-full transition-all hover:scale-110 ml-4"
-                        style={{ pointerEvents: 'auto', boxShadow: '0 4px 20px rgba(0,0,0,0.8), 0 0 0 3px rgba(255,255,255,0.5)' }}
-                      >
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-                          <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </button>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setLightboxIndex((prev) => (prev + 1) % projectImgs.length);
-                        }}
-                        className="absolute right-0 translate-x-full -translate-y-1/2 top-1/2 z-103 w-[70px] h-[70px] flex items-center justify-center bg-black rounded-full transition-all hover:scale-110 mr-4"
-                        style={{ pointerEvents: 'auto', boxShadow: '0 4px 20px rgba(0,0,0,0.8), 0 0 0 3px rgba(255,255,255,0.5)' }}
-                      >
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-                          <path d="M9 18L15 12L9 6" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </button>
-                    </>
-                  )}
-                  
-                  {/* Fullscreen arrows - стрелки в полноэкранном режиме */}
-                  {projectImgs.length > 1 && isFullscreen && (
-                    <>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setLightboxIndex((prev) => (prev - 1 + projectImgs.length) % projectImgs.length);
-                        }}
-                        className="absolute left-8 top-1/2 -translate-y-1/2 z-103 w-[70px] h-[70px] flex items-center justify-center bg-black rounded-full transition-all hover:scale-110"
-                        style={{ pointerEvents: 'auto', boxShadow: '0 4px 20px rgba(0,0,0,0.8), 0 0 0 3px rgba(255,255,255,0.5)' }}
-                      >
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-                          <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </button>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setLightboxIndex((prev) => (prev + 1) % projectImgs.length);
-                        }}
-                        className="absolute right-8 top-1/2 -translate-y-1/2 z-103 w-[70px] h-[70px] flex items-center justify-center bg-black rounded-full transition-all hover:scale-110"
-                        style={{ pointerEvents: 'auto', boxShadow: '0 4px 20px rgba(0,0,0,0.8), 0 0 0 3px rgba(255,255,255,0.5)' }}
-                      >
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-                          <path d="M9 18L15 12L9 6" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </button>
-                    </>
-                  )}
-                </div>
-                
-                {/* Image counter - по центру снизу изображения */}
-                {!isFullscreen && (
-                  <motion.div 
-                    key={lightboxIndex}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: 0.1 }}
-                    className="bg-black/90 px-6 py-2.5 rounded-full text-white text-base font-medium pointer-events-none"
-                  >
-                    {lightboxIndex + 1} / {projectImgs.length}
-                  </motion.div>
-                )}
-              </div>
-
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
     </div>
   );
 }
