@@ -12,7 +12,7 @@ export function Projects() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   
-  const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.3 });
+  const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.3, triggerOnce: true });
   const { showRight } = useScrollArrows(scrollContainerRef);
 
   // Настройки позиции заголовка - меняй здесь
@@ -109,10 +109,10 @@ export function Projects() {
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}
-                {...fadeInUp}
-                animate={isVisible ? fadeInUp.animate : fadeInUp.initial}
-                transition={{ ...fadeInUp.transition, delay: 0.3 + index * 0.1 }}
-                className="flex-none w-[300px] sm:w-[350px] lg:w-[413px] aspect-[11/13] rounded-3xl cursor-pointer transition-all duration-500 overflow-hidden group relative border border-black/5 bg-white"
+                initial={{ opacity: 0 }}
+                animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 + index * 0.1, ease: "easeOut" }}
+                className="flex-none w-[300px] sm:w-[350px] lg:w-[413px] aspect-11/13 rounded-3xl cursor-pointer transition-all duration-500 overflow-hidden group relative border border-black/5 bg-white"
                 style={{
                   boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.05)'
                 }}

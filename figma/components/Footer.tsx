@@ -17,6 +17,8 @@ export function Footer() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+          // Останавливаем наблюдение после первого появления
+          observer.unobserve(entry.target);
         }
       },
       { threshold: 0.1 }
@@ -34,7 +36,7 @@ export function Footer() {
 
   return (
     <div className="bg-[#141414] relative w-full flex items-center justify-center overflow-hidden" id="contacts">
-      <div ref={sectionRef} className="relative w-full max-w-[1440px] min-h-[900px] py-12 lg:py-0 px-4 lg:px-0 mx-auto pb-32 lg:pb-0">
+      <div ref={sectionRef} className="relative w-full max-w-[1440px] min-h-[900px] py-12 lg:py-0 px-4 lg:px-0 mx-auto pb-20 lg:pb-0" style={{ scrollBehavior: 'auto' }}>
         
         {/* Desktop version */}
         <div className="hidden lg:block">
@@ -83,7 +85,7 @@ export function Footer() {
 
           {/* Линия под заголовком */}
           <div className="absolute h-0 w-[603.001px]" style={{ left: `${690 + offsetX}px`, top: '110px' }}>
-            <div className="absolute bottom-0 left-0 right-0 top-[-1px]">
+            <div className="absolute bottom-0 left-0 right-0 -top-px">
               <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 603 1">
                 <motion.line 
                   stroke="white" 

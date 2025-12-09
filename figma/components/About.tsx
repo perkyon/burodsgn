@@ -38,6 +38,8 @@ export function About() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+          // Останавливаем наблюдение после первого появления
+          observer.unobserve(entry.target);
         }
       },
       { threshold: 0.3 }

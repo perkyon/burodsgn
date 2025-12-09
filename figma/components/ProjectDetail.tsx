@@ -84,6 +84,9 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
     document.body.classList.add('no-scroll');
     document.documentElement.classList.add('no-scroll');
     
+    // Сохраняем scrollY в data-атрибут для восстановления
+    document.body.setAttribute('data-scroll-y', scrollY.toString());
+    
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -121,6 +124,9 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
       logosObserver.disconnect();
       
       // Восстанавливаем скролл основного body и html при закрытии проекта
+      const savedScrollY = document.body.getAttribute('data-scroll-y');
+      document.body.removeAttribute('data-scroll-y');
+      
       document.body.style.removeProperty('position');
       document.body.style.removeProperty('top');
       document.body.style.removeProperty('left');
@@ -132,7 +138,18 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
       document.documentElement.classList.remove('no-scroll');
       
       // Восстанавливаем позицию скролла
-      window.scrollTo(0, scrollY);
+      if (savedScrollY) {
+        const scrollY = parseInt(savedScrollY, 10);
+        // Используем requestAnimationFrame для гарантии что DOM обновился
+        requestAnimationFrame(() => {
+          window.scrollTo({ top: scrollY, behavior: 'auto' });
+        });
+      }
+      
+      // Сбрасываем состояния видимости
+      setIsVisible1(false);
+      setIsVisible2(false);
+      setIsLogosVisible(false);
     };
   }, []);
 
@@ -607,7 +624,7 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setLightboxOpen(false)}
-              className="fixed inset-0 bg-black/90 backdrop-blur-sm z-[100]"
+              className="fixed inset-0 bg-black/90 backdrop-blur-sm z-100"
             />
 
             {/* Modal */}
@@ -616,13 +633,13 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 z-[101] flex items-center justify-center p-4"
+              className="fixed inset-0 z-101 flex items-center justify-center p-4"
               onClick={() => setLightboxOpen(false)}
             >
               {/* Back button - стрелка назад слева вверху */}
               <button
                 onClick={(e) => { e.stopPropagation(); setLightboxOpen(false); }}
-                className="absolute left-4 top-4 z-[102] w-[50px] h-[50px] flex items-center justify-center bg-black/90 hover:bg-black rounded-full transition-all hover:scale-110 cursor-pointer"
+                className="absolute left-4 top-4 z-102 w-[50px] h-[50px] flex items-center justify-center bg-black/90 hover:bg-black rounded-full transition-all hover:scale-110 cursor-pointer"
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
@@ -675,7 +692,7 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
                           e.stopPropagation();
                           setLightboxIndex((prev) => (prev - 1 + projectImgs.length) % projectImgs.length);
                         }}
-                        className="absolute left-0 -translate-x-full -translate-y-1/2 top-1/2 z-[103] w-[70px] h-[70px] flex items-center justify-center bg-black rounded-full transition-all hover:scale-110 ml-4"
+                        className="absolute left-0 -translate-x-full -translate-y-1/2 top-1/2 z-103 w-[70px] h-[70px] flex items-center justify-center bg-black rounded-full transition-all hover:scale-110 ml-4"
                         style={{ pointerEvents: 'auto', boxShadow: '0 4px 20px rgba(0,0,0,0.8), 0 0 0 3px rgba(255,255,255,0.5)' }}
                       >
                         <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
@@ -687,7 +704,7 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
                           e.stopPropagation();
                           setLightboxIndex((prev) => (prev + 1) % projectImgs.length);
                         }}
-                        className="absolute right-0 translate-x-full -translate-y-1/2 top-1/2 z-[103] w-[70px] h-[70px] flex items-center justify-center bg-black rounded-full transition-all hover:scale-110 mr-4"
+                        className="absolute right-0 translate-x-full -translate-y-1/2 top-1/2 z-103 w-[70px] h-[70px] flex items-center justify-center bg-black rounded-full transition-all hover:scale-110 mr-4"
                         style={{ pointerEvents: 'auto', boxShadow: '0 4px 20px rgba(0,0,0,0.8), 0 0 0 3px rgba(255,255,255,0.5)' }}
                       >
                         <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
@@ -705,7 +722,7 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
                           e.stopPropagation();
                           setLightboxIndex((prev) => (prev - 1 + projectImgs.length) % projectImgs.length);
                         }}
-                        className="absolute left-8 top-1/2 -translate-y-1/2 z-[103] w-[70px] h-[70px] flex items-center justify-center bg-black rounded-full transition-all hover:scale-110"
+                        className="absolute left-8 top-1/2 -translate-y-1/2 z-103 w-[70px] h-[70px] flex items-center justify-center bg-black rounded-full transition-all hover:scale-110"
                         style={{ pointerEvents: 'auto', boxShadow: '0 4px 20px rgba(0,0,0,0.8), 0 0 0 3px rgba(255,255,255,0.5)' }}
                       >
                         <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
@@ -717,7 +734,7 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
                           e.stopPropagation();
                           setLightboxIndex((prev) => (prev + 1) % projectImgs.length);
                         }}
-                        className="absolute right-8 top-1/2 -translate-y-1/2 z-[103] w-[70px] h-[70px] flex items-center justify-center bg-black rounded-full transition-all hover:scale-110"
+                        className="absolute right-8 top-1/2 -translate-y-1/2 z-103 w-[70px] h-[70px] flex items-center justify-center bg-black rounded-full transition-all hover:scale-110"
                         style={{ pointerEvents: 'auto', boxShadow: '0 4px 20px rgba(0,0,0,0.8), 0 0 0 3px rgba(255,255,255,0.5)' }}
                       >
                         <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
