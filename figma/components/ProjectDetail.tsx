@@ -20,6 +20,8 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
   const [privacyOpen, setPrivacyOpen] = useState(false);
   const [userAgreementOpen, setUserAgreementOpen] = useState(false);
   const [contactModalOpen, setContactModalOpen] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
   const [logoHeight, setLogoHeight] = useState('60px');
@@ -269,7 +271,8 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
                   initial={{ y: 50, opacity: 0 }}
                   animate={isVisible1 ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
                   transition={{ duration: 0.8, delay: 0.5 + index * 0.1 }}
-                  className="flex-none w-full sm:w-[500px] lg:w-[600px] aspect-3/2 rounded-[10px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 ease-in-out snap-center group"
+                  className="flex-none w-full sm:w-[500px] lg:w-[600px] aspect-3/2 rounded-[10px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 ease-in-out snap-center group cursor-pointer"
+                  onClick={() => { setLightboxIndex(index); setLightboxOpen(true); }}
                 >
                   <div className="relative w-full h-full">
                     <img 
@@ -618,6 +621,102 @@ export function ProjectDetail({ projectId, onClose }: ProjectDetailProps) {
         </div>
       </section>
 
+      {/* Lightbox Modal для увеличения фото */}
+      <AnimatePresence>
+        {lightboxOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setLightboxOpen(false)}
+              className="fixed inset-0 bg-black/90 backdrop-blur-sm z-100"
+            />
+
+            {/* Modal */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 z-101 flex items-center justify-center p-4"
+              onClick={() => setLightboxOpen(false)}
+            >
+              {/* Close button */}
+              <button
+                onClick={(e) => { e.stopPropagation(); setLightboxOpen(false); }}
+                className="absolute left-4 top-4 z-102 w-[50px] h-[50px] flex items-center justify-center bg-black/90 hover:bg-black rounded-full transition-all hover:scale-110 cursor-pointer"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+
+              {/* Image Container */}
+              <div 
+                className="relative flex flex-col items-center max-w-[90vw] max-h-[90vh]" 
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Image */}
+                <div className="relative flex items-center justify-center mb-4">
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={lightboxIndex}
+                      initial={{ opacity: 0, x: 30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -30 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      alt={`${projectName} ${lightboxIndex + 1}`} 
+                      className="max-w-full max-h-[85vh] w-auto h-auto object-contain rounded-lg"
+                      src={projectImgs[lightboxIndex]} 
+                    />
+                  </AnimatePresence>
+                  
+                  {/* Navigation arrows */}
+                  {projectImgs.length > 1 && (
+                    <>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setLightboxIndex((prev) => (prev - 1 + projectImgs.length) % projectImgs.length);
+                        }}
+                        className="absolute left-0 -translate-x-full -translate-y-1/2 top-1/2 z-103 w-[60px] h-[60px] flex items-center justify-center bg-black/80 hover:bg-black rounded-full transition-all hover:scale-110 ml-4"
+                      >
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                          <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setLightboxIndex((prev) => (prev + 1) % projectImgs.length);
+                        }}
+                        className="absolute right-0 translate-x-full -translate-y-1/2 top-1/2 z-103 w-[60px] h-[60px] flex items-center justify-center bg-black/80 hover:bg-black rounded-full transition-all hover:scale-110 mr-4"
+                      >
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                          <path d="M9 18L15 12L9 6" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </button>
+                    </>
+                  )}
+                </div>
+                
+                {/* Image counter */}
+                <motion.div 
+                  key={lightboxIndex}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.1 }}
+                  className="bg-black/90 px-6 py-2.5 rounded-full text-white text-base font-medium"
+                >
+                  {lightboxIndex + 1} / {projectImgs.length}
+                </motion.div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
