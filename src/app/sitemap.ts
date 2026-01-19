@@ -1,0 +1,25 @@
+import type { MetadataRoute } from "next";
+import { siteUrl } from "@/utils/site";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  return [
+    {
+      url: siteUrl,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 1,
+    },
+    {
+      url: `${siteUrl}/user-agreement`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${siteUrl}/privacy-policy`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+  ];
+}
