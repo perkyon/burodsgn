@@ -61,7 +61,7 @@ export const RequestModal = ({ onClose }: RequestModalProps) => {
 
         <div className={`flex flex-col gap-4 ${isConsented ? "" : "opacity-60"}`}>
           <a
-            href="https://t.me/+ms6fdSYzjhxkYTky"
+            href="https://t.me/Aleg_AXAX_Olegi"
             target="_blank"
             rel="noreferrer"
             onClick={handleContactClick}
@@ -76,12 +76,12 @@ export const RequestModal = ({ onClose }: RequestModalProps) => {
             </span>
             <div>
               <p className="font-unbounded font-medium t-body">Telegram</p>
-              <p className="font-unbounded t-caption text-white/80">Быстрый ответ в мессенджере</p>
+              <p className="font-unbounded t-caption text-white/80">@Aleg_AXAX_Olegi</p>
             </div>
           </a>
 
           <a
-            href="https://wa.me/79181234567"
+            href="https://wa.me/79094676110"
             target="_blank"
             rel="noreferrer"
             onClick={handleContactClick}
@@ -96,7 +96,7 @@ export const RequestModal = ({ onClose }: RequestModalProps) => {
             </span>
             <div>
               <p className="font-unbounded font-medium t-body">WhatsApp</p>
-              <p className="font-unbounded t-caption text-white/90">+7 (918) 123-45-67</p>
+              <p className="font-unbounded t-caption text-white/90">+7 (909) 467-61-10</p>
             </div>
           </a>
 
