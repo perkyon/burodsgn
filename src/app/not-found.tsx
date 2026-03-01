@@ -1,48 +1,43 @@
 import Link from "next/link";
-import { svgPaths } from "@/utils/svgPaths";
+import Image from "next/image";
 
 export default function NotFound() {
   return (
-    <main className="relative w-full h-screen overflow-hidden bg-white">
+    <main className="relative w-full h-[1024px] overflow-hidden bg-white">
       <div className="relative w-[1440px] h-[1024px] mx-auto">
-        <Link href="/" className="absolute left-[99px] top-[49px] size-[40px] bg-black rounded-[10px] flex items-center justify-center">
-          <svg className="block size-full" viewBox="0 0 40 40" fill="none">
-            <path fillRule="evenodd" clipRule="evenodd" d={svgPaths.p24fc470} fill="white" />
-          </svg>
-        </Link>
+        <div className="absolute left-[402px] top-[153px] w-[637px] h-[637px] rounded-[40px] overflow-hidden">
+          <Image src="/figma/notfound-bg.png" alt="404" fill className="object-cover" />
+        </div>
 
-        <nav className="absolute left-[374px] top-[32px] w-[692px] h-[57px] rounded-[20px] bg-white/70 backdrop-blur-xl border border-white/40 shadow-[0_6px_16px_rgba(0,0,0,0.12)] flex items-center justify-center gap-[48px] transition-transform duration-200 hover:-translate-y-px hover:shadow-[0_10px_24px_rgba(0,0,0,0.16)]">
-          <Link href="/" className="font-unbounded t-h3 text-black">
-            Главная
-          </Link>
-          <Link href="/#about" className="font-unbounded t-h3 text-black">
+        <nav className="absolute left-[501px] top-[49px] w-[439px] h-[57px] rounded-[20px] bg-white/70 backdrop-blur-xl border border-black/5 shadow-[0_4px_4px_rgba(0,0,0,0.6)] flex items-center gap-[45px] pl-[75px]">
+          <img src="/figma/notfound-brandmark.svg" alt="" className="absolute left-[11px] top-[7px] size-[43px]" />
+          <Link href="/#about" className="font-unbounded font-bold text-[20px] text-black/90">
             О нас
           </Link>
-          <Link href="/#projects" className="font-unbounded t-h3 text-black">
+          <Link href="/#projects" className="font-unbounded font-bold text-[20px] text-black/90">
             Проекты
           </Link>
-          <Link href="/#contacts" className="font-unbounded t-h3 text-black">
+          <Link href="/#contacts" className="font-unbounded font-bold text-[20px] text-black/90">
             Контакты
           </Link>
         </nav>
 
-        <div className="absolute left-[33px] top-[156px] w-[1374px] h-[618px] flex items-center justify-center">
-          <span className="font-unbounded text-[550px] leading-none text-black/90 tracking-tight select-none drop-shadow-[0_6px_24px_rgba(0,0,0,0.12)]">
+        <div className="absolute left-[508px] top-[153px] w-[425px] h-[211px] flex items-center justify-center">
+          <span className="font-unbounded text-[170px] leading-[1.24] text-black">
             404
           </span>
         </div>
 
-        <h1 className="absolute left-[256px] top-[743px] w-[928px] font-unbounded t-display leading-[1.24] text-black text-balance">
-          Ой, кажется, мы заблудились.
-        </h1>
-
-        <p className="absolute left-[330px] top-[825px] w-[779px] font-unbounded t-h3 leading-[1.24] text-black/80 text-balance text-center">
-          Давайте вернемся куда-нибудь в знакомое место.
+        <p className="absolute left-[468px] top-[764px] w-[570px] font-unbounded text-[50px] leading-[1.21] text-black">
+          Тут надо подумать......
+        </p>
+        <p className="absolute left-[403px] top-[837px] w-[634px] font-unbounded text-[25px] leading-[1.21] text-black">
+          Давайте вернемся куда-нибудь в знакомое место
         </p>
 
         <Link
           href="/"
-          className="absolute left-[566px] top-[897px] w-[307px] h-[57px] rounded-[20px] bg-white/70 backdrop-blur-xl border border-white/40 shadow-[0_6px_16px_rgba(0,0,0,0.12)] flex items-center justify-center font-unbounded t-subtitle text-black transition-transform duration-200 hover:-translate-y-px hover:shadow-[0_10px_24px_rgba(0,0,0,0.16)]"
+          className="absolute left-[554px] top-[906px] w-[332px] h-[57px] rounded-[20px] bg-white/70 backdrop-blur-xl border border-black/5 shadow-[0_4px_4px_rgba(0,0,0,0.6)] flex items-center justify-center font-unbounded font-bold text-[20px] text-black"
         >
           Обратно на главную
         </Link>

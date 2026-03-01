@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
-import { Footer } from "@/components/Footer";
 
 export type Project = {
   id: number;
@@ -31,10 +31,24 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    const originalOverflow = document.body.style.overflow;
+    const html = document.documentElement;
+    const originalHtmlOverflow = html.style.overflow;
+    const scrollY = window.scrollY;
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
     document.body.style.overflow = "hidden";
+    html.style.overflow = "hidden";
+    document.body.classList.add("modal-open");
     return () => {
-      document.body.style.overflow = originalOverflow;
+      const y = Math.abs(parseInt(document.body.style.top || "0", 10));
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      document.body.style.overflow = "";
+      html.style.overflow = originalHtmlOverflow;
+      document.body.classList.remove("modal-open");
+      window.scrollTo(0, y);
     };
   }, []);
 
@@ -61,13 +75,17 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [activeIndex, gallery.length]);
 
-  return (
+  if (typeof document === "undefined") {
+    return null;
+  }
+
+  return createPortal(
     <div
-      className="fixed inset-0 z-100 flex items-center justify-center bg-black/70 px-4 py-6"
+      className="fixed inset-0 z-100 flex items-center justify-center bg-black/80 backdrop-blur-sm px-4 py-6 overflow-y-auto overscroll-contain"
       onClick={onClose}
     >
       <div
-        className="relative w-[1440px] max-h-[96vh] overflow-y-auto scrollbar-hide rounded-[40px] bg-white shadow-2xl"
+        className="relative w-full max-w-[1440px] max-h-[96vh] overflow-y-auto scrollbar-hide rounded-[24px] md:rounded-[40px] bg-white shadow-2xl"
         onClick={(event) => event.stopPropagation()}
       >
         <button
@@ -79,45 +97,42 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
           ×
         </button>
 
-        <div className="px-[100px] pt-[60px] pb-[40px] text-center">
+        <div className="px-4 md:px-[100px] pt-[40px] md:pt-[60px] pb-[24px] md:pb-[40px] text-center">
           <h3 className="font-unbounded font-medium t-h3 text-black">{project.name}</h3>
           {project.location && (
             <p className="font-unbounded font-normal t-subtitle-sm text-black/70">{project.location}</p>
           )}
         </div>
 
-        <div className="px-[100px] pb-[80px]">
-          <div className="flex gap-8 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
+        <div className="px-4 md:px-[100px] pb-[40px] md:pb-[80px]">
+          <div className="flex gap-4 md:gap-8 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
             {gallery.map((src, index) => (
               <div key={`${project.id}-${index}`} className="shrink-0 snap-start">
                 <button
                   type="button"
                   onClick={() => setActiveIndex(index)}
-                  className="group relative h-[550px] w-[397px] overflow-hidden rounded-[40px]"
+                  className="group relative h-[240px] md:h-[550px] w-[78vw] max-w-[397px] overflow-hidden rounded-[20px] md:rounded-[40px]"
                   aria-label="Открыть фото"
                 >
                   <Image src={src} alt={project.name} fill className="object-cover" />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
                 </button>
-                <p className="mt-4 text-center font-unbounded font-normal t-subtitle text-black">
-                  {project.name}
-                </p>
               </div>
             ))}
           </div>
         </div>
 
-        <Footer
-          ctaContent={
+        <div className="px-4 md:px-[100px] pb-[40px] md:pb-[80px]">
+          <div className="rounded-[24px] md:rounded-[32px] bg-[#F7F7F7] border border-black/5 p-[20px] md:p-[32px]">
             <div className="text-left">
-              <p className="font-unbounded font-medium t-h3-lg text-black mb-2">
+              <p className="font-unbounded font-semibold text-[24px] md:text-[32px] leading-[1.15] text-black mb-2">
                 {project.name}
               </p>
               <p className="font-unbounded t-body text-black/60 mb-6">
                 {project.details?.lead ?? "Короткое описание проекта по запросу."}
               </p>
 
-              <div className="grid grid-cols-[1.4fr_0.9fr] gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-[1.35fr_0.9fr] gap-6 md:gap-8">
                 <div className="space-y-4">
                   <p className="font-unbounded t-body-sm leading-relaxed text-black/75">
                     {project.details?.story ?? "Подробности и контекст — по запросу."}
@@ -126,7 +141,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                     {(project.details?.highlights ?? []).map((item) => (
                       <span
                         key={item}
-                        className="px-3 py-1 rounded-full bg-black/5 text-black/70 t-caption uppercase tracking-wide"
+                        className="px-3 py-1.5 rounded-full bg-white text-black/70 t-caption uppercase tracking-wide border border-black/10"
                       >
                         {item}
                       </span>
@@ -138,27 +153,28 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                 </div>
 
                 <div className="space-y-3">
-                  <div className="rounded-[18px] border border-black/10 bg-white px-4 py-3">
+                  <p className="font-unbounded t-caption text-black/50 uppercase tracking-wide">Метрики</p>
+                  <div className="rounded-[18px] bg-white px-4 py-3 shadow-[0_8px_20px_rgba(0,0,0,0.06)]">
                     <p className="font-unbounded t-caption text-black/50 uppercase tracking-wide">Срок</p>
                     <p className="font-unbounded t-body text-black">{project.details?.duration ?? "по запросу"}</p>
                   </div>
-                  <div className="rounded-[18px] border border-black/10 bg-white px-4 py-3">
+                  <div className="rounded-[18px] bg-white px-4 py-3 shadow-[0_8px_20px_rgba(0,0,0,0.06)]">
                     <p className="font-unbounded t-caption text-black/50 uppercase tracking-wide">Бюджет</p>
                     <p className="font-unbounded t-body text-black">{project.details?.budget ?? "по запросу"}</p>
                   </div>
-                  <div className="rounded-[18px] border border-black/10 bg-white px-4 py-3">
+                  <div className="rounded-[18px] bg-white px-4 py-3 shadow-[0_8px_20px_rgba(0,0,0,0.06)]">
                     <p className="font-unbounded t-caption text-black/50 uppercase tracking-wide">Материалы</p>
                     <p className="font-unbounded t-body-sm text-black">{project.details?.materials ?? "по запросу"}</p>
                   </div>
-                  <div className="rounded-[18px] border border-black/10 bg-white px-4 py-3">
+                  <div className="rounded-[18px] bg-white px-4 py-3 shadow-[0_8px_20px_rgba(0,0,0,0.06)]">
                     <p className="font-unbounded t-caption text-black/50 uppercase tracking-wide">Сложности</p>
                     <p className="font-unbounded t-body-sm text-black">{project.details?.challenges ?? "по запросу"}</p>
                   </div>
                 </div>
               </div>
             </div>
-          }
-        />
+          </div>
+        </div>
       </div>
 
       {activeIndex !== null && (
@@ -205,6 +221,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
           </div>
         </div>
       )}
-    </div>
+    </div>,
+    document.body
   );
 };

@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 type RequestModalProps = {
   onClose: () => void;
@@ -8,15 +9,40 @@ type RequestModalProps = {
 
 export const RequestModal = ({ onClose }: RequestModalProps) => {
   useEffect(() => {
-    const originalOverflow = document.body.style.overflow;
+    const html = document.documentElement;
+    const originalHtmlOverflow = html.style.overflow;
+    const scrollY = window.scrollY;
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
     document.body.style.overflow = "hidden";
+    html.style.overflow = "hidden";
+    document.body.classList.add("modal-open");
     return () => {
-      document.body.style.overflow = originalOverflow;
+      const y = Math.abs(parseInt(document.body.style.top || "0", 10));
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      document.body.style.overflow = "";
+      html.style.overflow = originalHtmlOverflow;
+      document.body.classList.remove("modal-open");
+      window.scrollTo(0, y);
     };
   }, []);
+  const [isConsented, setIsConsented] = useState(false);
 
-  return (
-    <div className="fixed inset-0 z-120 flex items-center justify-center bg-black/60" onClick={onClose}>
+  const handleContactClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!isConsented) {
+      event.preventDefault();
+    }
+  };
+
+  if (typeof document === "undefined") {
+    return null;
+  }
+
+  return createPortal(
+    <div className="fixed inset-0 z-120 flex items-center justify-center bg-black/70 backdrop-blur-sm overflow-y-auto overscroll-contain" onClick={onClose}>
       <div
         className="relative w-[520px] rounded-[24px] bg-white p-8 shadow-[0_20px_60px_rgba(0,0,0,0.25)]"
         onClick={(event) => event.stopPropagation()}
@@ -33,12 +59,14 @@ export const RequestModal = ({ onClose }: RequestModalProps) => {
         <h3 className="font-unbounded font-medium t-h3 text-black mb-2">Оставьте заявку</h3>
         <p className="font-unbounded t-body-sm text-black/60 mb-6">Выберите удобный способ связи</p>
 
-        <div className="flex flex-col gap-4">
+        <div className={`flex flex-col gap-4 ${isConsented ? "" : "opacity-60"}`}>
           <a
             href="https://t.me/+ms6fdSYzjhxkYTky"
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-4 rounded-[14px] bg-[#0A84C6] p-4 text-white shadow-[0_10px_20px_rgba(10,132,198,0.25)] transition-transform duration-200 hover:-translate-y-[2px] hover:shadow-[0_14px_28px_rgba(10,132,198,0.35)]"
+            onClick={handleContactClick}
+            aria-disabled={!isConsented}
+            className={`flex items-center gap-4 rounded-[14px] bg-[#0A84C6] p-4 text-white shadow-[0_10px_20px_rgba(10,132,198,0.25)] transition-transform duration-200 ${isConsented ? "hover:-translate-y-[2px] hover:shadow-[0_14px_28px_rgba(10,132,198,0.35)]" : "cursor-not-allowed"}`}
           >
             <span className="flex size-[44px] items-center justify-center rounded-full bg-white/20">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
@@ -56,7 +84,9 @@ export const RequestModal = ({ onClose }: RequestModalProps) => {
             href="https://wa.me/79181234567"
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-4 rounded-[14px] bg-[#22C55E] p-4 text-white shadow-[0_10px_20px_rgba(34,197,94,0.25)] transition-transform duration-200 hover:-translate-y-[2px] hover:shadow-[0_14px_28px_rgba(34,197,94,0.35)]"
+            onClick={handleContactClick}
+            aria-disabled={!isConsented}
+            className={`flex items-center gap-4 rounded-[14px] bg-[#22C55E] p-4 text-white shadow-[0_10px_20px_rgba(34,197,94,0.25)] transition-transform duration-200 ${isConsented ? "hover:-translate-y-[2px] hover:shadow-[0_14px_28px_rgba(34,197,94,0.35)]" : "cursor-not-allowed"}`}
           >
             <span className="flex size-[44px] items-center justify-center rounded-full bg-white/20">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
@@ -72,7 +102,9 @@ export const RequestModal = ({ onClose }: RequestModalProps) => {
 
           <a
             href="mailto:sales@burodsgn.ru"
-            className="flex items-center gap-4 rounded-[14px] bg-[#141414] p-4 text-white shadow-[0_10px_20px_rgba(0,0,0,0.3)] transition-transform duration-200 hover:-translate-y-[2px] hover:shadow-[0_14px_28px_rgba(0,0,0,0.4)]"
+            onClick={handleContactClick}
+            aria-disabled={!isConsented}
+            className={`flex items-center gap-4 rounded-[14px] bg-[#141414] p-4 text-white shadow-[0_10px_20px_rgba(0,0,0,0.3)] transition-transform duration-200 ${isConsented ? "hover:-translate-y-[2px] hover:shadow-[0_14px_28px_rgba(0,0,0,0.4)]" : "cursor-not-allowed"}`}
           >
             <span className="flex size-[44px] items-center justify-center rounded-full bg-white/15">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
@@ -87,23 +119,34 @@ export const RequestModal = ({ onClose }: RequestModalProps) => {
         </div>
 
         <div className="mt-6 border-t border-black/10 pt-4">
-          <p className="font-unbounded t-caption text-black/60 mb-2">Страницы сайта</p>
-          <div className="flex flex-col gap-2">
-            <a
-              href="/user-agreement"
-              className="font-unbounded t-caption text-black/70 hover:text-black transition-colors"
-            >
-              Пользовательское соглашение
-            </a>
-            <a
-              href="/privacy-policy"
-              className="font-unbounded t-caption text-black/70 hover:text-black transition-colors"
-            >
-              Политика конфиденциальности
-            </a>
-          </div>
+          <label className="flex items-start gap-3 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={isConsented}
+              onChange={(event) => setIsConsented(event.target.checked)}
+              className="mt-[2px] size-4 accent-black"
+            />
+            <span className="font-unbounded t-caption text-black/70">
+              Я ознакомился с{" "}
+              <a
+                href="/user-agreement"
+                className="text-black hover:text-black/80 underline underline-offset-2"
+              >
+                Пользовательским соглашением
+              </a>{" "}
+              и{" "}
+              <a
+                href="/privacy-policy"
+                className="text-black hover:text-black/80 underline underline-offset-2"
+              >
+                Политикой конфиденциальности
+              </a>
+              .
+            </span>
+          </label>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };

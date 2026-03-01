@@ -1,120 +1,83 @@
 "use client";
 
 import Image from "next/image";
-import { svgPaths } from "@/utils/svgPaths";
-import { motion } from "framer-motion";
-
-// РУЧНОЕ УПРАВЛЕНИЕ ЛИНИЯМИ (меняй эти значения, чтобы двигать вектор)
-const LINES_CONFIG = {
-  left: -40,  // Смещение влево/вправо
-  top: 0,     // Смещение вверх/вниз
-  width: 1531 // Ширина вектора
-};
+import { useMemo, useRef, useState } from "react";
+import { useMotionValueEvent, useScroll } from "framer-motion";
 
 export const About = () => {
+  const textRef = useRef<HTMLDivElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: textRef,
+    offset: ["start 0.9", "end 0.75"]
+  });
+  const [progress, setProgress] = useState(0);
+
+  useMotionValueEvent(scrollYProgress, "change", (value) => {
+    setProgress(value);
+  });
+
+  const paragraphs = useMemo(
+    () => [
+      "Мы не делаем мебель ради мебели.",
+      "Мы решаем задачи так, чтобы этим было удобно пользоваться каждый день.",
+      "Мы работаем с корпусной и отдельно стоящей мебелью, а также делаем решения для бизнеса — офисов, кофеен, и HoReCa.",
+      "Опыт для нас — не количество лет. Это умение брать ответственность и доводить решение до результата.",
+      "Мы сталкивались с нестандартными планировками, ограниченными бюджетами, ошибками ремонта и жёсткими дедлайнами — и умеем собирать решения так, чтобы они работали, а не просто выглядели красиво."
+    ],
+    []
+  );
+
+  const wordMatrix = useMemo(() => paragraphs.map((text) => text.split(" ")), [paragraphs]);
+  const totalWords = useMemo(
+    () => wordMatrix.reduce((sum, words) => sum + words.length, 0),
+    [wordMatrix]
+  );
+  let wordIndex = 0;
+
   return (
-    <section id="about" className="relative w-full h-[1091.82px] bg-white overflow-hidden">
-      <div className="relative w-[1440px] h-full mx-auto overflow-hidden rounded-[40px]" data-name="About us">
-        {/* Вектор задний фон */}
-        <div 
-          className="absolute pointer-events-none transition-all duration-300"
-          style={{ 
-            left: `${LINES_CONFIG.left}px`, 
-            top: `${LINES_CONFIG.top}px`, 
-            width: `${LINES_CONFIG.width}px`,
-            height: '1091px'
-          }}
-        >
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1533.13 1093.8">
-            <g id="Вектор задний фон">
-              <motion.path
-                initial={{ pathLength: 0, opacity: 0 }}
-                whileInView={{ pathLength: 1, opacity: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 2.2, ease: "easeInOut" }}
-                d={svgPaths.p729a6c0}
-                stroke="#141414"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <motion.path
-                initial={{ pathLength: 0, opacity: 0 }}
-                whileInView={{ pathLength: 1, opacity: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 2.6, ease: "easeInOut", delay: 0.2 }}
-                d={svgPaths.p36568570}
-                stroke="#141414"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <motion.path
-                initial={{ pathLength: 0, opacity: 0 }}
-                whileInView={{ pathLength: 1, opacity: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 3, ease: "easeInOut", delay: 0.4 }}
-                d={svgPaths.p1e2b7b00}
-                stroke="#141414"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </g>
-          </svg>
+    <section id="about" className="relative w-full bg-white stacked-card mt-[80px]">
+      <div className="relative w-full max-w-[1440px] h-auto md:h-[940px] mx-auto overflow-hidden rounded-[24px] md:rounded-[40px] px-4 md:px-0" data-name="About us">
+        <div className="relative md:absolute left-0 md:left-[100px] top-0 w-full md:w-[1234px] h-[48px] md:h-[58px] rounded-full bg-black z-20 flex items-center px-[20px] md:px-[24px]">
+          <h2 className="text-white font-bold text-[30px]">О нас</h2>
         </div>
 
-        <h2 className="absolute font-unbounded font-medium leading-[normal] left-[100px] t-h1 text-black text-nowrap top-[59px]">
-          О нас
-        </h2>
-
-        <div className="absolute h-[687px] left-[100px] rounded-[40px] top-[202px] w-[608px] z-10 shadow-2xl">
+        <div className="relative w-full h-[360px] md:absolute md:h-[687px] md:left-[100px] md:top-[120px] md:w-[608px] z-10 shadow-2xl rounded-[24px] md:rounded-[40px] mt-[80px] md:mt-0 overflow-hidden">
           <Image
             src="/assets/about_img.png"
             alt="About Buro DSGN"
             fill
-            className="object-cover rounded-[40px] pointer-events-none"
+            className="object-cover pointer-events-none"
           />
         </div>
 
-        <div className="absolute font-unbounded font-bold h-[687px] leading-[normal] left-[calc(50%+12px)] text-[0px] text-black top-[201px] w-[608px] z-10">
-          <p className="mb-0">
-            <span className="font-medium t-h3">Buro dsgn</span>
-            <span className="t-h3"> </span>
-            <span className="font-normal t-h3">
-              началось с задачи, а не с бизнеса.
-              <br aria-hidden="true" />
-              <br aria-hidden="true" />
-            </span>
-          </p>
-          <p className="font-normal mb-0 t-h3">
-            Для собственной кофейни был изготовлен бар, который не подошёл
-            <br aria-hidden="true" />
-            ни по размерам, ни по логике работы, ни по ощущению пространства.
-            <br aria-hidden="true" />
-            <br aria-hidden="true" />
-          </p>
-          <p className="font-normal mb-0 t-h3">
-            До открытия оставалась неделя.
-            <br aria-hidden="true" />
-            Работать с готовым решением было невозможно.
-            <br aria-hidden="true" />
-            <br aria-hidden="true" />
-          </p>
-          <p className="font-normal mb-0 t-h3">
-            Бар пришлось срочно разбирать и переделывать самостоятельно —<br aria-hidden="true" />
-            так, чтобы он действительно работал и позволил открыться вовремя.
-            <br aria-hidden="true" />
-            <br aria-hidden="true" />
-          </p>
-          <p className="font-normal mb-0 t-h3">
-            Этот опыт показал главное:
-            <br aria-hidden="true" />
-            готовые решения часто не работают,
-            <br aria-hidden="true" />а настоящая ценность — в умении разобраться в задаче и собрать решение под реальную ситуацию.
-            <br aria-hidden="true" />
-            <br aria-hidden="true" />
-          </p>
+        <div
+          ref={textRef}
+          className="relative font-unbounded text-black w-full md:absolute md:h-[687px] md:left-[calc(50%+12px)] md:top-[120px] md:w-[608px] z-10 flex flex-col gap-4 mt-6 md:mt-0"
+        >
+          {wordMatrix.map((words, paragraphIndex) => (
+            <p key={paragraphIndex} className="font-normal t-h3-lg">
+              {words.map((word, idx) => {
+                const currentIndex = wordIndex;
+                wordIndex += 1;
+                const reveal = Math.min(
+                  Math.max(progress * totalWords - currentIndex, 0),
+                  1
+                );
+                return (
+                  <span
+                    key={`${paragraphIndex}-${idx}`}
+                    className="inline-block will-change-transform mr-[6px]"
+                    style={{
+                      opacity: reveal,
+                      transform: `translateY(${(1 - reveal) * 8}px)`
+                    }}
+                  >
+                    {word}
+                  </span>
+                );
+              })}
+            </p>
+          ))}
         </div>
       </div>
     </section>

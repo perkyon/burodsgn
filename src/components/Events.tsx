@@ -2,24 +2,19 @@
 
 import Image from "next/image";
 import { svgPaths } from "@/utils/svgPaths";
-import { motion } from "framer-motion";
 
 export const Events = () => {
   const logos = [1, 2, 3, 4, 5, 6, 7, 8];
 
   return (
-    <section id="events" className="relative w-full h-[952px] bg-white overflow-hidden">
-      <div className="relative w-[1440px] h-full mx-auto overflow-hidden rounded-[40px]" data-name="Мероприятия">
-        {/* Header */}
-        <h2 className="absolute font-unbounded font-medium leading-[normal] left-[97px] t-h1 text-black text-nowrap top-[50px] z-10">
-          Мероприятия
-        </h2>
-        <p className="absolute font-unbounded font-normal leading-none left-[203px] t-h3 text-black text-nowrap top-[100px] z-10">
-          На которых вы можете нас найти
-        </p>
+    <section id="events" className="relative w-full bg-white stacked-card max-md:mt-10">
+      <div className="relative w-full max-w-[1440px] h-auto md:h-[952px] mx-auto overflow-hidden rounded-[24px] md:rounded-[40px] px-4 md:px-0" data-name="Мероприятия">
+        <div className="relative md:absolute left-0 md:left-[100px] top-0 w-full md:w-[1234px] h-[48px] md:h-[58px] rounded-full bg-black z-20 flex items-center px-[20px] md:px-[24px]">
+          <h2 className="text-white font-bold text-[30px]">Мероприятия</h2>
+        </div>
 
         {/* Мероприятия Gallery */}
-        <div className="absolute h-[600px] left-[100px] rounded-[40px] top-[180px] w-[607px] z-10 overflow-hidden shadow-2xl">
+        <div className="relative w-full h-[320px] md:absolute md:h-[600px] md:left-[100px] md:top-[120px] md:w-[607px] z-10 overflow-hidden shadow-2xl rounded-[24px] md:rounded-[40px] mt-[80px] md:mt-0">
           <Image
             src="/assets/event1.png"
             alt="Event 1"
@@ -27,7 +22,7 @@ export const Events = () => {
             className="object-cover"
           />
         </div>
-        <div className="absolute h-[600px] left-[calc(50%+13px)] rounded-[40px] top-[180px] w-[606px] z-10 overflow-hidden shadow-2xl">
+        <div className="relative w-full h-[320px] md:absolute md:h-[600px] md:left-[calc(50%+13px)] md:top-[120px] md:w-[606px] z-10 overflow-hidden shadow-2xl rounded-[24px] md:rounded-[40px] mt-4 md:mt-0">
           <Image
             src="/assets/event2.png"
             alt="Event 2"
@@ -37,10 +32,10 @@ export const Events = () => {
         </div>
 
         {/* Бегущая строка логотипов - УБРАНО НАВЕДЕНИЕ */}
-        <div className="absolute bottom-[40px] left-0 w-full overflow-hidden h-[60px]">
+        <div className="relative md:absolute md:bottom-[40px] left-0 w-full overflow-hidden h-[60px] mt-6 md:mt-0">
           <div className="flex items-center animate-marquee whitespace-nowrap">
             {logos.concat(logos).map((_, index) => (
-              <div key={index} className="flex items-center flex-shrink-0">
+              <div key={index} className="flex items-center shrink-0">
                 {/* IN HOME Logo */}
                 <div className="w-[234px] h-[28px] mx-10">
                   <svg className="w-full h-full" fill="none" preserveAspectRatio="xMidYMid meet" viewBox="0 0 233.999 28.6417">
