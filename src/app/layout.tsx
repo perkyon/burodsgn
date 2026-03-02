@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Inter, Roboto } from "next/font/google";
 import "./globals.css";
 
@@ -116,9 +117,102 @@ export default function RootLayout({
     url: siteUrl,
   };
 
+  const services = [
+    {
+      name: "Мебель для HoReCa",
+      description:
+        "Разработка и производство мебели под заказ для кафе, ресторанов, баров и кофеен: залы, барные зоны, посадка, стойки выдачи и ожидания.",
+      url: `${siteUrl}#projects`,
+    },
+    {
+      name: "Офисная мебель",
+      description:
+        "Рабочие места, переговорные, кабинеты, зоны ожидания и reception для офисов малого и среднего бизнеса, проектирование под планировку.",
+      url: `${siteUrl}#projects`,
+    },
+    {
+      name: "Мебель для рабочих пространств и коворкингов",
+      description:
+        "Гибкие рабочие места, переговорные комнаты и зоны коллаборации для коворкингов, образовательных и гибридных пространств.",
+      url: `${siteUrl}#projects`,
+    },
+  ];
+
+  const professionalServiceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: siteName,
+    url: siteUrl,
+    image: new URL(siteOgImage, siteUrl).toString(),
+    description: siteDescription,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Краснодар",
+      addressRegion: "Краснодарский край",
+      addressCountry: "RU",
+    },
+    areaServed: {
+      "@type": "Country",
+      name: "Россия",
+    },
+    telephone: "+7-918-123-45-67",
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Услуги Monoburo",
+      itemListElement: services.map((service) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: service.name,
+          description: service.description,
+          url: service.url,
+        },
+      })),
+    },
+  };
+
+  const servicesItemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Услуги Monoburo",
+    itemListElement: services.map((service, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Service",
+        name: service.name,
+        description: service.description,
+        url: service.url,
+        provider: {
+          "@type": "Organization",
+          name: siteName,
+          url: siteUrl,
+        },
+      },
+    })),
+  };
+
   return (
     <html lang="ru">
       <head>
+        <Script
+          id="yandex-metrika"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(m,e,t,r,i,k,a){
+                  m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+                  m[i].l=1*new Date();
+                  for (var j = 0; j < document.scripts.length; j++) {
+                    if (document.scripts[j].src === r) { return; }
+                  }
+                  k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+              })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=107082729', 'ym');
+
+              ym(107082729, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+            `,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -131,10 +225,29 @@ export default function RootLayout({
             __html: JSON.stringify(websiteJsonLd),
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(professionalServiceJsonLd),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(servicesItemListJsonLd),
+          }}
+        />
       </head>
       <body
         className={`${inter.variable} ${roboto.variable} antialiased font-unbounded`}
       >
+        <noscript>
+          <img
+            src="https://mc.yandex.ru/watch/107082729"
+            style={{ position: "absolute", left: "-9999px" }}
+            alt=""
+          />
+        </noscript>
         <CustomCursor />
         {children}
       </body>

@@ -14,7 +14,7 @@ export const Hero = () => {
   return (
     <section id="hero" className="relative w-full min-h-[720px] md:h-[1024px] overflow-hidden bg-white">
       <h1 className="sr-only">
-        Buro DSGN — дизайн и производство мебели для бизнеса, дома и офисов
+        Monoburo — дизайн и производство мебели для бизнеса, дома и офисов
       </h1>
       <div className="relative w-full h-[720px] md:h-full overflow-hidden rounded-[24px] md:rounded-none" data-name="Hero">
         {/* Background with parallax */}

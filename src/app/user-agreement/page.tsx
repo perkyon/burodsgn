@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Пользовательское соглашение",
-  description: "Пользовательское соглашение Buro DSGN.",
+  description: "Пользовательское соглашение Monoburo.",
   alternates: {
     canonical: "/user-agreement",
   },
@@ -22,8 +22,8 @@ export default function UserAgreementPage() {
         <div className="flex flex-col gap-6 font-unbounded t-body-sm text-black/70">
           <p>
             Настоящее Пользовательское соглашение (далее — «Соглашение») определяет
-            условия использования сайта Buro DSGN (далее — «Сайт»), доступного по адресу
-            burodsgn.ru, и регулирует отношения между владельцем Сайта и пользователем.
+            условия использования сайта Monoburo (далее — «Сайт»), доступного по адресу
+            www.monoburo.ru, и регулирует отношения между владельцем Сайта и пользователем.
           </p>
 
           <section className="flex flex-col gap-3">
@@ -71,7 +71,7 @@ export default function UserAgreementPage() {
             <p>
               4.1. Все материалы, размещенные на Сайте, включая тексты, изображения,
               дизайн и графику, являются объектами авторского права и принадлежат
-              Buro DSGN либо используются на законных основаниях.
+              Monoburo либо используются на законных основаниях.
             </p>
             <p>
               4.2. Любое использование материалов без письменного согласия правообладателя
@@ -98,7 +98,7 @@ export default function UserAgreementPage() {
             </p>
             <p>
               6.2. Все вопросы и претензии направляются по контактам:
-              sales@burodsgn.ru, +7 (918) 123-45-67, г. Краснодар, ул. Дальняя 8к1.
+              hello@monoburo.ru, +7 (918) 123-45-67, г. Краснодар, ул. Дальняя 8к1.
             </p>
           </section>
         </div>

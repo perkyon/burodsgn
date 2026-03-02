@@ -44,7 +44,7 @@ export const About = () => {
         <div className="relative w-full h-[360px] md:absolute md:h-[687px] md:left-[100px] md:top-[120px] md:w-[608px] z-10 shadow-2xl rounded-[24px] md:rounded-[40px] mt-[80px] md:mt-0 overflow-hidden">
           <Image
             src="/assets/about_img.png"
-            alt="About Buro DSGN"
+            alt="About Monoburo"
             fill
             className="object-cover pointer-events-none"
           />

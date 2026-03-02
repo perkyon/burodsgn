@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Политика конфиденциальности",
-  description: "Политика конфиденциальности Buro DSGN.",
+  description: "Политика конфиденциальности Monoburo.",
   alternates: {
     canonical: "/privacy-policy",
   },
@@ -22,13 +22,13 @@ export default function PrivacyPolicyPage() {
         <div className="flex flex-col gap-6 font-unbounded t-body-sm text-black/70">
           <p>
             Настоящая Политика конфиденциальности определяет порядок обработки и защиты
-            персональных данных пользователей сайта Buro DSGN (далее — «Сайт»).
+            персональных данных пользователей сайта Monoburo (далее — «Сайт»).
           </p>
 
           <section className="flex flex-col gap-3">
             <h2 className="t-subtitle-sm text-black">1. Оператор персональных данных</h2>
             <p>
-              Оператор: Buro DSGN. Контакты: sales@burodsgn.ru, +7 (918) 123-45-67,
+              Оператор: Monoburo. Контакты: hello@monoburo.ru, +7 (918) 123-45-67,
               г. Краснодар, ул. Дальняя 8к1.
             </p>
           </section>
@@ -102,7 +102,7 @@ export default function PrivacyPolicyPage() {
             <h2 className="t-subtitle-sm text-black">9. Контакты</h2>
             <p>
               По вопросам обработки персональных данных обращайтесь:
-              sales@burodsgn.ru, +7 (918) 123-45-67.
+              hello@monoburo.ru, +7 (918) 123-45-67.
             </p>
           </section>
         </div>
