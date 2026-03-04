@@ -191,7 +191,7 @@
               />
               <div className="absolute inset-0 bg-linear-to-b from-transparent via-black/20 to-black/70 transition-opacity duration-300 group-hover:opacity-90" />
               <div className="absolute inset-0 rounded-[32px] ring-1 ring-white/0 transition-all duration-300 group-hover:ring-white/30" />
-              <div className="absolute bottom-[18px] left-1/2 -translate-x-1/2 text-white font-semibold text-[18px]">
+              <div className="absolute bottom-[18px] left-1/2 -translate-x-1/2 text-center text-white font-semibold text-[18px]">
                 {card.title}
               </div>
             </button>
@@ -223,7 +223,7 @@
                    type="button"
                    aria-label="Листать влево"
                    onClick={() => horecaScrollRef.current?.scrollBy({ left: -400, behavior: "smooth" })}
-                   className="absolute left-2 top-1/2 z-10 -translate-y-1/2 flex size-9 items-center justify-center rounded-full bg-white/95 text-black/80 shadow-md border border-black/10 hover:bg-white hover:text-black hover:shadow-lg transition-colors"
+                   className="absolute left-2 top-1/2 z-10 -translate-y-1/2 hidden md:flex size-9 items-center justify-center rounded-full bg-white/95 text-black/80 shadow-md border border-black/10 hover:bg-white hover:text-black hover:shadow-lg transition-colors"
                  >
                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
                  </button>
@@ -231,7 +231,7 @@
                    type="button"
                    aria-label="Листать вправо"
                    onClick={() => horecaScrollRef.current?.scrollBy({ left: 400, behavior: "smooth" })}
-                   className="absolute right-2 top-1/2 z-10 -translate-y-1/2 flex size-9 items-center justify-center rounded-full bg-white/95 text-black/80 shadow-md border border-black/10 hover:bg-white hover:text-black hover:shadow-lg transition-colors"
+                   className="absolute right-2 top-1/2 z-10 -translate-y-1/2 hidden md:flex size-9 items-center justify-center rounded-full bg-white/95 text-black/80 shadow-md border border-black/10 hover:bg-white hover:text-black hover:shadow-lg transition-colors"
                  >
                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
                  </button>

@@ -204,7 +204,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
               type="button"
               aria-label="Предыдущее фото"
               onClick={() => setActiveIndex((prev) => (prev === null ? 0 : (prev - 1 + gallery.length) % gallery.length))}
-              className="absolute left-4 top-1/2 z-10 -translate-y-1/2 flex size-[44px] items-center justify-center rounded-full bg-white/90 text-black shadow-[0_6px_16px_rgba(0,0,0,0.2)]"
+              className="absolute left-4 top-1/2 z-10 -translate-y-1/2 hidden md:flex size-[44px] items-center justify-center rounded-full bg-white/90 text-black shadow-[0_6px_16px_rgba(0,0,0,0.2)]"
             >
               ‹
             </button>
@@ -212,7 +212,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
               type="button"
               aria-label="Следующее фото"
               onClick={() => setActiveIndex((prev) => (prev === null ? 0 : (prev + 1) % gallery.length))}
-              className="absolute right-4 top-1/2 z-10 -translate-y-1/2 flex size-[44px] items-center justify-center rounded-full bg-white/90 text-black shadow-[0_6px_16px_rgba(0,0,0,0.2)]"
+              className="absolute right-4 top-1/2 z-10 -translate-y-1/2 hidden md:flex size-[44px] items-center justify-center rounded-full bg-white/90 text-black shadow-[0_6px_16px_rgba(0,0,0,0.2)]"
             >
               ›
             </button>
