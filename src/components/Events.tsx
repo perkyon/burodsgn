@@ -7,14 +7,14 @@ export const Events = () => {
   const logos = [1, 2, 3, 4, 5, 6, 7, 8];
 
   return (
-    <section id="events" className="relative w-full bg-white stacked-card max-md:mt-10">
-      <div className="relative w-full max-w-[1440px] h-auto md:h-[952px] mx-auto overflow-hidden rounded-[24px] md:rounded-[40px] px-4 md:px-0" data-name="Мероприятия">
-        <div className="relative md:absolute left-0 md:left-[100px] top-0 w-full md:w-[1234px] h-[48px] md:h-[58px] rounded-full bg-black z-20 flex items-center px-[20px] md:px-[24px]">
+    <section id="events" className="relative w-full bg-white stacked-card pt-8 max-md:mt-24 md:pt-12">
+      <div className="relative w-full max-w-[1440px] h-auto md:h-[952px] mx-auto overflow-hidden rounded-[24px] md:rounded-[40px] px-4 md:px-0 pt-3 md:pt-4" data-name="Мероприятия">
+        <div className="relative md:absolute left-0 md:left-[100px] top-0 right-0 md:right-[100px] w-full md:w-auto h-[48px] md:h-[58px] rounded-full bg-black z-20 flex items-center px-[20px] md:px-[24px]">
           <h2 className="text-white font-bold text-[30px]">Мероприятия</h2>
         </div>
 
         {/* Мероприятия Gallery */}
-        <div className="relative w-full h-[320px] md:absolute md:h-[600px] md:left-[100px] md:top-[120px] md:w-[607px] z-10 overflow-hidden shadow-2xl rounded-[24px] md:rounded-[40px] mt-[80px] md:mt-0">
+        <div className="relative w-full h-[320px] md:absolute md:h-[600px] md:left-[100px] md:top-[100px] md:w-[607px] z-10 overflow-hidden shadow-2xl rounded-[24px] md:rounded-[40px] mt-12 md:mt-0">
           <Image
             src="/assets/event1.png"
             alt="Event 1"
@@ -22,7 +22,7 @@ export const Events = () => {
             className="object-cover"
           />
         </div>
-        <div className="relative w-full h-[320px] md:absolute md:h-[600px] md:left-[calc(50%+13px)] md:top-[120px] md:w-[606px] z-10 overflow-hidden shadow-2xl rounded-[24px] md:rounded-[40px] mt-4 md:mt-0">
+        <div className="relative w-full h-[320px] md:absolute md:h-[600px] md:left-[calc(50%+13px)] md:top-[100px] md:w-[606px] z-10 overflow-hidden shadow-2xl rounded-[24px] md:rounded-[40px] mt-4 md:mt-0">
           <Image
             src="/assets/event2.png"
             alt="Event 2"

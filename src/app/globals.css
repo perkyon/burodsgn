@@ -5,6 +5,22 @@
   --foreground: #000000;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Offset anchor jumps under fixed nav */
+section[id],
+[id] {
+  scroll-margin-top: 96px;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

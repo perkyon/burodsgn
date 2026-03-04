@@ -10,10 +10,10 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <Hero />
-      <div className="stacked-wrap stacked-1">
+      <div className="stacked-wrap stacked-2">
         <Reveal><About /></Reveal>
       </div>
-      <div className="stacked-wrap stacked-2 stacked-tight">
+      <div className="stacked-wrap stacked-1 stacked-tight">
         <Reveal><Projects /></Reveal>
       </div>
       <div className="stacked-wrap stacked-3">

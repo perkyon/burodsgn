@@ -1,13 +1,13 @@
  "use client";
 
  import Image from "next/image";
- import { useEffect, useState } from "react";
+ import { useEffect, useRef, useState } from "react";
  import { createPortal } from "react-dom";
  import { ProjectModal, type Project } from "@/components/ProjectModal";
 
  const cards = [
    { title: "Дом", image: "/assets/home1.png" },
-   { title: "HoReCa", image: "/assets/horeca1.png" },
+   { title: "HoReCa", image: "/figma/tom7.jpg" },
    { title: "Предметы интерьера", image: "/assets/home3.png" }
  ];
 
@@ -151,6 +151,7 @@
  export const Projects = () => {
    const [isHoReCaOpen, setIsHoReCaOpen] = useState(false);
    const [activeProject, setActiveProject] = useState<Project | null>(null);
+   const horecaScrollRef = useRef<HTMLDivElement>(null);
 
    useEffect(() => {
      if (!isHoReCaOpen) {
@@ -160,13 +161,13 @@
    }, [isHoReCaOpen]);
 
    return (
-    <section id="projects" className="relative w-full bg-white max-md:mt-10">
+    <section id="projects" className="relative z-10 w-full bg-white pt-4 max-md:mt-12 md:pt-6">
        <div className="relative w-full max-w-[1440px] h-auto md:h-[820px] mx-auto px-4 md:px-0">
         <div className="relative md:absolute left-0 md:left-[100px] top-0 w-full md:w-[1234px] h-[48px] md:h-[58px] rounded-full bg-black z-20 flex items-center px-[20px] md:px-[24px]">
           <h2 className="text-white font-bold text-[30px]">Проекты</h2>
         </div>
 
-        <div className="relative mt-[80px] md:absolute md:left-[100px] md:top-[120px] flex gap-[14px] md:gap-[22px] max-md:flex-col">
+        <div className="relative mt-10 md:absolute md:left-[100px] md:top-[100px] flex gap-[14px] md:gap-[22px] max-md:flex-col">
           {cards.map((card) => (
             <button
               key={card.title}
@@ -184,6 +185,8 @@
                 src={card.image}
                 alt={card.title}
                 fill
+                quality={95}
+                sizes="(max-width: 768px) 92vw, 400px"
                 className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
               />
               <div className="absolute inset-0 bg-linear-to-b from-transparent via-black/20 to-black/70 transition-opacity duration-300 group-hover:opacity-90" />
@@ -203,7 +206,7 @@
              onClick={() => setIsHoReCaOpen(false)}
            >
             <div
-              className="relative w-full max-w-[1200px] max-h-[90vh] rounded-[24px] md:rounded-[32px] bg-white p-[20px] md:p-[40px] shadow-2xl overflow-hidden"
+              className="relative w-full max-w-[1200px] max-h-[90vh] rounded-[24px] md:rounded-[32px] bg-white p-[20px] md:p-[40px] shadow-2xl overflow-x-hidden overflow-y-auto"
               onClick={(event) => event.stopPropagation()}
             >
                <button
@@ -215,7 +218,24 @@
                  ×
                </button>
                <h3 className="t-h2 text-black mb-4 md:mb-6">Выберите проект HoReCa</h3>
-               <div className="flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-2">
+               <div className="relative">
+                 <button
+                   type="button"
+                   aria-label="Листать влево"
+                   onClick={() => horecaScrollRef.current?.scrollBy({ left: -400, behavior: "smooth" })}
+                   className="absolute left-2 top-1/2 z-10 -translate-y-1/2 flex size-9 items-center justify-center rounded-full bg-white/95 text-black/80 shadow-md border border-black/10 hover:bg-white hover:text-black hover:shadow-lg transition-colors"
+                 >
+                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                 </button>
+                 <button
+                   type="button"
+                   aria-label="Листать вправо"
+                   onClick={() => horecaScrollRef.current?.scrollBy({ left: 400, behavior: "smooth" })}
+                   className="absolute right-2 top-1/2 z-10 -translate-y-1/2 flex size-9 items-center justify-center rounded-full bg-white/95 text-black/80 shadow-md border border-black/10 hover:bg-white hover:text-black hover:shadow-lg transition-colors"
+                 >
+                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                 </button>
+                 <div ref={horecaScrollRef} className="flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-2">
                  {horecaProjects.map((project) => (
                   <button
                     key={project.id}
@@ -224,7 +244,7 @@
                       setIsHoReCaOpen(false);
                       setActiveProject(project);
                     }}
-                    className="group relative h-[360px] md:h-[720px] w-[78vw] md:w-[520px] shrink-0 snap-start overflow-hidden rounded-[20px] md:rounded-[28px] text-left"
+                    className="group relative h-[360px] md:h-[60vh] md:max-h-[720px] w-[78vw] md:w-[520px] shrink-0 snap-start overflow-hidden rounded-[20px] md:rounded-[28px] text-left"
                   >
                      <Image src={project.image} alt={project.name} fill className="object-cover" />
                      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors" />
@@ -235,6 +255,7 @@
                    </button>
                  ))}
                </div>
+               </div>
              </div>
            </div>,
            document.body
@@ -242,7 +263,13 @@
        }
 
        {activeProject && (
-         <ProjectModal project={activeProject} onClose={() => setActiveProject(null)} />
+         <ProjectModal
+           project={activeProject}
+           onClose={() => {
+             setActiveProject(null);
+             setIsHoReCaOpen(true);
+           }}
+         />
        )}
      </section>
    );

@@ -46,7 +46,10 @@ export const Footer = ({ ctaContent }: FooterProps) => {
 
   return (
     <footer id="contacts" className="relative w-full bg-white overflow-hidden">
-      <div className="relative w-full md:rounded-[40px] overflow-hidden bg-black" data-name="Контакты">
+      <div
+        className="relative w-full overflow-hidden bg-black rounded-t-[24px] rounded-b-none md:rounded-t-[40px]"
+        data-name="Контакты"
+      >
         <div className="relative h-[420px] md:h-[880px]">
           <video
             className="absolute inset-0 size-full object-cover"

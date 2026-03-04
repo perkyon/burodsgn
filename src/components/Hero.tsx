@@ -53,13 +53,14 @@ export const Hero = () => {
 
         {/* INTERACTIVE NAV */}
         <div className="fixed z-50 left-1/2 -translate-x-1/2 top-[16px] md:top-[24px] group hero-nav">
-          <nav className="relative h-[50px] md:h-[57px] w-[65px] group-hover:w-[439px] max-md:w-[92vw] max-md:group-hover:w-[92vw] transition-all duration-500 ease-in-out rounded-[20px] max-md:rounded-[16px] bg-transparent overflow-hidden">
+          <nav className="relative h-[50px] md:h-[57px] w-[65px] group-hover:w-[520px] max-md:w-[92vw] max-md:group-hover:w-[92vw] transition-all duration-500 ease-in-out rounded-[20px] max-md:rounded-[16px] bg-transparent overflow-hidden">
             {/* Glassy background - strictly visible only on hover */}
             <div className="absolute inset-0 bg-black/40 backdrop-blur-xl border border-white/10 rounded-[20px] opacity-0 group-hover:opacity-100 max-md:opacity-100 transition-opacity duration-500" />
             
-            <div className="absolute inset-0 flex items-center justify-end pr-[30px] pl-[75px] gap-[45px] opacity-0 group-hover:opacity-100 max-md:opacity-100 max-md:justify-center max-md:pr-3 max-md:pl-[56px] max-md:gap-4 transition-opacity duration-300 delay-150 pointer-events-none group-hover:pointer-events-auto max-md:pointer-events-auto">
+            <div className="absolute inset-0 flex items-center justify-end pr-[30px] pl-[75px] gap-[36px] opacity-0 group-hover:opacity-100 max-md:opacity-100 max-md:justify-between max-md:pr-4 max-md:pl-[56px] max-md:gap-3 transition-opacity duration-300 delay-150 pointer-events-none group-hover:pointer-events-auto max-md:pointer-events-auto">
               <a href="#about" className="font-unbounded font-normal t-nav max-md:text-[13px] text-white/80 hover:text-white transition-colors whitespace-nowrap">О нас</a>
               <a href="#projects" className="font-unbounded font-normal t-nav max-md:text-[13px] text-white/80 hover:text-white transition-colors whitespace-nowrap">Проекты</a>
+              <a href="#events" className="font-unbounded font-normal t-nav max-md:text-[13px] text-white/80 hover:text-white transition-colors whitespace-nowrap">Мероприятия</a>
               <a href="#contacts" className="font-unbounded font-normal t-nav max-md:text-[13px] text-white/80 hover:text-white transition-colors whitespace-nowrap">Контакты</a>
             </div>
 

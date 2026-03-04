@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 type RequestModalProps = {
@@ -8,9 +8,10 @@ type RequestModalProps = {
 };
 
 export const RequestModal = ({ onClose }: RequestModalProps) => {
-  useEffect(() => {
+  useLayoutEffect(() => {
     const html = document.documentElement;
     const originalHtmlOverflow = html.style.overflow;
+    const originalScrollRestoration = window.history.scrollRestoration;
     const scrollY = window.scrollY;
     document.body.style.position = "fixed";
     document.body.style.top = `-${scrollY}px`;
@@ -18,6 +19,7 @@ export const RequestModal = ({ onClose }: RequestModalProps) => {
     document.body.style.overflow = "hidden";
     html.style.overflow = "hidden";
     document.body.classList.add("modal-open");
+    window.history.scrollRestoration = "manual";
     return () => {
       const y = Math.abs(parseInt(document.body.style.top || "0", 10));
       document.body.style.position = "";
@@ -26,7 +28,10 @@ export const RequestModal = ({ onClose }: RequestModalProps) => {
       document.body.style.overflow = "";
       html.style.overflow = originalHtmlOverflow;
       document.body.classList.remove("modal-open");
-      window.scrollTo(0, y);
+      window.history.scrollRestoration = originalScrollRestoration;
+      window.scrollTo({ top: y, left: 0, behavior: "auto" });
+      document.documentElement.scrollTop = y;
+      document.body.scrollTop = y;
     };
   }, []);
   const [isConsented, setIsConsented] = useState(false);
