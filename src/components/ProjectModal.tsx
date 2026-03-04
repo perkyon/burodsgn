@@ -114,7 +114,13 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                   className="group relative h-[240px] md:h-[550px] w-[78vw] max-w-[397px] overflow-hidden rounded-[20px] md:rounded-[40px]"
                   aria-label="Открыть фото"
                 >
-                  <Image src={src} alt={project.name} fill className="object-cover" />
+                  <Image
+                    src={src}
+                    alt={project.name}
+                    fill
+                    sizes="(max-width: 768px) 78vw, 397px"
+                    className="object-cover"
+                  />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
                 </button>
               </div>
@@ -215,6 +221,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                 src={gallery[activeIndex]}
                 alt={project.name}
                 fill
+                sizes="80vw"
                 className="object-contain transition-transform duration-300 ease-out"
               />
             </div>

@@ -55,6 +55,7 @@ export const Footer = ({ ctaContent }: FooterProps) => {
             muted
             loop
             playsInline
+            preload="metadata"
           />
           <button
             type="button"

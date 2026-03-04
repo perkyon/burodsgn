@@ -19,7 +19,15 @@ export const Hero = () => {
       <div className="relative w-full h-[720px] md:h-full overflow-hidden rounded-[24px] md:rounded-none" data-name="Hero">
         {/* Background with parallax */}
         <motion.div className="absolute inset-0 w-full h-[120%]" style={{ y: bgY }}>
-          <Image src="/assets/monoburo-hero-bg-34a702.png" alt="Monoburo Hero" fill className="object-cover object-center pointer-events-none scale-110" priority quality={100} />
+          <Image
+            src="/assets/monoburo-hero-bg-34a702.png"
+            alt="Monoburo Hero"
+            fill
+            priority
+            quality={80}
+            sizes="100vw"
+            className="object-cover object-center pointer-events-none scale-110"
+          />
         </motion.div>
 
         {/* Overlay */}

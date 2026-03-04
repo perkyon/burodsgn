@@ -202,10 +202,10 @@
              className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/90 backdrop-blur-sm px-4 md:px-6 py-6 md:py-10 overflow-hidden"
              onClick={() => setIsHoReCaOpen(false)}
            >
-             <div
-               className="relative w-full max-w-[1200px] max-h-[90vh] rounded-[24px] md:rounded-[32px] bg-white p-[20px] md:p-[40px] shadow-2xl"
-               onClick={(event) => event.stopPropagation()}
-             >
+            <div
+              className="relative w-full max-w-[1200px] max-h-[90vh] rounded-[24px] md:rounded-[32px] bg-white p-[20px] md:p-[40px] shadow-2xl overflow-hidden"
+              onClick={(event) => event.stopPropagation()}
+            >
                <button
                  type="button"
                  aria-label="Закрыть"
