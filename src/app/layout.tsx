@@ -196,6 +196,22 @@ export default function RootLayout({
     <html lang="ru">
       <head>
         <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-KJVBD9CH2B"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="ga4"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-KJVBD9CH2B');
+            `,
+          }}
+        />
+        <Script
           id="yandex-metrika"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
