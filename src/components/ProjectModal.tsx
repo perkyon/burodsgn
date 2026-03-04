@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 
@@ -29,6 +29,8 @@ type ProjectModalProps = {
 
 export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const touchStartX = useRef<number>(0);
+  const SWIPE_THRESHOLD = 50;
 
   useEffect(() => {
     const html = document.documentElement;
@@ -216,7 +218,19 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
             >
               ›
             </button>
-            <div className="relative h-[80vh] w-[80vw] max-h-[80vh] max-w-[80vw] overflow-hidden rounded-[20px]">
+            <div
+              className="relative h-[80vh] w-[80vw] max-h-[80vh] max-w-[80vw] overflow-hidden rounded-[20px] touch-pan-y"
+              onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
+              onTouchEnd={(e) => {
+                const delta = e.changedTouches[0].clientX - touchStartX.current;
+                if (Math.abs(delta) < SWIPE_THRESHOLD) return;
+                if (delta > 0) {
+                  setActiveIndex((prev) => (prev === null ? 0 : (prev - 1 + gallery.length) % gallery.length));
+                } else {
+                  setActiveIndex((prev) => (prev === null ? 0 : (prev + 1) % gallery.length));
+                }
+              }}
+            >
               <Image
                 src={gallery[activeIndex]}
                 alt={project.name}
