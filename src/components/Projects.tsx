@@ -217,15 +217,15 @@
                <h3 className="t-h2 text-black mb-4 md:mb-6">Выберите проект HoReCa</h3>
                <div className="flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-2">
                  {horecaProjects.map((project) => (
-                   <button
-                     key={project.id}
-                     type="button"
-                     onClick={() => {
-                       setIsHoReCaOpen(false);
-                       setActiveProject(project);
-                     }}
-                     className="group relative h-[360px] md:h-[720px] w-[78vw] max-w-[520px] shrink-0 snap-start overflow-hidden rounded-[20px] md:rounded-[28px] text-left"
-                   >
+                  <button
+                    key={project.id}
+                    type="button"
+                    onClick={() => {
+                      setIsHoReCaOpen(false);
+                      setActiveProject(project);
+                    }}
+                    className="group relative h-[360px] md:h-[720px] w-[78vw] md:w-[520px] shrink-0 snap-start overflow-hidden rounded-[20px] md:rounded-[28px] text-left"
+                  >
                      <Image src={project.image} alt={project.name} fill className="object-cover" />
                      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors" />
                      <div className="absolute bottom-[16px] left-[20px] text-white">
