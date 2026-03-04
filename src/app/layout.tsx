@@ -81,12 +81,9 @@ export const metadata: Metadata = {
     images: [siteOgImage],
   },
   icons: {
-    icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: siteLogo, type: "image/svg+xml" },
-    ],
-    shortcut: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-    apple: [{ url: siteLogo, type: "image/svg+xml" }],
+    icon: { url: "/favicon.svg", type: "image/svg+xml" },
+    shortcut: { url: "/favicon.svg", type: "image/svg+xml" },
+    apple: { url: siteLogo, type: "image/svg+xml" },
   },
   formatDetection: {
     telephone: false,
@@ -199,8 +196,8 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <head>
+        <link rel="preload" href="/favicon.svg" as="image" type="image/svg+xml" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="alternate icon" href="/favicon.svg" />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-KJVBD9CH2B"
           strategy="afterInteractive"

@@ -20,18 +20,18 @@ export const Hero = () => {
         {/* Background with parallax */}
         <motion.div className="absolute inset-0 w-full h-[120%]" style={{ y: bgY }}>
           <Image
-            src="/assets/monoburo-hero-bg-34a702.png"
+            src="/assets/hero-bg.png"
             alt="Monoburo Hero"
             fill
             priority
-            quality={80}
+            quality={95}
             sizes="100vw"
-            className="object-cover object-center pointer-events-none scale-110"
+            className="object-cover pointer-events-none object-[center_28%]"
           />
         </motion.div>
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/50 top-0 z-0" />
+        {/* Overlay — темнее по центру, чтобы текст не конфликтовал с фоном */}
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/40 via-black/55 to-black/50" />
 
         {/* Logo */}
         <motion.div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ y: contentY }}>
